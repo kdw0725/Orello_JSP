@@ -1,0 +1,395 @@
+#notice {
+    width: 700px;
+    margin: 20px auto;
+    margin-top: 50px;
+    font-weight: bold;
+    color: #eb5837;
+    font-size: 15px;
+    text-align: center;
+}
+#menu {
+    display: block;
+    text-align: center;
+    width: 800px;
+    margin: 0 auto;
+}
+#menu > span {
+    font-size: 3em;
+}
+
+.move-today {
+    float: right;
+    margin-top: 20px;
+}
+#calendarArea,
+#projectArea {
+    margin-left: 50px;
+}
+#calendar {
+    height: 600px;
+}
+.projectBox {
+    border: 1px solid #eee;
+    width: 250px;
+    height: 150px;
+    border-radius: 15px;
+    margin-right: 30px;
+    padding: 20px;
+    float: left;
+    color: #555;
+    overflow: hidden;
+    background-color: #fafafa;
+}
+
+.projectBox:last-child {
+    margin-right: 0px;
+    text-align: center;
+    color: #bbb;
+    cursor: pointer;
+    border-style: dotted;
+}
+.projectBox:last-child i {
+    font-size: 80px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+.index {
+    display: inline-block;
+    position: relative;
+    top: -10px;
+    left: -30px;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.detail {
+    float: right;
+    width: 80px;
+    font-size: 0.8em;
+}
+.projectTitle {
+    color: #555;
+    margin-top: -5px;
+}
+.title {
+    display: inline;
+    font-size: 2em;
+}
+.languagebox label {
+    display: inline;
+    margin-right: 10px;
+}
+.language {
+    border-radius: 100%;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+.fa-html5 {
+    color: #e44d26;
+}
+.fa-css3 {
+    color: #42a5f5;
+}
+.fa-js {
+    color: #f1e05a;
+}
+.fa-java {
+    background: linear-gradient(-180deg, #e4292f 59%, #0d73ad 41%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+.fa-python {
+    background: linear-gradient(-215deg, #3674a7 50%, #f1e05a 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+.fa-swift {
+    color: #fb7039;
+}
+.fa-cuttlefish {
+    color: #26338f;
+}
+.fa-internet-explorer {
+    color: #a4ffff;
+}
+.fa-android {
+    color: #93bb3a;
+}
+.fa-apple {
+    color: black;
+}
+.projectBox {
+    transition: all 0.3s linear;
+    margin-bottom: 20px;
+}
+#newProject::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+#moreProject {
+    display: block;
+    width: 50%;
+    margin: 0px auto;
+    margin-top: 200px;
+    transition: all 0.5s;
+}
+#notice {
+    transition: all 1s;
+}
+#checkProjectType label {
+    display: inline-block;
+    margin-right: 40px;
+}
+.team-worker,
+.new-worker {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    float: left;
+    background-color: white;
+}
+.team-worker:first-child {
+    left: 0px;
+    z-index: 0;
+}
+.team-worker img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.new-worker {
+    z-index: 10000;
+    border-style: dashed;
+    text-align: center;
+    color: #ccc;
+    font-size: 35px;
+    padding-top: 4px;
+    padding-left: 2px;
+    cursor: pointer;
+}
+
+.tooltips {
+    border-radius: 15px;
+    width: 250px;
+    height: 100px;
+    padding: 10px;
+    background-color: #eeeeee;
+    z-index: 500;
+    position: relative;
+    top: -160px;
+    left: -10px;
+}
+
+.tooltips::after {
+    content: " ";
+    position: relative;
+    top: 90%;
+    left: -20%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #eee transparent transparent transparent;
+}
+
+.tooltipInfo {
+    display: block;
+    width: 150px;
+    height: 70px;
+    float: right;
+}
+.tooltipName {
+    font-size: 20px;
+    font-weight: bold;
+}
+.tooltipCompany {
+    font-size: 0.8em;
+}
+.tooltipButton {
+    font-size: 0.8em;
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.tooltipButton button {
+    margin: 0 auto;
+}
+#searchUserResult {
+    border: 1px solid black;
+    position: relative;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+}
+#searchUserResult table {
+    width: 230px;
+}
+.userData {
+    height: 50px;
+    /* border: 1px solid black; */
+    font-size: 15px;
+    color: #555;
+}
+.userData button {
+    color: #555;
+}
+.userData:hover {
+    background-color: #f0f0f0;
+}
+.userData img {
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.userData input {
+    margin-left: 15px;
+    float: right;
+    margin-right: 15px;
+}
+#searchUser {
+    width: 50%;
+    height: 0px;
+    /* display: none; */
+    transition: all 0.5s;
+    border: 0px;
+    padding: 0px;
+}
+
+.searchUserResult {
+    z-index: 700;
+    border: 1px solid #ccc;
+    width: 284px;
+    position: relative;
+    height: 252px;
+    overflow: hidden;
+}
+.searchUserResult span {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#datePicker > div {
+    border: 1px solid #ddd;
+    z-index: 10001;
+}
+#datePicker div.tui-datepicker {
+    border: 1px solid #ddd;
+    z-index: 10001;
+}
+#contentLeft {
+    height: 1110px;
+}
+#profile {
+    width: 280px;
+    font-size: 25px;
+    padding: 0px 30px;
+    margin-top: 100px;
+}
+#imgArea {
+    margin: 0 auto;
+    border: 1px solid #333;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    margin: 10px auto;
+    margin-top: -10px;
+}
+
+#imgArea img {
+    width: 120px;
+    height: 120px;
+}
+#infoArea {
+    font-size: 30px;
+}
+#infoArea #name {
+    text-align: center;
+}
+#infoArea .info {
+    font-size: 13px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+#commentArea {
+    font-size: 14px;
+    padding: 10px;
+}
+#editComment {
+    float: right;
+}
+
+#commentInput {
+    display: none;
+}
+#timeLine {
+    height: 630px;
+    padding: 10px;
+    margin-top: 50px;
+}
+#timeLine h4 {
+    margin-left: 15px;
+    width: 50%;
+    padding-bottom: 5px;
+}
+#timeLineContent {
+    height: 530px;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    width: 280px;
+}
+#timeLine .btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+}
+#timeLineContent table {
+    margin: 10px;
+}
+
+#timeLineContent table tr {
+    border-bottom: 1px solid #ccc;
+}
+#timeLineContent table tr:last-child {
+    border-bottom: 0px;
+}
+.timeLineList {
+    width: 240px;
+    height: 65px;
+}
+.timeLineList img {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: block;
+    float: left;
+}
+.timeLineAction {
+    width: 185px;
+    height: 55px;
+    float: left;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.timeLineAction strong {
+    font-size: 14px;
+}
+.timeLineAction span {
+    float: right;
+    font-size: 10px;
+}
