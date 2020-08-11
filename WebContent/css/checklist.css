@@ -1,0 +1,450 @@
+* {
+	/* border: 1px solid gray; */
+	
+}
+
+#content.container {
+	padding: 80px 100px;
+	/* 우선순위 밀려서 안먹음.. */
+	margin: 0px !important;
+	min-width: 1600px;
+}
+
+#title {
+	width: 1600px;
+	height: 50px;
+	margin-top: 30px;
+	color: #444;
+	/* margin-left: 30px; */
+}
+
+#title h1 {
+	float: left;
+	margin: 0;
+	padding-left: 10px;
+	font-weight: bold;
+	border-left: 10px solid #5bc0de;
+}
+
+#title .titleBarFunction {
+	height: 50px;
+	display: inline-block;
+	float: right;
+}
+
+#title .titleBarFunction i {
+	font-size: 1.4em;
+	/* float: right; */
+	margin-left: 10px;
+}
+
+#title .titleBarFunction span {
+	font-size: 1.6em;
+}
+
+#title .titleBarFunction:hover {
+	color: #d3f1fa;
+}
+
+/* 체크리스트 */
+.steps {
+	width: 280px;
+	margin-top: 30px;
+	margin-left: 30px;
+	float: left;
+}
+
+.steps .listTitle {
+	padding: 2px 15px;
+	height: 40px;
+	background-color: #60d2f5;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.steps .listTitle h3 {
+	margin-top: 5px;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.steps .listTitle i {
+	float: right;
+	margin-top: 10px;
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+.steps .listTitle i:hover {
+	color: #ddd;
+}
+
+.steps h4 {
+	margin: 10px;
+	cursor: pointer;
+}
+
+.steps ul {
+	list-style: none;
+	min-height: 100px;
+	margin: 0;
+	padding: 0px;
+}
+
+.steps input[type=checkbox] {
+	display: none;
+}
+
+.steps label {
+	margin-bottom: 0;
+}
+
+.steps .ui-sortable-placeholder {
+	border: 1px dotted #ddd;
+	color: #888;
+	padding: 30px 20px;
+	position: relative;
+}
+
+.steps .ui-sortable-placeholder:after {
+	content: "Place me here.";
+	position: absolute;
+	top: 30%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	color: #555;
+	text-align: center;
+}
+
+.steps input[type='checkbox']+div {
+	background: white;
+	min-height: 69px;
+	width: 100%;
+	border: 1px solid #ddd;
+	color: #333;
+	text-transform: capitalize;
+	font-weight: 900;
+	font-size: 11px;
+	letter-spacing: 1px;
+	transition: all 0.7s ease;
+	position: relative;
+	top: 0;
+	left: 0;
+	padding: 5px 5px 10px 70px;
+	margin-bottom: 5px;
+	box-shadow: 2px 2px 2px #eee;
+}
+
+.steps div span {
+	display: block;
+	font-size: 12px;
+	text-transform: capitalize;
+	font-weight: normal;
+	color: #666;
+	margin-left: 10px;
+	/* margin-bottom: 10px; */
+	cursor: pointer;
+	transition: all 0.7s ease;
+}
+
+.steps input[type='checkbox']+div:before {
+	content: "";
+	width: 30px;
+	height: 30px;
+	border: 1px solid #ddd;
+	border-radius: 100%;
+	display: block;
+	position: absolute;
+	left: 20px;
+	top: 35%;
+	z-index: 999;
+	transition: border 0.7s ease;
+}
+
+.steps input[type='checkbox']+div:after {
+	content: "";
+	width: 60px;
+	background: white;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.steps input[type='checkbox']:checked+div {
+	background: white;
+	color: #5bc0de;
+}
+
+.steps input[type='checkbox']:checked+div span {
+	color: #5bc0de;
+}
+
+.steps input[type='checkbox']:checked+div:before {
+	background: url("orello/images/tick.png") no-repeat center center;
+	background-size: contain;
+	/* transition: all 0.7s ease; */
+}
+
+.steps li:nth-child(1) div {
+	border-right: 10px solid #A4DCD2;
+}
+
+.steps li:nth-child(2) div {
+	border-right: 10px solid #b3de69;
+}
+
+.steps li:nth-child(3) div {
+	border-right: 10px solid #ffed6f;
+}
+
+.steps li:nth-child(4) div {
+	border-right: 10px solid #fdb462;
+}
+
+.steps li:nth-child(5) div {
+	border-right: 10px solid #bebada;
+}
+
+.steps li:nth-child(6) div {
+	border-right: 10px solid #80b1d3;
+}
+
+.steps li:nth-child(7) div {
+	border-right: 10px solid #bc80bd;
+}
+
+.steps li:nth-child(8) div {
+	border-right: 10px solid #fb8072;
+}
+
+.steps li:nth-child(9) div {
+	border-right: 10px solid #fccde5;
+}
+
+.steps li:nth-child(10) div {
+	border-right: 10px solid #ffffb3;
+}
+
+.steps .addCheckList {
+	text-align: center;
+	font-size: 2em;
+	margin-top: 20px;
+}
+
+.steps .addCheckList i:hover {
+	color: #5bc0de;
+	text-shadow: 2px 2px 2px #ddd;
+}
+
+/* **체크리스트 추가 모달창** */
+.modal * {
+	/* border: 1px solid gray; */
+	outline: none !important;
+}
+
+.modal .modal-content {
+	border: 0px;
+	border-radius: 0%;
+	box-shadow: 0px 0px 0px #ddd;
+	padding: 20px;
+	background-color: white;
+}
+
+.checkListContent>textarea {
+	width: 520px;
+	min-height: 150px;
+	border: 1px solid #ddd;
+	/* margin: 20px auto; */
+	padding: 20px;
+	display: block;
+	resize: none;
+}
+
+.checkListFile {
+	margin: 15px 0px;
+}
+
+#datePicker>div {
+	border: 1px solid #ddd;
+}
+
+#datePicker div.tui-datepicker {
+	border: 1px solid #ddd;
+}
+
+.memberCheck {
+	display: none;
+}
+
+.memberBox {
+	width: 170px;
+	height: 50px;
+	border: 1px solid #ddd;
+	float: left;
+	vertical-align: auto;
+	box-shadow: 2px 2px 2px #ddd;
+	cursor: pointer;
+	padding: 5px;
+	background-color: transparent;
+}
+
+.memberBox>span {
+	line-height: 42px;
+	vertical-align: middle;
+	font-size: 12px;
+	font-weight: 400;
+	counter-reset: #333;
+}
+
+.memberPic {
+	width: 40px;
+	height: 40px;
+	border: 2px solid white;
+	background-color: #ddd;
+	background-image: url('../images/0.png');
+	background-size: contain;
+	border-radius: 50%;
+	margin-right: 5px;
+	vertical-align: middle;
+	float: left;
+}
+
+.memberBox:hover {
+	background-color: #eee;
+}
+
+.memberCheck:checked+label>.memberBox {
+	/* border: 3px solid tomato; */
+	box-shadow: -2px -2px -2px #ddd;
+	background-color: #3dcffc;
+	color: white;
+}
+
+.fileUploadBox {
+	height: 30px;
+	margin-right: 10px;
+}
+
+.fileUploadBox label {
+	color: #444;
+	cursor: pointer;
+}
+
+.fileUploadBox i {
+	/* font-size: 1.2em; */
+	color: #777;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.fileUploadBox i:hover {
+	color: #444;
+	cursor: pointer;
+}
+
+.fileUploadBox input[type='file'] {
+	display: none;
+}
+
+.fileUploadBox input[type='text'] {
+	border: 0px;
+	width: 300px;
+}
+
+.fileUploadBox input[type='text']:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.fileUploadBox i.glyphicon-remove, .fileUploadBox i.glyphicon-plus {
+	float: right;
+}
+
+.be-comment-block {
+	/* margin-bottom: 50px !important; */
+	padding-right: 10px;
+	width: 530px;
+}
+
+.be-img-comment {
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin-bottom: 15px;
+	background-color: #5bc0de;
+	border-radius: 50%;
+	/* padding: 5px; */
+}
+
+.be-ava-comment {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.be-comment-content {
+	margin-left: 80px;
+}
+
+.be-comment-content span {
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 15px;
+}
+
+.be-comment-name {
+	font-size: 13px;
+	font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-comment-content a {
+	color: #383b43;
+}
+
+.be-comment-time {
+	text-align: right;
+	font-size: 11px;
+	color: #b4b7c1;
+}
+
+.be-comment-text {
+	font-size: 13px;
+	line-height: 18px;
+	color: #7a8192;
+	display: block;
+	background: #f6f6f7;
+	border: 1px solid #edeff2;
+	padding: 15px 20px 20px 20px;
+}
+
+.modal .form-group {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.form-group textarea.form-input {
+	width: 80%;
+	height: 150px;
+	resize: none;
+	border: 1px solid #edeff2;
+	padding: 20px;
+}
+
+#commentEnter {
+	margin: 55px 10px;
+}
+
+.modal .modal-footer {
+	/* margin-top: 20px; */
+	
+}
+
+.modal .modal-footer #btnDelete {
+	float: left;
+	margin-left: -5px;
+}
+
+#titleModify {
+	display: none;
+}
