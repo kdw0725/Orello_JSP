@@ -149,7 +149,7 @@
 	                        class="form-control"
 	                        style="width: 40%; display: inline-block;"
 	                    />
-	                    <strong> &nbsp;03:00</strong>
+	                    <strong id="time"></strong>
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-info">
@@ -315,7 +315,33 @@
 					alert("약관을 확인해주시기 바랍니다!");
 					return;
 				}
+				$.ajax({
+					type: "POST",
+					url: "/orello/email/mailcheck.do",
+					data: "email="+$("#email").val(),
+					dataType: "JSON",
+					success: function(result){
+						alert(result.code);
+					},
+					error: function(a, b, c){
+						console.log(a, b, c);
+					}
+				});
 				$("#emailCheck").modal("show");
+				var count = 180;
+				setInterval(function(){
+					count--;
+					var minute = Math.floor(count / 60);
+					var second = count - minute * 60;
+					if(second < 10){
+						second = "0"+second
+					}
+					$("#time").html(minute + ":" + second);
+					if(count == 0){
+						alert("유효시간이 초과하였습니다.\n다시 시도해주시기 바랍니다.")
+						return;
+					}
+				},1000);
 			} else if(!emailChecked) {
 				alert("이메일을 확인해주시기 바랍니다!");
 				$("#email").focus();
@@ -333,7 +359,7 @@
 				$("#tel").focus();
 				return;
 			}
-		});
+		}); 
 	</script>
 </body>
 </html>
