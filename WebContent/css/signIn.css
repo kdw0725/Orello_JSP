@@ -9,7 +9,7 @@
 #contentLeft strong {
     display: block;
     font-size: 1.3em;
-    margin-bottom: 50px;
+    margin-bottom: 55px;
 }
 #content #contentRight {
     width: 800px;
@@ -21,7 +21,7 @@
     width: 500px;
 }
 #contentRight .form-control {
-    margin-bottom: 30px;
+	margin-bottom: 10px;
     height: 45px;
 }
 #submitArea {
@@ -32,6 +32,9 @@
 #submitArea input {
     width: 80px;
     margin-left: 10px;
+}
+#fileBox{
+	margin-bottom: 20px;
 }
 #fileBox input[type='file'] {
     position: absolute;
@@ -69,4 +72,17 @@
 }
 strong span {
     color: red;
+}
+.glyphicon{
+	position: relative;
+	left: 470px;
+	top: -43px;
+	font-size: 22px;
+	height: 22px;
+}
+.glyphicon-remove{
+	color: tomato;
+}
+.glyphicon-ok{
+	color: lime;
 }
