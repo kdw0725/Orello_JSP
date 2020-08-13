@@ -98,6 +98,31 @@ public class MemberDAO {
 		}
 		return 0;
 	}
+
+	public MemberDTO login(MemberDTO dto) {
+		try {
+			
+			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND PW = ? AND DELFLAG = 0";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getEmail());
+			pstat.setString(2, dto.getPw());
+			MemberDTO member = new MemberDTO();
+			rs = pstat.executeQuery();
+			if(rs.next()) {
+				member.setSeq(rs.getString("seq"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setCompany(rs.getString("company"));
+				member.setStatusmsg(rs.getString("statusmsg"));
+				member.setProfile_seq(rs.getString("profile_seq"));
+			}
+			return member;
+		} catch (Exception e) {
+			System.out.println("MemberDAO.login()");
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

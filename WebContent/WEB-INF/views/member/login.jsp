@@ -20,20 +20,22 @@
 	<section id="content" class="container">
 		<div id="inputArea">
         <img src="<%= request.getContextPath() %>/images/Logo-big.png" alt="Logo" id="logoBig" />
-        <input type="text" class="form-control" placeholder="아이디 (이메일)" />
-        <input type="password" class="form-control" placeholder="비밀번호" />
-        <input
-            type="button"
-            class="btn btn-info btn-logIn"
-            value="로그인"
-            id="logIn"
-        />
-        <input
-            type="button"
-            class="btn btn-default"
-            value="회원가입"
-            id="signIn"
-        />
+        <form action="/orello/member/loginok.do" method="POST">
+	        <input type="text" class="form-control" placeholder="아이디 (이메일)" name="email" />
+	        <input type="password" class="form-control" placeholder="비밀번호" name="pw" />
+	        <input
+	            type="submit"
+	            class="btn btn-info btn-logIn"
+	            value="로그인"
+	            id="logIn"
+	        />
+	        <input
+	            type="button"
+	            class="btn btn-default"
+	            value="회원가입"
+	            id="signIn"
+	        />
+        </form>
         <hr />
         <div id="findArea">
             <a href="#" id="findId">아이디 찾기</a>
