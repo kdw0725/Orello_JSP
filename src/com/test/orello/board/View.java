@@ -17,11 +17,17 @@ public class View extends HttpServlet{
 			, HttpServletResponse resp) throws ServletException, IOException {
 
 		String seq = req.getParameter("seq");
+		String page = req.getParameter("page");
+		
+		
 		
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.view(seq);
 		
+		dto.setSeq(seq);
+		
 		req.setAttribute("dto", dto);
+		req.setAttribute("page", page);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/view.jsp");

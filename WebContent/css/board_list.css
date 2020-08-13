@@ -65,21 +65,22 @@
             float: right;
             margin-bottom: 20px;
         }
-        #contentRight #search {
+        #contentRight #search_select {
             /* border: 1px solid black; */
-            text-align: center;
+            /*text-align: center;*/
             margin-left: 250px;
             /* margin-top: 70px; */
             height: 30px;
             width: 350px;
         }
-        #contentRight #search > input.form-control {
+        #contentRight #search_select > input#search.form-control {
             outline: none;
             display: block;
             float: left;
             width: 200px;
             height: 30px;
             margin-right: 10px;
+            text-align: left;
         }
         #contentRight #select_title > select.form-control {
             outline: none;
@@ -89,7 +90,7 @@
             height: 30px;
             margin-right: 10px;
         }
-        #contentRight #search button {
+        #contentRight #search_select button {
             display: block;
             /* float: right; */
             float: left;

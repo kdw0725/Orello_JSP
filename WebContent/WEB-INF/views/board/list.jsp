@@ -41,7 +41,7 @@
                 <tr>
                     <td>${dto.seq}</td>
                     <td>
-                    <a href="/orello/board/view.do?seq=${dto.seq}">
+                    <a href="/orello/board/view.do?seq=${dto.seq}&page=${page}">
                     ${dto.title}
                     </a>
                     </td>
@@ -59,43 +59,31 @@
                 <li class="glyphicon glyphicon-pencil"></li>
                 write
             </button>
-            <div id="search">
+            <form method="GET" action="/orello/board/list.do" id="searchForm">
+            <div id="search_select">
+            
                 <div id="select_title">
-                    <select name="" id="" class="form-control">
+                    <select name="soption" id="soption" class="form-control"
+                    onchange="$('#soption').submit()">
                         <option value="0">total</option>
                         <option value="1">title</option>
                         <option value="2">writer</option>
-                        <option value="3">date</option>
+                        <option value="3">content</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" />
-                <button class="btn btn-info">
+                <input type="text" class="form-control" name="search" id="search"
+                required value="${search}"/>
+                <button type="button" class="btn btn-info"
+                 onclick="$('#searchForm').submit();">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
             </div>
+            </form>
 
             <!-- pagination -->
-            <div id="paging">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            
+            ${pagebar}
+            
         </div>
     </div>
 	
@@ -104,9 +92,18 @@
 	
 	<%@ include file="/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
+	<script src="<%=request.getContextPath()%>/js/memberLeft.js"></script>
 	
+	<script>
+	
+		function movePage() {
+			//alert(event.srcElement.value);
+			location.href = "/codestudy/board/list.do?page="+event.srcElement.value;
+		}
+		$("#pagebar").val(${page});
 	
 	</script>
+	
+	
 </body>
 </html>

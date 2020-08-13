@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.test.orello.DBUtil;
 
@@ -36,22 +37,52 @@ public class BoardDAO {
 		}
 
 	//List서블릿 -> 리스트 목록 출력
-	public ArrayList<BoardDTO> list(String pseq) {
+	public ArrayList<BoardDTO> list(HashMap<String, String> map) {
 
 		try {
 			
-			String sql = "select b.seq as seq, b.title as title, b.regdate as regdate"
-					+ ", b.readcount as readcount, m.name as name  from tbl_freeboard b" + 
-					"    inner join tbl_project_attend pa" + 
-					"    on pa.seq = b.project_attend_seq" + 
-					"        inner join tbl_member m" + 
-					"        on m.seq = pa.member_seq" + 
-					"            inner join tbl_project p" + 
-					"            on p.seq = pa.project_seq" + 
-					"                where p.seq = ? order by b.regdate desc";
+			String where = "";
+			
+			
+			if(map.get("search") != null || map.get("search") != "") {
+				
+				if(map.get("soption").equals("0")) {
+					//all saerch
+					where = String.format("and (name like '%%%s%%' " 
+					+ "or title like '%%%s%%')" 
+					, map.get("search"),map.get("search"));
+					
+				}else if(map.get("soption").equals("1")) {
+					//title search
+					where = String.format("and title like '%%%s%%'" 
+							, map.get("search"));
+					
+				}else if(map.get("soption").equals("2")) {
+					//name search
+					where = String.format("and name like '%%%s%%' " 
+							, map.get("search"));
+					
+				}else if(map.get("soption").equals("3")) {
+					//content search
+					
+				}
+				
+				
+			}
+			
+			
+			
+			String sql =  String.format("select *" + 
+							"from (select a.*, rownum as rnum from" + 
+							"(select * from vwboardlist where pseq = ? order by regdate desc) a)" + 
+							"    where rnum >= ? and rnum <= ? %s", where);
+					
+			System.out.println(sql);
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, pseq);
+			pstat.setString(1, map.get("pseq"));
+			pstat.setString(2, map.get("begin"));
+			pstat.setString(3, map.get("end"));
 			
 			rs = pstat.executeQuery();
 			
@@ -130,6 +161,35 @@ public class BoardDAO {
 		
 		
 		return null;
+	}
+
+	
+	//List 서블릿 -> 게시글 개수 가져오기
+	public int getTotalCount(HashMap<String, String> map) {
+
+		try {
+			
+			String sql = "select count(*) as cnt from tbl_freeboard where project_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, map.get("pseq"));
+
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				
+				return rs.getInt("cnt");
+			}
+			
+			
+		} catch (Exception e) {
+
+			System.out.println("BoardDAO.getTotalCount()");
+		
+		}
+		
+		
+		return 0;
 	}
 
 }

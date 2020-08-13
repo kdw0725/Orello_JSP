@@ -107,7 +107,9 @@
                     <li class="glyphicon glyphicon-chevron-left"></li>
                     <span>prev</span>
                 </button>
-                <button class="btn btn-info">
+                
+                
+                <button type="button" class="btn btn-info">
                     <li class="glyphicon glyphicon-list"></li>
                     <span>back to list</span>
                 </button>
@@ -267,13 +269,14 @@
         }
     });
     
+    
     $("#content_btn > button:first-child").click(function() {
-        var result = confirm("do you want to delete?");
-        if(result) {
-        	location.href="/orello/board/delete.do?seq=${dto.seq}";
+        // var result = confirm("do you want to delete?");
+        if(confirm("do you want to delete?")){
+        	location.href="/orello/board/delete.do?seq="+${dto.seq};
         }else {
         	
-        	location.href="/orello/board/view.do?seq=${dto.seq}";
+        	location.href="/orello/board/view.do?seq="+${dto.seq};
         }
     })
      $("#content_btn > button:last-child").click(function() {
@@ -282,7 +285,7 @@
 
     // back to board
     $("#btn_set > button:nth-child(2)").click(function() {
-        location.href="board_list.html";
+        location.href="/orello/board/list.do?page="+${page};
     })
 
     //comment submit
