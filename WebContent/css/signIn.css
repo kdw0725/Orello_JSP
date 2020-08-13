@@ -86,3 +86,6 @@ strong span {
 .glyphicon-ok{
 	color: lime;
 }
+#submitBtn{
+	display: none;
+}

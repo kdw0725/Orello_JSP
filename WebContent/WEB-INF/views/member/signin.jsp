@@ -18,6 +18,7 @@
         <img src="../images/Logo-wide.jpg" alt="Logo" id="logoBig" />
 	    </div>
 	    <div id="contentLeft">
+	    	<strong>이름<span>&nbsp;*</span></strong>
 	        <strong>이메일<span>&nbsp;*</span></strong>
 	        <strong>비밀번호<span>&nbsp;*</span></strong>
 	        <strong>비밀번호 확인<span>&nbsp;*</span></strong>
@@ -27,7 +28,16 @@
 	    </div>
 	    <div id="contentRight">
 	        <div id="inputArea">
-	            <form action="signinok.do" method="POST" enctype="multipart/form-data">
+	            <form action="/orello/member/signinok.do" method="POST" enctype="multipart/form-data" id="signInForm">
+	           		<input
+	                    type="text"
+	                    name="name"
+	                    placeholder="이름"
+	                    class="form-control"
+	                    id="name"
+	                    required
+	                />
+	                <span id="nameResult" class="glyphicon"></span>
 	                <input
 	                    type="email"
 	                    name="email"
@@ -76,7 +86,6 @@
 	                        style="width: 100%;"
 	                        type="file"
 	                        class="upload-hidden"
-	                        name="file"
 	                        id="ex_file"
 	                        accept="image/*"
 	                        name="profile"
@@ -87,7 +96,6 @@
 	                    class="form-control"
 	                    name="company"
 	                    placeholder="소속(회사)"
-	                    required
 	                />
 	
 	                <input type="checkbox" id="agree" />
@@ -111,6 +119,7 @@
 	                        data-toggle="modal"
 	                    />
 	                </div>
+	                <input type="submit" id="submitBtn">
 	            </form>
 	        </div>
 	    </div>
@@ -148,11 +157,12 @@
 	                        type="text"
 	                        class="form-control"
 	                        style="width: 40%; display: inline-block;"
+	                        id="mailCheckCode"
 	                    />
 	                    <strong id="time"></strong>
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-info">
+	                    <button type="button" class="btn btn-info" id="emailSubmit">
 	                        인증 완료
 	                    </button>
 	                    <button
@@ -170,10 +180,13 @@
 	
 	<%@ include file="/inc/footer.jsp"%>
 	<script>
+		var nameChecked = false;
 		var emailChecked = false;
 		var pwCheck = false;
 		var pwcCheck = false;
 		var telChecked = false;
+		
+		var emailCode = 0;
 	
 		$(document).ready(function () {
 	        var fileTarget = $("#fileBox .upload-hidden");
@@ -189,6 +202,19 @@
 	            $("#fileBox .form-control").val(filename);
 	        });
 	    });
+		
+		$("#name").keyup(function(){
+			nameChecked = false;
+			var namePattern = /^[가-힇]{2,6}$/;
+			if(namePattern.test($("#name").val())){
+				$("#nameResult").removeClass("glyphicon-remove");
+	    		$("#nameResult").addClass("glyphicon-ok");
+	    		pwCheck = true;
+			} else{
+				$("#nameResult").removeClass("glyphicon-ok");
+	    		$("#nameResult").addClass("glyphicon-remove");
+			}
+		});
 		
 		$("#email").keyup(function(){
 			emailChecked = false;
@@ -308,7 +334,7 @@
 
 			return str;
 		}
-
+		
 		$("#submit").click(function() {
 			if(emailChecked && pwCheck && pwcCheck && telChecked){
 				if ($("input:checkbox[id='agree']").is(":checked") == false) {
@@ -321,7 +347,7 @@
 					data: "email="+$("#email").val(),
 					dataType: "JSON",
 					success: function(result){
-						alert(result.code);
+						emailCode = result.code;
 					},
 					error: function(a, b, c){
 						console.log(a, b, c);
@@ -329,7 +355,7 @@
 				});
 				$("#emailCheck").modal("show");
 				var count = 180;
-				setInterval(function(){
+				var timer = setInterval(function(){
 					count--;
 					var minute = Math.floor(count / 60);
 					var second = count - minute * 60;
@@ -338,10 +364,16 @@
 					}
 					$("#time").html(minute + ":" + second);
 					if(count == 0){
-						alert("유효시간이 초과하였습니다.\n다시 시도해주시기 바랍니다.")
+						alert("유효시간이 초과하였습니다.\n다시 시도해주시기 바랍니다.");
+						clearInterval(timer);
+						$("#emailCheck").modal("hide");
 						return;
 					}
 				},1000);
+				
+				$("#emailCheck").on('hidden.bs.modal',function(){
+					clearInterval(timer);
+				});
 			} else if(!emailChecked) {
 				alert("이메일을 확인해주시기 바랍니다!");
 				$("#email").focus();
@@ -359,7 +391,15 @@
 				$("#tel").focus();
 				return;
 			}
-		}); 
+		});
+		$("#emailSubmit").click(function(){
+			var codePattern = /^[a-z0-9]{8}$/;
+			if(codePattern.test($("#mailCheckCode").val()) && (emailCode == $("#mailCheckCode").val())){
+				$("#submitBtn").click();
+			}
+			console.log(emailCode);
+			console.log($("#mailCheckCode").val());
+		});
 	</script>
 </body>
 </html>

@@ -72,6 +72,32 @@ public class MemberDAO {
 		
 		return 0;
 	}
+
+	public int signIn(MemberDTO dto) {
+		try {
+			String sql = "INSERT INTO TBL_PROFILE(SEQ, ORGFILENAME, FILENAME, DELFLAG) VALUES(SEQ_PROFILE.NEXTVAL, ?, ?, DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getOri_file());
+			pstat.setString(2, dto.getFile());
+			
+			pstat.executeUpdate();
+			pstat.close();
+			
+			sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, ?, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, DEFAULT )";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, dto.getPw());
+			pstat.setString(4, dto.getCompany());
+			pstat.setString(5, dto.getTel());
+			return  pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.signIn()");
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 	
 }

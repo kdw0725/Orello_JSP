@@ -20,4 +20,7 @@ public class MemberDTO {
 	private String profile_seq;
 	private String delflag;
 	
+	private String ori_file;
+	private String file;
+	
 }
