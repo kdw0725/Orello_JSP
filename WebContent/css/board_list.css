@@ -1,0 +1,142 @@
+        #contentRight #main_list {
+            width: 800px;
+            margin-top: 30px;
+            margin-left: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+        #contentRight #titleicon {
+            /* border: 1px solid black; */
+            background-color: #5bc0de;
+            width: 8px;
+            height: 35px;
+            float: left;
+            margin-top: 3px;
+            margin-right: 10px;
+        }
+        #contentRight #main_title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        #contentRight #tbl {
+            margin-top: 30px;
+            border: none;
+        }
+        #contentRight #tbl tr {
+            color: #444;
+        }
+        #contentRight #tbl tr th {
+            font-size: 15px;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid #eee;
+            border-top: 1px solid #ddd;
+            background-color: #5bc0de;
+            color: white;
+        }
+        #contentRight #tbl td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            /* height: 30px; */
+            padding: 10px;
+            text-align: center;
+            font-size: 15px;
+            padding-top: 8px;
+            /* padding-left: 10px; */
+        }
+        #contentRight #tbl tr:first-child:hover {
+            cursor: auto;
+        }
+        #contentRight #tbl tr:hover {
+            background-color: rgb(216, 235, 252);
+            cursor: pointer;
+        }
+
+        #tbl td:first-child {
+            font-size: 11px;
+            font-weight: bold;
+        }
+        #contentRight #tbl td:nth-child(2) {
+            text-align: left;
+        }
+
+        #contentRight #write {
+            float: right;
+            margin-bottom: 20px;
+        }
+        #contentRight #search {
+            /* border: 1px solid black; */
+            text-align: center;
+            margin-left: 250px;
+            /* margin-top: 70px; */
+            height: 30px;
+            width: 350px;
+        }
+        #contentRight #search > input.form-control {
+            outline: none;
+            display: block;
+            float: left;
+            width: 200px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        #contentRight #select_title > select.form-control {
+            outline: none;
+            display: block;
+            float: left;
+            width: 80px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        #contentRight #search button {
+            display: block;
+            /* float: right; */
+            float: left;
+            height: 30px;
+
+            /* margin-top: 20px; */
+        }
+
+        #contentRight #paging {
+            margin-top: 0px;
+            text-align: center;
+        }
+        #contentRight #paging nav {
+            height: 80px;
+        }
+        #contentRight .pagination {
+            height: 60px;
+            margin-top: 25px;
+            margin-left: 100px;
+        }
+        #contentRight .pagination > li > a {
+            padding-top: 9px;
+            width: 36px;
+            border: none;
+            color: #444;
+        }
+        #contentRight .pagination > li:first-child > a {
+            padding-top: 8px;
+            width: 35px;
+        }
+
+        #contentRight .pagination > li:last-child > a {
+            padding-top: 8px;
+            width: 35px;
+        }
+
+        #contentRight .pagination > li > a:hover {
+            color: white;
+            background-color: #ccc;
+        }
+        #contentRight .pagination > .active > a {
+            background-color: #5bc0de;
+            color: white;
+        }
+        #contentRight .pagination > .active > a:hover {
+            background-color: #5bc0de;
+        }
+        #contentRight .btn {
+            outline: none;
+        }
