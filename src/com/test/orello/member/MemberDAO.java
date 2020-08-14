@@ -83,7 +83,7 @@ public class MemberDAO {
 			pstat.executeUpdate();
 			pstat.close();
 			
-			sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, ?, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, DEFAULT )";
+			sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, SOCIAL, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, ?, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, NULL, DEFAULT )";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getName());
 			pstat.setString(2, dto.getEmail());
@@ -102,7 +102,7 @@ public class MemberDAO {
 	public MemberDTO login(MemberDTO dto) {
 		try {
 			
-			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND PW = ? AND DELFLAG = 0";
+			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND PW = ? AND DELFLAG = 0 AND SOCIAL IS NULL";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getEmail());
 			pstat.setString(2, dto.getPw());
@@ -122,6 +122,55 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public int signInCheck(String email) {
+		try {
+			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE EMAIL = ? AND SOCIAL = 'NAVER'";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, email);
+			rs = pstat.executeQuery();
+			
+			int result = -1;
+			if(rs.next()) {
+				result = rs.getInt("CNT");
+			}
+			return result;
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.signInCheck()");
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	public void naverSignIn(MemberDTO dto) {
+		
+		try {
+			String sql = "INSERT INTO TBL_PROFILE(SEQ, ORGFILENAME, FILENAME, DELFLAG) VALUES(SEQ_PROFILE.NEXTVAL, ?, ?, DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, "nopic.png");
+			pstat.setString(2, "nopic.png");
+			pstat.executeUpdate();
+			pstat.close();
+			
+			sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, SOCIAL, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, NULL, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, ?, DEFAULT )";
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, "1");
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, "NAVER");
+			pstat.executeUpdate();
+			pstat.close();
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.naverSignIn()");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

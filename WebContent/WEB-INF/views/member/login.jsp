@@ -9,6 +9,7 @@
 
 </style>
 <%@ include file="/inc/asset.jsp"%>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/logIn.css">
 <link
     rel="stylesheet"
@@ -23,7 +24,7 @@
         <form action="/orello/member/loginok.do" method="POST">
 	        <input type="text" class="form-control" placeholder="아이디 (이메일)" name="email" />
 	        <input type="password" class="form-control" placeholder="비밀번호" name="pw" />
-	        <input
+	        <input 
 	            type="submit"
 	            class="btn btn-info btn-logIn"
 	            value="로그인"
@@ -49,13 +50,8 @@
             >
                 <i class="xi-2x xi-google"></i>
             </button>
-            <button
-                class="btn-social-login"
-                style="background: #1fc700;"
-                title="네이버 계정으로 로그인"
-            >
-                <i class="xi-2x xi-naver"></i>
-            </button>
+              <a onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')"><img height="50" src="/orello/images/naver.PNG"/></a>
+
             <button
                 class="btn-social-login"
                 style="background: #ffeb00;"
