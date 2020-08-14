@@ -1,9 +1,4 @@
-  #contentLeft {
-        position: fixed;
-    }
-    #contentLeft * {
-        /* border: 1px solid gray; */
-    }
+  
     /* 메뉴 위 프로젝트 정보 */
     #contentLeft > #projectInfo {
         width: 250px;
