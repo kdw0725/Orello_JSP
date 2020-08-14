@@ -279,13 +279,24 @@
         	location.href="/orello/board/view.do?seq="+${dto.seq};
         }
     })
+    
      $("#content_btn > button:last-child").click(function() {
         alert("modify?");
     })
 
     // back to board
     $("#btn_set > button:nth-child(2)").click(function() {
-        location.href="/orello/board/list.do?page="+${page};
+    	if("${search}" == ""){
+    		
+    		
+        		location.href="/orello/board/list.do?page="+${page};
+    		
+        	
+    	}else {
+    		
+        	location.href="/orello/board/list.do";
+    		
+    	}
     })
 
     //comment submit

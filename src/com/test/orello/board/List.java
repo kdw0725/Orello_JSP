@@ -95,9 +95,16 @@ public class List extends HttpServlet{
 		if(n == nowPage) {	
 		pagebar += String.format("<li class=\"active\"><a href=\"#\">%d</a></li>", n);
 		}else {
+
+			if(search == null) {
 			pagebar += String.format("<li><a href=\"/orello/board/list.do?page=%d\">"
 						+ "%d</a></li>", n, n);
-			
+			}else {
+				pagebar += String.format(
+						"<li><a href=\"/orello/board/list.do?page=%d&search=%s&soption=%s\">"
+						+ "%d</a></li>", n, map.get("search"), map.get("soption"),n);
+				
+			}
 		}
 		loop++;
 		n++;
@@ -150,6 +157,9 @@ public class List extends HttpServlet{
 		
 		
 		req.setAttribute("list", list);
+		req.setAttribute("search",search);
+		req.setAttribute("soption",soption);
+		
 		
 		req.setAttribute("page", page);
 		req.setAttribute("totalCount", totalCount);

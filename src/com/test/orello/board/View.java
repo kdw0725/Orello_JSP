@@ -17,9 +17,11 @@ public class View extends HttpServlet{
 			, HttpServletResponse resp) throws ServletException, IOException {
 
 		String seq = req.getParameter("seq");
-		String page = req.getParameter("page");
-		
-		
+		String page = req.getParameter("page").equals("") ? "1" : req.getParameter("page");
+		System.out.println("page:" + page);
+		String search = req.getParameter("search") == null ? "" : req.getParameter("search");
+		System.out.println(search);
+		System.out.println("search: "+ search);
 		
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.view(seq);
@@ -28,7 +30,7 @@ public class View extends HttpServlet{
 		
 		req.setAttribute("dto", dto);
 		req.setAttribute("page", page);
-		
+		req.setAttribute("search", search);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/view.jsp");
 		dispatcher.forward(req, resp);

@@ -44,7 +44,7 @@ public class BoardDAO {
 			String where = "";
 			
 			
-			if(map.get("search") != null || map.get("search") != "") {
+			if(map.get("search") != null) {
 				
 				if(map.get("soption").equals("0")) {
 					//all saerch
@@ -74,8 +74,8 @@ public class BoardDAO {
 			
 			String sql =  String.format("select *" + 
 							"from (select a.*, rownum as rnum from" + 
-							"(select * from vwboardlist where pseq = ? order by regdate desc) a)" + 
-							"    where rnum >= ? and rnum <= ? %s", where);
+							"(select * from vwboardlist where pseq = ? %s order by regdate desc) a)" + 
+							"    where rnum >= ? and rnum <= ? ", where);
 					
 			System.out.println(sql);
 			
@@ -146,7 +146,6 @@ public class BoardDAO {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setReadcount(rs.getString("readcount"));
 				
-				System.out.println(dto.getTitle());
 				return dto;
 			}
 			
@@ -168,9 +167,24 @@ public class BoardDAO {
 	public int getTotalCount(HashMap<String, String> map) {
 
 		try {
+			String sql = "";
+					
+			if(map.get("search") == null) {
 			
-			String sql = "select count(*) as cnt from tbl_freeboard where project_seq = ?";
+			sql = "select count(*) as cnt from tbl_freeboard where project_seq = ?";
 			
+			}else {
+				
+				sql = String.format("select count(*) as cnt " + 
+						"from" + 
+						"(select a.*, rownum as rnum from" + 
+						"(select * from vwboardlist where pseq =? order by regdate desc) a)" + 
+						"where (name like '%%%s%%' or title like '%%%s%%')"
+							, map.get("search")
+							, map.get("search"));
+				
+				System.out.println(sql);
+			}
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("pseq"));
 

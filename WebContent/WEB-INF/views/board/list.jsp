@@ -41,9 +41,19 @@
                 <tr>
                     <td>${dto.seq}</td>
                     <td>
+                    <c:if test="${empty search}">
                     <a href="/orello/board/view.do?seq=${dto.seq}&page=${page}">
                     ${dto.title}
                     </a>
+                    </c:if>
+                    
+                    <c:if test="${not empty search}">
+                    <a href="/orello/board/view.do?seq=${dto.seq}&page=${page}&search=${search}">
+                    ${dto.title}
+                    </a>
+                    </c:if>
+                    
+                    
                     </td>
                     <td>${dto.name}</td>
                     <td>${dto.regdate}</td>
@@ -96,12 +106,17 @@
 	
 	<script>
 	
-		function movePage() {
-			//alert(event.srcElement.value);
-			location.href = "/codestudy/board/list.do?page="+event.srcElement.value;
-		}
+		
 		$("#pagebar").val(${page});
-	
+		
+		//alert(${soption});
+
+		//console.log($("#soption option:nth-child(${soption+1})").val());
+		//console.log($("#soption option:nth-child(${soption+1})"));
+		
+		$("#soption option:nth-child(${soption+1})").attr("selected",true);
+		
+		
 	</script>
 	
 	
