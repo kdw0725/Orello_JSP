@@ -63,7 +63,7 @@ public class NaverCallback extends HttpServlet {
 		        if(responseCode==200) {
 		        	HttpSession session = req.getSession();
 		        	
-		        	session.setAttribute("naver_res", res.toString());
+		        	//session.setAttribute("naver_res", res.toString());
 		        	
 		        	Object objlist = JSONValue.parse(res.toString());
 		        	JSONObject jsonObject = (JSONObject)objlist;
@@ -92,22 +92,27 @@ public class NaverCallback extends HttpServlet {
 					}
 		        	dto.setTel(rndtel);
 		        	
-		        	int signInResult = dao.signInCheck(email);
-		        	if(signInResult == 0) {
+		        	
+		        	MemberDTO member = dao.signInCheck(email);
+		        	
+		        	
+		        	
+		        	if(member.getSeq() == null) {
 		        		dao.naverSignIn(dto);
 		        		System.out.println("회원가입 완료!");
 		        	}
 		        	dao.close();
 		        	
 		        	System.out.println("로그인 구현 완료!");
+		        	//HttpSession session = req.getSession();
+					session.setAttribute("seq", dto.getSeq());
+					resp.sendRedirect("/orello/member/index.do");
 		        	
 		        }
 		      } catch (Exception e) {
 		        System.out.println(e);
 		      }
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/navercallback.jsp");
-		dispatcher.forward(req, resp);
 	}
 
 	private HashMap<String, String> getNaverProfile(String accessToken) {

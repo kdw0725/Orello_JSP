@@ -124,25 +124,30 @@ public class MemberDAO {
 		return null;
 	}
 
-	public int signInCheck(String email) {
+	public MemberDTO signInCheck(String email) {
 		try {
-			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE EMAIL = ? AND SOCIAL = 'NAVER'";
+			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND SOCIAL = 'NAVER'";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
 			rs = pstat.executeQuery();
 			
-			int result = -1;
+			MemberDTO member = new MemberDTO(); 
 			if(rs.next()) {
-				result = rs.getInt("CNT");
+				member.setSeq(rs.getString("seq"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setCompany(rs.getString("company"));
+				member.setStatusmsg(rs.getString("statusmsg"));
+				member.setProfile_seq(rs.getString("profile_seq"));
 			}
-			return result;
+			return member;
 			
 			
 		} catch (Exception e) {
 			System.out.println("MemberDAO.signInCheck()");
 			e.printStackTrace();
 		}
-		return -1;
+		return null;
 	}
 
 	public void naverSignIn(MemberDTO dto) {

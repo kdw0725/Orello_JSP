@@ -44,15 +44,9 @@ public class LogInOk extends HttpServlet {
 			writer.close();
 		} else {
 			HttpSession session = req.getSession();
-			session.setAttribute("seq", member.getSeq());
+			session.setAttribute("seq", member.getEmail());
 			resp.sendRedirect("/orello/member/index.do");
 		}
-		
-		resp.setCharacterEncoding("UTF-8");
-		
-		HttpSession session = req.getSession();
-		
-		
 		
 	}
 	
