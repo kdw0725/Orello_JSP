@@ -6,7 +6,7 @@
     }
     var profilePic = document.getElementsByClassName("profilePic");
     for (var i=0; i<5; i++) {
-        profilePic[i].setAttribute("style", `background-image: url('../images/${i}.png')`)
+        profilePic[i].setAttribute("style", `background-image: url('/orello/images/${i}.png')`)
     }
 
     //클릭한 메뉴만 표시되도록 
