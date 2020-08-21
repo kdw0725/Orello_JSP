@@ -30,6 +30,9 @@
 #socialLogIn {
     margin-top: 20px;
 }
+#socialLogIn a{
+	cursor: pointer;
+}
 .btn-social-login {
     transition: all 0.2s;
     outline: 0;

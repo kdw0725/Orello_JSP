@@ -28,175 +28,170 @@ public class NaverCallback extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String clientId = "HMv69t53qZKJkFt2qZqb";
 		String clientSecret = "BaFFR4Rayc";
-		 String code = req.getParameter("code");
-		    String state = req.getParameter("state");
-		    String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
-		    String apiURL;
-		    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-		    apiURL += "client_id=" + clientId;
-		    apiURL += "&client_secret=" + clientSecret;
-		    apiURL += "&redirect_uri=" + redirectURI;
-		    apiURL += "&code=" + code;
-		    apiURL += "&state=" + state;
-		    String accessToken = "";
-		    String refresh_token = "";
-		    try {
-		        URL url = new URL(apiURL);
-		        HttpURLConnection con = (HttpURLConnection)url.openConnection();
-		        con.setRequestMethod("GET");
-		        int responseCode = con.getResponseCode();
-		        BufferedReader br;
-		        if(responseCode==200) { // 정상 호출
-		          br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		        } else {  // 에러 발생
-		          br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-		        }
-		        String inputLine;
-		        StringBuffer res = new StringBuffer();
-		        while ((inputLine = br.readLine()) != null) {
-		          res.append(inputLine);
-		        }
-		        br.close();
-		        if(responseCode==200) {
-		        	HttpSession session = req.getSession();
-		        	
-		        	//session.setAttribute("naver_res", res.toString());
-		        	
-		        	Object objlist = JSONValue.parse(res.toString());
-		        	JSONObject jsonObject = (JSONObject)objlist;
-		        	
-		        	accessToken = (String) jsonObject.get("access_token");
-		        	String refreshToken = (String) jsonObject.get("refresh_token");
-		        	String tokenType = (String) jsonObject.get("token_type");
-		        	String expiresIn = (String) jsonObject.get("expires_in");
-		        	
-		        	HashMap<String, String> memberInfo = new HashMap<String, String>();
-		        	memberInfo = getNaverProfile(accessToken);
-		        	String name = memberInfo.get("name");
-		        	String email = memberInfo.get("email");
-		        	
-		        	MemberDAO dao = new MemberDAO();
-		        	MemberDTO dto = new MemberDTO();
-		        	dto.setName(name);
-		        	dto.setEmail(email);
-		        	String rndtel = "";
-		        	Random rnd = new Random();
-		        	for (int i = 0; i < rnd.nextInt(4) + 5; i++) {
-		        		rndtel += (char) (rnd.nextInt(26) + 97);
-					}
-					for (int i = 0; i < rnd.nextInt(10) + 3; i++) {
-						rndtel += rnd.nextInt(10);
-					}
-		        	dto.setTel(rndtel);
-		        	
-		        	
-		        	MemberDTO member = dao.signInCheck(email);
-		        	
-		        	
-		        	
-		        	if(member.getSeq() == null) {
-		        		dao.naverSignIn(dto);
-		        		System.out.println("회원가입 완료!");
-		        	}
-		        	dao.close();
-		        	
-		        	System.out.println("로그인 구현 완료!");
-		        	//HttpSession session = req.getSession();
-					session.setAttribute("seq", dto.getSeq());
-					resp.sendRedirect("/orello/member/index.do");
-		        	
-		        }
-		      } catch (Exception e) {
-		        System.out.println(e);
-		      }
-		
+		String code = req.getParameter("code");
+		String state = req.getParameter("state");
+		String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
+		String apiURL;
+		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+		apiURL += "client_id=" + clientId;
+		apiURL += "&client_secret=" + clientSecret;
+		apiURL += "&redirect_uri=" + redirectURI;
+		apiURL += "&code=" + code;
+		apiURL += "&state=" + state;
+		String accessToken = "";
+		String refresh_token = "";
+		try {
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			int responseCode = con.getResponseCode();
+			BufferedReader br;
+			if (responseCode == 200) { // 정상 호출
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else { // 에러 발생
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			String inputLine;
+			StringBuffer res = new StringBuffer();
+			while ((inputLine = br.readLine()) != null) {
+				res.append(inputLine);
+			}
+			br.close();
+			if (responseCode == 200) {
+				HttpSession session = req.getSession();
+
+				// session.setAttribute("naver_res", res.toString());
+
+				Object objlist = JSONValue.parse(res.toString());
+				JSONObject jsonObject = (JSONObject) objlist;
+
+				accessToken = (String) jsonObject.get("access_token");
+				String refreshToken = (String) jsonObject.get("refresh_token");
+				String tokenType = (String) jsonObject.get("token_type");
+				String expiresIn = (String) jsonObject.get("expires_in");
+
+				HashMap<String, String> memberInfo = new HashMap<String, String>();
+				memberInfo = getNaverProfile(accessToken);
+				String name = memberInfo.get("name");
+				String email = memberInfo.get("email");
+
+				email += ".naver";
+
+				MemberDAO dao = new MemberDAO();
+				MemberDTO dto = new MemberDTO();
+				dto.setName(name);
+				dto.setEmail(email);
+				String rndtel = "";
+				Random rnd = new Random();
+				for (int i = 0; i < rnd.nextInt(4) + 5; i++) {
+					rndtel += (char) (rnd.nextInt(26) + 97);
+				}
+				for (int i = 0; i < rnd.nextInt(10) + 3; i++) {
+					rndtel += rnd.nextInt(10);
+				}
+				dto.setTel(rndtel);
+
+				MemberDTO member = dao.signInCheck(email);
+
+				if (member.getSeq() == null) {
+					dao.naverSignIn(dto);
+				}
+				dao.close();
+
+				// HttpSession session = req.getSession();
+				session.setAttribute("seq", dto.getSeq());
+				resp.sendRedirect("/orello/member/index.do");
+
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 
 	private HashMap<String, String> getNaverProfile(String accessToken) {
 		String token = accessToken; // 네이버 로그인 접근 토큰;accessToken
-        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+		String header = "Bearer " + token; // Bearer 다음에 공백 추가
 
-        String apiURL = "https://openapi.naver.com/v1/nid/me";
+		String apiURL = "https://openapi.naver.com/v1/nid/me";
 
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("Authorization", header);
-        String responseBody = get(apiURL,requestHeaders);
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("Authorization", header);
+		String responseBody = get(apiURL, requestHeaders);
 
-        //System.out.println(responseBody);
-        
-        Object objlist = JSONValue.parse(responseBody);
-        JSONObject jsonObject = (JSONObject)objlist;
-    	
-    	String resultcode = (String) jsonObject.get("resultcode");
-    	if(resultcode.equals("00")) {
-    		HashMap<String, String> memberInfo = new HashMap<String, String>();
-    		Object responseList = jsonObject.get("response");
-    		
-    		
+		// System.out.println(responseBody);
+
+		Object objlist = JSONValue.parse(responseBody);
+		JSONObject jsonObject = (JSONObject) objlist;
+
+		String resultcode = (String) jsonObject.get("resultcode");
+		if (resultcode.equals("00")) {
+			HashMap<String, String> memberInfo = new HashMap<String, String>();
+			Object responseList = jsonObject.get("response");
+
 //    		Object responselist = JSONValue.parse(response);
-    		JSONObject jsonResponse = (JSONObject)responseList;
-    		
-    		memberInfo.put("email", (String) jsonResponse.get("email"));
-    		memberInfo.put("name", (String) jsonResponse.get("name"));
-    		
-    		return memberInfo;
-    				
-    	} else {
-    		return null;
-    	}
+			JSONObject jsonResponse = (JSONObject) responseList;
+
+			memberInfo.put("email", (String) jsonResponse.get("email"));
+			memberInfo.put("name", (String) jsonResponse.get("name"));
+
+			return memberInfo;
+
+		} else {
+			return null;
+		}
 	}
-	
-	private static String get(String apiUrl, Map<String, String> requestHeaders){
-        HttpURLConnection con = connect(apiUrl);
-        try {
-            con.setRequestMethod("GET");
-            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
-                con.setRequestProperty(header.getKey(), header.getValue());
-            }
 
-            int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
-                return readBody(con.getInputStream());
-            } else { // 에러 발생
-                return readBody(con.getErrorStream());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("API 요청과 응답 실패", e);
-        } finally {
-            con.disconnect();
-        }
-    }
+	private static String get(String apiUrl, Map<String, String> requestHeaders) {
+		HttpURLConnection con = connect(apiUrl);
+		try {
+			con.setRequestMethod("GET");
+			for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
+				con.setRequestProperty(header.getKey(), header.getValue());
+			}
 
-    private static HttpURLConnection connect(String apiUrl){
-        try {
-            URL url = new URL(apiUrl);
-            return (HttpURLConnection)url.openConnection();
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
-        } catch (IOException e) {
-            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
-        }
-    }
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+				return readBody(con.getInputStream());
+			} else { // 에러 발생
+				return readBody(con.getErrorStream());
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("API 요청과 응답 실패", e);
+		} finally {
+			con.disconnect();
+		}
+	}
 
-    private static String readBody(InputStream body){
-        InputStreamReader streamReader = new InputStreamReader(body);
+	private static HttpURLConnection connect(String apiUrl) {
+		try {
+			URL url = new URL(apiUrl);
+			return (HttpURLConnection) url.openConnection();
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+		} catch (IOException e) {
+			throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+		}
+	}
 
-        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
-            StringBuilder responseBody = new StringBuilder();
+	private static String readBody(InputStream body) {
+		InputStreamReader streamReader = new InputStreamReader(body);
 
-            String line;
-            while ((line = lineReader.readLine()) != null) {
-                responseBody.append(line);
-            }
+		try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+			StringBuilder responseBody = new StringBuilder();
 
-            return responseBody.toString();
-        } catch (IOException e) {
-            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
-        }
-    }
+			String line;
+			while ((line = lineReader.readLine()) != null) {
+				responseBody.append(line);
+			}
 
-	
+			return responseBody.toString();
+		} catch (IOException e) {
+			throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+		}
+	}
+
 }

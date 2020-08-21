@@ -32,7 +32,7 @@ public class MemberDAO {
 
 	public int emailCheck(String email) {
 		try {
-			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE EMAIL = ?";
+			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE EMAIL = ? AND DELFLAG = 0";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
 			
@@ -54,7 +54,7 @@ public class MemberDAO {
 	public int telCheck(String tel) {
 		
 		try {
-			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE TEL = ?";
+			String sql = "SELECT COUNT(*) AS CNT FROM TBL_MEMBER WHERE TEL = ? AND DELFLAG = 0";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, tel);
 			
@@ -126,7 +126,7 @@ public class MemberDAO {
 
 	public MemberDTO signInCheck(String email) {
 		try {
-			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND SOCIAL = 'NAVER'";
+			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND DELFLAG = 0 AND SOCIAL = 'NAVER'";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
 			rs = pstat.executeQuery();

@@ -10,6 +10,7 @@
 </style>
 <%@ include file="/inc/asset.jsp"%>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/logIn.css">
 <link
     rel="stylesheet"
@@ -50,15 +51,13 @@
             >
                 <i class="xi-2x xi-google"></i>
             </button>
-              <a onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')"><img height="50" src="/orello/images/naver.PNG"/></a>
-
-            <button
-                class="btn-social-login"
-                style="background: #ffeb00;"
-                title="카카오 계정으로 로그인"
-            >
-                <i class="xi-2x xi-kakaotalk text-dark"></i>
-            </button>
+			<a title="네이버 아이디로 로그인" onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')">
+				<img height="40" src="/orello/images/naver.PNG" />
+			</a> 
+			<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
+           		<img height="40" src="/orello/images/kakao.png">
+           	</a>
+           	
         </div>
     </div>
     <div
@@ -206,6 +205,47 @@
 		$("#findPw").click(function() {
 			$("#pwFind").modal("show");
 		});
+		
+		Kakao.init('b4f0786dfb7b457b31c6d0ff1df873f0');
+		
+		function loginWithKakao(){
+			Kakao.Auth.login({
+				success: function(authObj){
+					Kakao.API.request({
+						url : '/v2/user/me',
+						success: function(res) {
+							alert(authObj.access_token);
+							alert(res.id);
+							var temp = Object.assign(authObj, res);
+							alert(JSON.stringify(temp));
+							
+							
+							$.ajax({
+								type : "POST",
+								url : "/orello/member/kakaologin.do",
+								data : temp,
+								dataType : "JSON",
+								beforeSend: function(){
+									alert("dfdf");
+								},
+								success : function(result){
+									console.log(result)
+								},
+								error : function(a, b, c){
+									console.log(a, b, c);
+								}
+							});
+						},
+						fail: function(error) {
+						  alert('login success, but failed to request user information: ' +JSON.stringify(error));
+						}
+					})
+				},
+				fail: function(err){
+					alert('failed to login: ' + JSON.stringify(err))
+				}
+			})
+		}
 	</script>
 </body>
 </html>
