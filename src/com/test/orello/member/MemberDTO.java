@@ -19,6 +19,7 @@ public class MemberDTO {
 	private String statusmsg;
 	private String profile_seq;
 	private String delflag;
+	private String social;
 	
 	private String ori_file;
 	private String file;

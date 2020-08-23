@@ -214,20 +214,17 @@
 					Kakao.API.request({
 						url : '/v2/user/me',
 						success: function(res) {
-							alert(authObj.access_token);
-							alert(res.id);
-							var temp = Object.assign(authObj, res);
-							alert(JSON.stringify(temp));
-							
+							var loginInfo = {
+									"token" : authObj.access_token,
+									"id" : res.id,
+									"name" : res.properties.nickname
+							};
 							
 							$.ajax({
 								type : "POST",
 								url : "/orello/member/kakaologin.do",
-								data : temp,
+								data : loginInfo,
 								dataType : "JSON",
-								beforeSend: function(){
-									alert("dfdf");
-								},
 								success : function(result){
 									console.log(result)
 								},

@@ -124,11 +124,12 @@ public class MemberDAO {
 		return null;
 	}
 
-	public MemberDTO signInCheck(String email) {
+	public MemberDTO signInCheck(MemberDTO dto) {
 		try {
-			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND DELFLAG = 0 AND SOCIAL = 'NAVER'";
+			String sql = "SELECT * FROM TBL_MEMBER WHERE EMAIL = ? AND DELFLAG = 0 AND SOCIAL = ?";
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, email);
+			pstat.setString(1, dto.getEmail());
+			pstat.setNString(2, dto.getSocial());
 			rs = pstat.executeQuery();
 			
 			MemberDTO member = new MemberDTO(); 
@@ -176,6 +177,31 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public void kakaoSignIn(MemberDTO dto) {
+		try {
+			String sql = "INSERT INTO TBL_PROFILE(SEQ, ORGFILENAME, FILENAME, DELFLAG) VALUES(SEQ_PROFILE.NEXTVAL, ?, ?, DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, "nopic.png");
+			pstat.setString(2, "nopic.png");
+			pstat.executeUpdate();
+			pstat.close();
+			
+			sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, SOCIAL, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, NULL, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, ?, DEFAULT )";
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, "1");
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, "KAKAO");
+			pstat.executeUpdate();
+			pstat.close();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.kakaoSignIn()");
+			e.printStackTrace();
+		}
 	}
 	
 	

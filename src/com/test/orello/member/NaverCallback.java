@@ -93,16 +93,17 @@ public class NaverCallback extends HttpServlet {
 					rndtel += rnd.nextInt(10);
 				}
 				dto.setTel(rndtel);
+				dto.setSocial("NAVER");
 
-				MemberDTO member = dao.signInCheck(email);
+				MemberDTO member = dao.signInCheck(dto);
 
 				if (member.getSeq() == null) {
 					dao.naverSignIn(dto);
+					member = dao.signInCheck(member);
 				}
 				dao.close();
-
 				// HttpSession session = req.getSession();
-				session.setAttribute("seq", dto.getSeq());
+				session.setAttribute("seq", member.getSeq());
 				resp.sendRedirect("/orello/member/index.do");
 
 			}
