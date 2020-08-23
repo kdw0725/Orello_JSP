@@ -64,3 +64,8 @@
 #inputArea #signIn{
 	margin-bottom: 0px;
 }
+.abcRioButton.abcRioButtonLightBlue{
+	display: inline-block;
+	width: 100px !important;
+	height: 50px !important;
+}

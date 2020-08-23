@@ -11,6 +11,12 @@
 <%@ include file="/inc/asset.jsp"%>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com
+.apps.googleusercontent.com">
+
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/logIn.css">
 <link
     rel="stylesheet"
@@ -44,20 +50,16 @@
             <a href="#" id="findPw">비밀번호 찾기</a>
         </div>
         <div id="socialLogIn">
-            <button
-                class="btn-social-login"
-                style="background: #d93025;"
-                title="구글 계정으로 로그인"
-            >
-                <i class="xi-2x xi-google"></i>
-            </button>
+        	<a title="구글 아이디로 로그인" class="g-signin2" data-onsuccess="onSignIn"></a>
 			<a title="네이버 아이디로 로그인" onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')">
-				<img height="40" src="/orello/images/naver.PNG" />
+				<img height="40" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
 			</a> 
 			<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
-           		<img height="40" src="/orello/images/kakao.png">
+           		<img width="100" height="50" src="/orello/images/kakao.png">
            	</a>
-           	
+		<%
+			String name = "김동욱";
+		%>           	
         </div>
     </div>
     <div
