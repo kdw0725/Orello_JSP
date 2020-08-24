@@ -12,9 +12,8 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com
-.apps.googleusercontent.com">
+<!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com">
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/logIn.css">
@@ -49,18 +48,28 @@
             <a href="#" id="findId">아이디 찾기</a>
             <a href="#" id="findPw">비밀번호 찾기</a>
         </div>
-        <div id="socialLogIn">
-        	<a title="구글 아이디로 로그인" class="g-signin2" data-onsuccess="onSignIn"></a>
-			<a title="네이버 아이디로 로그인" onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')">
-				<img height="40" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
-			</a> 
-			<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
-           		<img width="100" height="50" src="/orello/images/kakao.png">
-           	</a>
-		<%
-			String name = "김동욱";
-		%>           	
-        </div>
+    </div>
+    <div id="socialImg">
+    	<a title="구글 아이디로 로그인" >
+       		<img src="/orello/images/google.png">
+       	</a>
+		<a title="네이버 아이디로 로그인">
+			<img src="/orello/images/naver.PNG" />
+		</a> 
+		<a title="카카오 아이디로 로그인">
+     		<img style="margin-left: 15px;" src="/orello/images/kakao.png">
+     	</a>
+    </div>
+    <div id="socialLogIn">
+    	<a title="구글 아이디로 로그인" style="background-image: none;" class="g-signin2" data-onsuccess="onSignIn">
+    		<img src="/orello/images/google.png">
+    	</a>
+		<a title="네이버 아이디로 로그인" onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')">
+			<img src="/orello/images/naver.PNG" />
+		</a> 
+		<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
+       		<img style="margin-left: 15px;" src="/orello/images/kakao.png">
+       	</a>
     </div>
     <div
         class="modal fade"
@@ -243,8 +252,40 @@
 				fail: function(err){
 					alert('failed to login: ' + JSON.stringify(err))
 				}
-			})
+			});
 		}
+		$("#socialLogIn").hide();
+		setTimeout(function(){
+			$(".abcRioButtonContentWrapper").html('<img src="/orello/images/google.png">');
+			$(".abcRioButtonContentWrapper").css("border", "none");
+			$(".abcRioButton.abcRioButtonLightBlue").css("width", "200px");
+			$(".abcRioButton.abcRioButtonLightBlue").css("height", "auto");
+			$(".abcRioButton.abcRioButtonLightBlue").css("box-shadow", "none");
+			$("#socialImg").hide();
+			$("#socialLogIn").show();
+		}, 500);
+		
+		
+		function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+        };
+        var result = [
+        		   {seq: 1, name: '하하하'},
+        		   {seq: 2, name: '호호호'}
+        		]
+
+        alert(result[0].seq);
 	</script>
 </body>
 </html>

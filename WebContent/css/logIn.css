@@ -7,9 +7,8 @@
     padding: 20px;
     margin: 0 auto;
     text-align: center;
-    height: 640px;
+    height: 700px;
     padding-top: 0px;
-    margin-bottom: 70px;
 }
 #logoBig {
     width: 200px;
@@ -28,7 +27,10 @@
     color: #999;
 }
 #socialLogIn {
-    margin-top: 20px;
+	text-align: center;
+}
+#socialLogIn div{
+	display: inline-block;
 }
 #socialLogIn a{
 	cursor: pointer;
@@ -64,8 +66,14 @@
 #inputArea #signIn{
 	margin-bottom: 0px;
 }
-.abcRioButton.abcRioButtonLightBlue{
-	display: inline-block;
-	width: 100px !important;
-	height: 50px !important;
+#socialLogIn img{
+	width: 200px;
+	height: 40px;
+}
+#socialImg{
+	text-align: center;
+}
+#socialImg img{
+	width: 200px;
+	height: 40px;
 }
