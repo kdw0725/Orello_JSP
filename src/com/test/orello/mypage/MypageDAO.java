@@ -193,6 +193,87 @@ public class MypageDAO {
 		return 0;
 	}
 
+	//ProjectDetail 서블릿 -> 프로젝트 세부사항 출력
+	public MyProjectDTO getProjectDetail(String pseq) {
+
+		try {
+			
+			String sql = "select * from tbl_project where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pseq);
+			
+			rs = pstat.executeQuery();
+			
+			MyProjectDTO dto = new MyProjectDTO();
+			
+			if(rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setStartdate(rs.getString("startdate"));
+				dto.setEnddate(rs.getString("enddate"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setType(rs.getString("type"));
+				
+				return dto;
+				
+			}
+			
+			
+			
+		} catch (Exception e) {
+			
+			System.out.println("MypageDAO.getProjectDetail()");
+			e.printStackTrace();
+		
+		}
+		
+		
+		
+		return null;
+	}
+
+	//ProjectDetail 서블릿 -> 프로젝트 참여자 명단
+	public ArrayList<MemberDTO> getAttendant(String pseq) {
+		try {
+			
+			String sql = "select m.seq, m.name from tbl_member m" + 
+					"    inner join tbl_project_attend pa" + 
+					"    on m.seq = pa.member_seq" + 
+					"        inner join tbl_project p" + 
+					"        on pa.project_seq = p.seq" + 
+					"            where p.seq = ?";
+			
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pseq);
+			
+			
+			rs = pstat.executeQuery();
+			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+			while(rs.next()) {
+				MemberDTO dto =  new MemberDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setName(rs.getString("name"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+			
+			
+		} catch (Exception e) {
+
+			System.out.println("MypageDAO.getAttendant()");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return null;
+	}
+
 
 
 

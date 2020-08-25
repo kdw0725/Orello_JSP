@@ -129,9 +129,9 @@
         #side_profile > div.edit > button.cancel {
             width: 55px;
         }
-        #side_profile > div.edit_before > input {
-            /* background-color: #eee; */
-        }
+     
+        
+        
         /* ------------------------ */
         #page_content {
             margin-top: 30px;
@@ -176,7 +176,6 @@
         }
         #friend .tbl tr:hover {
             background-color: rgb(229, 245, 252);
-            cursor: pointer;
         }
         #friend .tbl td:nth-child(1) {
             width: 50px;
@@ -248,7 +247,6 @@
         }
         #project .tbl tr:hover {
             background-color: rgb(229, 245, 252);
-            cursor: pointer;
         }
 
         #project .tbl td {
@@ -280,3 +278,81 @@
             outline: none;
             padding-top: 3px;
         }
+        
+        
+        
+    /* modal------------------------- */
+        #myModal #modal_content > span {
+            width: 550px;
+            display: block;
+            float: left;
+            margin-bottom: 13px;
+        }
+
+        #myModal #modal_content > span:nth-child(1) {
+            border-left: 7px solid #5bc0de;
+            padding-left: 5px;
+            padding-bottom: 2px;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        #myModal #modal_content > span:nth-child(2) {
+            font-size: 1em;
+            color: #666;
+        }
+
+        #myModal #modal_content > span:nth-child(3) {
+            font-size: 0.95em;
+            color: #888;
+            padding-left: 5px;
+        }
+        #myModal #modal_content > span:nth-child(4) {
+            font-size: 1em;
+        }
+
+        #myModal #modal_content > span:nth-child(5) {
+            /* border: 1px solid black; */
+            width: 120px;
+            font-size: 1.2em;
+            border-radius: 2px;
+            background-color: #5bc0de;
+            color: white;
+            text-align: center;
+            margin-right: 200px;
+        }
+
+        #myModal #modal_content > div img {
+            border: 3px solid white;
+            background-color: #ccc;
+            width: 55px;
+            border-radius: 50px;
+            box-shadow: 2px 2px 2px #ccc;
+            margin-bottom: 7px;
+        }
+        #myModal #attendant_list {
+            width: 550px;
+            height: 150px;
+            float: left;
+        }
+
+        #myModal #attendant_list > div {
+
+            width: 60px;
+            text-align: center;
+            height: 100px;
+            float: left;
+            padding: 0 3px;
+        }
+
+        #myModal #attendant_list > div > span {
+            display: block;
+            background-color: #ccc;
+            color: white;
+            text-align: center;
+            border-radius: 3px;
+            font-size: 0.95em;
+            padding-top: 1.5px;
+        }
+        
