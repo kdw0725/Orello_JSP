@@ -75,7 +75,7 @@ public class BoardDAO {
 			String sql =  String.format("select *" + 
 							"from (select a.*, rownum as rnum from" + 
 							"(select * from vwboardlist where pseq = ? %s order by regdate desc) a)" + 
-							"    where rnum >= ? and rnum <= ? ", where);
+							"    where rnum >= ? and rnum <= ?", where);
 					
 			System.out.println(sql);
 			
@@ -131,7 +131,8 @@ public class BoardDAO {
 					"        on m.seq = pa.member_seq" + 
 					"            inner join tbl_project p" + 
 					"            on p.seq = pa.project_seq" + 
-					"                where b.seq = ?";
+					"                where b.seq = ? and "
+					+ "b.delflag=0 and pa.delflag=0 and m.delflag=0 and p.delflag=0";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -171,7 +172,7 @@ public class BoardDAO {
 					
 			if(map.get("search") == null) {
 			
-			sql = "select count(*) as cnt from tbl_freeboard where project_seq = ?";
+			sql = "select count(*) as cnt from tbl_freeboard where project_seq = ? and delflag = 0";
 			
 			}else {
 				
@@ -204,6 +205,131 @@ public class BoardDAO {
 		
 		
 		return 0;
+	}
+
+	//Comment 서블릿 -> 댓글 내용 보여주기
+	public ArrayList<CommentDTO> commentList(String bseq) {
+
+		try {
+			
+			String sql = "select m.name as name, c.content as content, c.regdate as regdate, m.seq as mseq, m.email as email "
+					+ "from tbl_freeboard_comment c" + 
+					"            inner join tbl_project_attend pa" + 
+					"            on c.project_attend_seq = pa.seq" + 
+					"                inner join tbl_member m" + 
+					"                on pa.member_seq = m.seq" + 
+					"                    where c.freeboard_seq = ? "
+					+ "and c.delflag =0 and pa.delflag=0 and m.delflag=0 "
+					+ "order by regdate asc";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, bseq);
+			
+			rs = pstat.executeQuery();
+			
+			
+			ArrayList<CommentDTO> clist = new ArrayList<CommentDTO>();
+			
+			while(rs.next()) {
+				CommentDTO dto = new CommentDTO();
+				
+				dto.setMseq(rs.getString("mseq"));
+				dto.setName(rs.getString("name"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setEmail(rs.getString("email"));
+				
+				clist.add(dto);
+			}
+			
+			return clist;
+			
+		} catch (Exception e) {
+
+			System.out.println("BoardDAO.commentList()");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return null;
+	}
+
+	//Comment 서블릿 -> 댓글 개수
+	public String commentCount(String bseq) {
+
+		try {
+			
+			String sql = "select count(*) as cnt from tbl_freeboard_comment where freeboard_seq = ? and delflag = 0 ";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, bseq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getString("cnt");
+			}
+			
+		} catch (Exception e) {
+
+			System.out.println("BoardDAO.commentCount");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	//Comment 서블릿 -> 참여 번호 얻어오기
+	public String getAttendSeq(String mseq, String pseq) {
+
+		try {
+			
+			String sql = "select seq from tbl_project_attend "
+					+ "where project_seq =? and member_seq =? and delflag = 0";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pseq);
+			pstat.setString(2, mseq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				
+				return rs.getString("seq");
+			}
+			
+		} catch (Exception e) {
+			
+			System.out.println("BoardDAO.getAttendSeq()");
+			e.printStackTrace();
+		
+		}
+		
+		return null;
+	}
+
+
+	public int writeComment(CommentDTO cdto) {
+		try {
+			
+			String sql = "insert into tbl_freeboard_comment "
+					+ "values (seq_freeboard_comment.nextVal,?,default,?,?,0)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, cdto.getContent());
+			pstat.setString(2, cdto.getBseq());
+			pstat.setString(3, getAttendSeq(cdto.getMseq(), cdto.getPsaq()));
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+
+			System.out.println("BoardDAO.writeComment()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
 	}
 
 }

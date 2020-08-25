@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,16 +125,22 @@
                 rel="stylesheet"
             /> -->
 
-
-            <div class="container">
+	
                 <div class="be-comment-block">
-                    <h1 class="comments-title">Comments (3)</h1>
+                    <h1 class="comments-title">Comments (${ccnt})</h1>
+            		<div class="container">
+					
+					
+					
                     <div id="comment_hidden">
                         <span data-toggle="modal" data-target="#myModal">profile</span>
                         <span>board list</span>
                         <span>1:1 chat</span>
                     </div>
 
+
+					<c:forEach items="${clist}" var="cdto">
+				
                     <div class="be-comment">
                         <div class="be-img-comment">
                             <a>
@@ -146,89 +153,38 @@
                         </div>
                         <div class="be-comment-content">
                             <span class="be-comment-name">
-                                <a id="comment_name">Ravi Sah</a>
+                                <a id="comment_name">${cdto.name}</a>
                             </span>
                             <span class="be-comment-time">
                                 <i class="fa fa-clock-o"></i>
-                                May 27, 2015 at 3:14am
+                                ${cdto.regdate}
                             </span>
 
                             <p class="be-comment-text">
-                                Pellentesque gravida tristique ultrices. Sed
-                                blandit varius mauris, vel volutpat urna
-                                hendrerit id. Curabitur rutrum dolor gravida
-                                turpis tristique efficitur.
+                                ${cdto.content}
                             </p>
                         </div>
                     </div>
-                    <div class="be-comment">
-                        <div class="be-img-comment">
-                            <a href="blog-detail-2.html">
-                                <img
-                                    src="/orello/images/3.png"
-                                    alt=""
-                                    class="be-ava-comment"
-                                />
-                            </a>
-                        </div>
-                        <div class="be-comment-content">
-                            <span class="be-comment-name">
-                                <a href="blog-detail-2.html"
-                                    >Phoenix, the Creative Studio</a
-                                >
-                            </span>
-                            <span class="be-comment-time">
-                                <i class="fa fa-clock-o"></i>
-                                May 27, 2015 at 3:14am
-                            </span>
-                            <p class="be-comment-text">
-                                Nunc ornare sed dolor sed mattis. In scelerisque
-                                dui a arcu mattis, at maximus eros commodo. Cras
-                                magna nunc, cursus lobortis luctus at,
-                                sollicitudin vel neque. Duis eleifend lorem non
-                                ant. Proin ut ornare lectus, vel eleifend est.
-                                Fusce hendrerit dui in turpis tristique blandit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="be-comment">
-                        <div class="be-img-comment">
-                            <a href="blog-detail-2.html">
-                                <img
-                                    src="/orello/images/5.png"
-                                    alt=""
-                                    class="be-ava-comment"
-                                />
-                            </a>
-                        </div>
-                        <div class="be-comment-content">
-                            <span class="be-comment-name">
-                                <a href="blog-detail-2.html">Cüneyt ŞEN</a>
-                            </span>
-                            <span class="be-comment-time">
-                                <i class="fa fa-clock-o"></i>
-                                May 27, 2015 at 3:14am
-                            </span>
-                            <p class="be-comment-text">
-                                Cras magna nunc, cursus lobortis luctus at,
-                                sollicitudin vel neque. Duis eleifend lorem non
-                                ant
-                            </p>
-                        </div>
-                    </div>
-                    <form class="form-block">
+                   </c:forEach>
+                   
+                   
+                    <form class="form-block" method="POST" action="/board/comment.do">
                        
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <textarea
                                         class="form-input"
-                                        required=""
+                                        required
+                                        id="comment_content"
                                         placeholder="Your text"
                                     ></textarea>
                                 </div>
                             </div>
-                            <a class="btn btn-info pull-right" id="submit">submit</a>
+                            <input type="hidden" name="bseq" value="${dto.seq}">
+                            <input type="hidden" name="page" value="${page}">
+                            <button type="submit" class="btn btn-info pull-right" id="submit">submit</button>
                         </div>
+                        
                     </form>
                 </div>
             </div>

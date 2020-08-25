@@ -1,0 +1,83 @@
+
+    #contentRight {
+        padding-left: 30px;
+    }
+    #contentRight * {
+        /* border: 1px solid gray; */
+    }
+    #calendarArea {
+        width: 850px;
+        min-height: 650px;
+        padding-bottom: 30px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    #calendarArea #menu {
+        font-size: 2em;
+    }    
+    #calendarArea #menu .dropdown {
+        float: right;
+        margin-top: 4px;
+    }
+    /* 높이를 안주면 화면이 이상해짐... */
+    #calendar, .tui-view-7 {
+        height: 650px !important;
+    }
+    /* 달력 팝업창에 Location 지우기 */
+    .tui-full-calendar-popup-section:nth-child(3) {
+        display: none !important;
+    }
+
+    /**  custom bootstrap - start */
+    #calendarArea .btn {
+    border-radius: 25px;
+    border-color: #ddd;
+    }
+
+    #calendarArea .btn:hover {
+    border: solid 1px #bbb;
+    background-color: #fff;
+    }
+
+    #calendarArea .btn:active {
+    background-color: #f9f9f9;
+    border: solid 1px #bbb;
+    outline: none;
+    }
+
+    #calendarArea .btn:disabled {
+    background-color: #f9f9f9;
+    border: solid 1px #ddd;
+    color: #bbb;
+    }
+
+    #calendarArea .btn:focus:active, #calendarArea .btn:focus, #calendarArea .btn:active {
+    outline: none;
+    }
+
+    #calendarArea .open > #calendarArea .dropdown-toggle.btn-default {
+    background-color: #fff;
+    }
+
+    #calendarArea .dropdown-menu {
+    top: 25px;
+    padding: 3px 0;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    }
+
+    #calendarArea .dropdown-menu > li > a {
+    padding: 9px 12px;
+    cursor: pointer;
+    }
+
+    #calendarArea .dropdown-menu > li > a:hover {
+    background-color: rgba(81, 92, 230, 0.05);
+    color: #333;
+    }
+
+    #calendarArea .bi15 {
+    width: 15px;
+    height: 15px;
+    }
