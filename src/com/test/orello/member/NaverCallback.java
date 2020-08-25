@@ -98,8 +98,9 @@ public class NaverCallback extends HttpServlet {
 				MemberDTO member = dao.signInCheck(dto);
 
 				if (member.getSeq() == null) {
-					dao.naverSignIn(dto);
-					member = dao.signInCheck(member);
+					dao.socialImg();
+					dao.socialSignIn(dto);
+					member = dao.signInCheck(dto);
 				}
 				dao.close();
 				// HttpSession session = req.getSession();

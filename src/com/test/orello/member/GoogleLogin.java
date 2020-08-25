@@ -1,6 +1,7 @@
 package com.test.orello.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -10,28 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-@WebServlet("/member/kakaologin.do")
-public class KakaoLogin extends HttpServlet {
+@WebServlet("/member/googlelogin.do")
+public class GoogleLogin extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		req.setCharacterEncoding("UTF-8");
 		
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
 		String token = req.getParameter("token");
 		String id = req.getParameter("id");
-		String name = req.getParameter("name");
 		
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		
-		id = id +"kakao.com.kakao";
+		email += ".gmail";
 		
 		dto.setName(name);
-		dto.setEmail(id);
-		dto.setSocial("KAKAO");
+		dto.setEmail(email);
 		
 		String rndtel = "";
 		Random rnd = new Random();
@@ -41,9 +42,9 @@ public class KakaoLogin extends HttpServlet {
 		for (int i = 0; i < rnd.nextInt(10) + 3; i++) {
 			rndtel += rnd.nextInt(10);
 		}
-		dto.setTel(rndtel);
-		dto.setSocial("KAKAO");
 		
+		dto.setTel(rndtel);
+		dto.setSocial("GOOGLE");
 		MemberDTO member = dao.signInCheck(dto);
 		
 		if(member.getSeq() == null) {
@@ -56,9 +57,13 @@ public class KakaoLogin extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		session.setAttribute("seq", member.getSeq());
-		resp.sendRedirect("/orello/member/index.do");
-		
-		
+		session.setAttribute("id", id);
+		JSONObject obj = new JSONObject();
+		obj.put("result", 1);
+		resp.setContentType("application/json");
+		PrintWriter writer = resp.getWriter();
+		writer.print(obj);
+		writer.close();
 	}
 	
 }

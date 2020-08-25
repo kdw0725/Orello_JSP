@@ -22,6 +22,12 @@
 <script src="<%= request.getContextPath() %>/calendar/js/tui-calendar.js"></script>
 <script src="<%= request.getContextPath() %>/calendar/js/data/calendars.js"></script>
 <script src="<%= request.getContextPath() %>/calendar/js/data/schedules.js"></script>
+
+<!-- 헤더에 넣어야할것 -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<!-- 헤더헤더 -->
 <link
     rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -43,6 +49,9 @@
 				<div id="imgArea">
 					<img src="../images/man_02.png" />
 				</div>
+				<!-- 이것도 헤더 -->
+				<a id="signout" onclick="signOut()">Sign out</a>
+				<!-- 헤더헤더 -->
 				<div id="infoArea">
 					<div id="name">김동욱</div>
 					<div id="commentArea">
@@ -306,6 +315,19 @@
 	<script src="<%= request.getContextPath() %>/calendar/js/myDefault.js"></script>
 	<script>
 	
+	function signOut() {
+		console.log(gapi.auth2);
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+		location.href="/orello/member/signout.do";
+      }
+	function onLoad() {
+	      gapi.load('auth2', function() {
+	        gapi.auth2.init();
+	      });
+	    }
 	</script>
 </body>
 </html>

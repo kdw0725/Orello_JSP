@@ -204,5 +204,37 @@ public class MemberDAO {
 		}
 	}
 	
+	public void socialImg() {
+		try {
+			String sql = "INSERT INTO TBL_PROFILE(SEQ, ORGFILENAME, FILENAME, DELFLAG) VALUES(SEQ_PROFILE.NEXTVAL, ?, ?, DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, "nopic.png");
+			pstat.setString(2, "nopic.png");
+			pstat.executeUpdate();
+			pstat.close();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.socialImg()");
+			e.printStackTrace();
+		}
+	}
+	
+	public void socialSignIn(MemberDTO dto) {
+		try {
+			String sql = "INSERT INTO TBL_MEMBER(SEQ, NAME, EMAIL, PW, REGDATE, COMPANY, TEL, POINT, STATUSMSG, PROFILE_SEQ, SOCIAL, DELFLAG) VALUES(SEQ_MEMBER.NEXTVAL, ?, ?, ?, DEFAULT, NULL, ?, DEFAULT, NULL, SEQ_PROFILE.CURRVAL, ?, DEFAULT )";
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, "1");
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, dto.getSocial());
+			pstat.executeUpdate();
+			pstat.close();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.socialSignIn()");
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

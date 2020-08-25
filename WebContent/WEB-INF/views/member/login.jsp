@@ -12,8 +12,9 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
 <meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/logIn.css">
@@ -70,6 +71,9 @@
 		<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
        		<img style="margin-left: 15px;" src="/orello/images/kakao.png">
        	</a>
+    </div>
+    <div>
+    	<a href="#" onclick="signOut();">Sign out</a>
     </div>
     <div
         class="modal fade"
@@ -269,23 +273,30 @@
 		function onSignIn(googleUser) {
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
-
-            // The ID token you need to pass to your backend:
+            
             var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
+            var profileData = {
+            		"email" : profile.getEmail(),
+            		"name" : profile.getName(),
+            		"token" : id_token, 
+            		"id" : profile.getId()
+            };
+            $.ajax({
+            	type : "POST",
+            	data : profileData,
+            	dataType : "JSON",
+            	url : "/orello/member/googlelogin.do",
+            	success : function(result){
+            		if(result.result == 1){
+            			location.href = "/orello/member/index.do";
+            		}
+            	},
+            	error : function(a, b, c){
+            		console.log(a, b, c);
+            	}
+            });
         };
-        var result = [
-        		   {seq: 1, name: '하하하'},
-        		   {seq: 2, name: '호호호'}
-        		]
-
-        alert(result[0].seq);
+        
 	</script>
 </body>
 </html>
