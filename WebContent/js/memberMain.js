@@ -168,10 +168,10 @@ var color = [
 ];
 
 var projectBox = document.getElementsByClassName("projectBox");
-for (var i = 0; i < projectBox.length - 1; i++) {
-    var temp = Math.floor(Math.random() * color.length);
-    projectBox[i].children[0].style.backgroundColor = color[temp];
-}
+//for (var i = 0; i < projectBox.length - 1; i++) {
+//    var temp = Math.floor(Math.random() * color.length);
+//    projectBox[i].children[0].style.backgroundColor = color[temp];
+//}
 var onmouseFlag = 0;
 for (var i = 0; i < projectBox.length - 1; i++) {
     let temp = projectBox[i];
@@ -562,6 +562,22 @@ $("#commentCancel").click(function () {
 $("#commentSave").click(function () {
     $("#commentInput").css("display", "none").css("height", "70px");
     $("#comment").css("display", "block");
+    var commentData = {
+    	"comment" : $("#commentArea input").val() 
+    };
+    $.ajax({
+    	type : "POST",
+    	url : "/orello/member/updatecomment.do",
+    	data : commentData,
+    	dataType : "JSON",
+    	success : function(result){
+    		alert();
+    	},
+    	error : function(a, b, c){
+    		console.log(a, b, c);
+    	}
+    });
+    
     $("#comment > span").text($("#profileComment").val());
 
     // $("#comment").innerText($("#profileComment").val());

@@ -74,7 +74,7 @@
 }
 .title {
     display: inline;
-    font-size: 2em;
+    font-size: 1.4em;
 }
 .languagebox label {
     display: inline;
@@ -328,6 +328,7 @@
 #commentArea {
     font-size: 14px;
     padding: 10px;
+    margin-bottom: 10px;
 }
 #editComment {
     float: right;
@@ -392,4 +393,14 @@
 .timeLineAction span {
     float: right;
     font-size: 10px;
+}
+.icon-logo{
+	width: 17px;
+	height: 19px;
+	padding-bottom: 2px;
+}
+#comment span{
+	display: inline-block;
+	width: 160px;
+	border-bottom: 1px solid #CCC;
 }

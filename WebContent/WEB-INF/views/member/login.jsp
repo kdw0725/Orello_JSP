@@ -55,7 +55,7 @@
        		<img src="/orello/images/google.png">
        	</a>
 		<a title="네이버 아이디로 로그인">
-			<img src="/orello/images/naver.PNG" />
+			<img src="/orello/images/naver.png" />
 		</a> 
 		<a title="카카오 아이디로 로그인">
      		<img style="margin-left: 15px;" src="/orello/images/kakao.png">
@@ -66,14 +66,11 @@
     		<img src="/orello/images/google.png">
     	</a>
 		<a title="네이버 아이디로 로그인" onclick="window.open('${naverApiURL}','네이버 아이디로 로그인','width=500, height=700, toolbar=no, menubar=no, location=no, status=no, scrollbars=no')">
-			<img src="/orello/images/naver.PNG" />
+			<img src="/orello/images/naver.png" />
 		</a> 
 		<a title="카카오 아이디로 로그인" href="javascript:loginWithKakao()">
        		<img style="margin-left: 15px;" src="/orello/images/kakao.png">
        	</a>
-    </div>
-    <div>
-    	<a href="#" onclick="signOut();">Sign out</a>
     </div>
     <div
         class="modal fade"
@@ -278,8 +275,7 @@
             var profileData = {
             		"email" : profile.getEmail(),
             		"name" : profile.getName(),
-            		"token" : id_token, 
-            		"id" : profile.getId()
+            		"token" : id_token
             };
             $.ajax({
             	type : "POST",

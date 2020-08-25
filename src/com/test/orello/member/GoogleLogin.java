@@ -24,7 +24,6 @@ public class GoogleLogin extends HttpServlet {
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
 		String token = req.getParameter("token");
-		String id = req.getParameter("id");
 		
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
@@ -57,7 +56,6 @@ public class GoogleLogin extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		session.setAttribute("seq", member.getSeq());
-		session.setAttribute("id", id);
 		JSONObject obj = new JSONObject();
 		obj.put("result", 1);
 		resp.setContentType("application/json");

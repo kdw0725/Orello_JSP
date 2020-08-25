@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,13 +48,13 @@
 		<div id="contentLeft">
 			<div id="profile">
 				<div id="imgArea">
-					<img src="../images/man_02.png" />
+					<img src="../images/${member.ori_file}" />
 				</div>
 				<!-- 이것도 헤더 -->
 				<a id="signout" onclick="signOut()">Sign out</a>
 				<!-- 헤더헤더 -->
 				<div id="infoArea">
-					<div id="name">김동욱</div>
+					<div id="name">${member.name}</div>
 					<div id="commentArea">
 						<div id="commentInput">
 							<input type="text" class="form-control" id="profileComment" />
@@ -63,19 +64,37 @@
 								id="commentCancel" />
 						</div>
 						<div id="comment">
-							<span> 집가고싶다</span><input type="button"
+							<span>&nbsp;${member.statusmsg}</span>
+							<input type="button"
 								class="btn btn-info btn-xs" value="edit" id="editComment" />
 						</div>
 					</div>
-					<div class="info">
-						<i class="fas fa-user"></i> getter@kakao.com
-					</div>
-					<div class="info">
-						<i class="fas fa-mobile-alt"></i> 010-1234-5678
-					</div>
-					<div class="info">
-						<i class="far fa-building"></i> 쌍용교육센터
-					</div>
+					
+					<c:if test="${empty member.social}">
+						<div class="info">
+							<i class="fas fa-user"></i>&nbsp;${member.email}
+						</div>
+						<div class="info">
+							<i class="fas fa-mobile-alt"></i>&nbsp;${member.tel}
+						</div>
+						<div class="info">
+							<i class="far fa-building"></i>&nbsp;${member.company}
+						</div>
+					</c:if>
+					<c:if test="${not empty member.social}">
+						<div class="info">
+							<c:if test="${member.social == 'KAKAO' }">
+								<img class="icon-logo" alt="KAKAO" src="/orello/images/kakao-icon.png">
+							</c:if>
+							<c:if test="${member.social == 'NAVER' }">
+								<img class="icon-logo" alt="naver" src="/orello/images/naver-icon.PNG">
+							</c:if>
+							<c:if test="${member.social == 'GOOGLE' }">
+								<img class="icon-logo" alt="google" src="/orello/images/google-icon.png">
+							</c:if>
+							계정으로 로그인 하였습니다.
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<div id="timeLine">
@@ -176,40 +195,26 @@
 			<div id="projectArea">
 				<h2>Project</h2>
 				<hr />
-				<div class="projectBox">
-					<div class="index"></div>
-					<p class="detail">
-						자세히 보기 <i class="glyphicon glyphicon-play"></i>
-					</p>
-					<div class="projectTitle">
-						<strong class="title">Orello</strong>
-						<p>
-							<i class="fab fa-internet-explorer"></i> 웹 프로젝트
+				<c:forEach var="list" items="${projectList}" end="1">
+					<div class="projectBox">
+						<div class="index" style="background-color: ${list.color}"></div>
+						<p class="detail">
+							자세히 보기 <i class="glyphicon glyphicon-play"></i>
 						</p>
+						<div class="projectTitle">
+							<strong class="title">${list.name}</strong>
+							<p>
+								<i class="fab fa-internet-explorer"></i> 웹 프로젝트
+							</p>
+						</div>
+						<div class="languagebox">
+							<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>
+							<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS</label>
+							<i class="fab fa-java" aria-hidden="true"></i> <label for="fab">Java</label>
+						</div>
 					</div>
-					<div class="languagebox">
-						<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>
-						<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS</label>
-						<i class="fab fa-java" aria-hidden="true"></i> <label for="fab">Java</label>
-					</div>
-				</div>
-				<div class="projectBox">
-					<div class="index"></div>
-					<p class="detail">
-						자세히 보기 <i class="glyphicon glyphicon-play"></i>
-					</p>
-					<div class="projectTitle">
-						<strong class="title">Orello</strong>
-						<p>
-							<i class="fab fa-android"></i>안드로이드 프로젝트
-						</p>
-					</div>
-					<div class="languagebox">
-						<i class="fab fa-html5" aria-hidden="true"></i> <label for="fab">HTML</label>
-						<i class="fab fa-python" aria-hidden="true"></i> <label for="fab">python</label>
-						<i class="fab fa-cuttlefish"></i> <label for="fab">C</label>
-					</div>
-				</div>
+				</c:forEach>
+				
 
 				<div class="projectBox" id="newProject" data-toggle="modal"
 					data-target="createProject">

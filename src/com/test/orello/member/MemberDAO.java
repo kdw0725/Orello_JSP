@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.test.orello.DBUtil;
 
@@ -234,6 +235,76 @@ public class MemberDAO {
 			System.out.println("MemberDAO.socialSignIn()");
 			e.printStackTrace();
 		}
+	}
+
+	public MemberDTO getProfile(String seq) {
+		try {
+			String sql = "SELECT * FROM TBL_MEMBER MEM INNER JOIN TBL_PROFILE PRO ON MEM.PROFILE_SEQ = PRO.SEQ WHERE MEM.SEQ = ? AND MEM.DELFLAG = 0 AND PRO.DELFLAG = 0";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			MemberDTO dto = new MemberDTO();
+			if(rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+				dto.setCompany(rs.getString("company"));
+				dto.setTel(rs.getString("tel"));
+				dto.setStatusmsg(rs.getString("statusmsg"));
+				dto.setOri_file(rs.getString("orgfilename"));
+				dto.setSocial(rs.getString("social"));
+			}
+			
+			return dto;
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getProfile()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int updateComment(MemberDTO dto) {
+		
+		try {
+			String sql = "UPDATE TBL_MEMBER SET STATUSMSG = ? WHERE SEQ = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getStatusmsg());
+			pstat.setString(2, dto.getSeq());
+			
+			return pstat.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.updateComment()");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public ArrayList<ProjectDTO> getProjectList(String seq) {
+		try {
+			String sql = "SELECT PRO.SEQ AS SEQ, PRO.NAME AS NAME, PRO.TYPE AS TYPE, PRO.FIRSTPOPULAR AS FIRSTPOPULAR, PRO.SECONDPOPULAR AS SECONDPOPULAR, COL.COLORCODE AS COLOR FROM TBL_PROJECT PRO INNER JOIN TBL_PROJECT_ATTEND ATT ON PRO.SEQ = ATT.PROJECT_SEQ INNER JOIN TBL_COLOR COL ON COL.SEQ = PRO.COLOR_SEQ WHERE ATT.MEMBER_SEQ = ? AND PRO.DELFLAG = 0 AND ATT.DELFLAG = 0 AND COL.DELFLAG = 0 ORDER BY STARTDATE ASC";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+			ArrayList<ProjectDTO> list = new ArrayList<ProjectDTO>();
+			while(rs.next()) {
+				ProjectDTO dto = new ProjectDTO();
+				dto.setSeq(rs.getString("SEQ"));
+				dto.setName(rs.getString("NAME").length() > 7 ? rs.getString("NAME").substring(0, 7) + "..." : rs.getString("NAME"));
+				dto.setType(rs.getString("TYPE"));
+				dto.setFirstpopular(rs.getString("FIRSTPOPULAR"));
+				dto.setSecondpopular(rs.getString("SECONDPOPULAR"));
+				dto.setColor(rs.getString("COLOR"));
+				
+				list.add(dto);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getProjectList()");
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	
