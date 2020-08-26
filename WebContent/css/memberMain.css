@@ -404,3 +404,6 @@
 	width: 160px;
 	border-bottom: 1px solid #CCC;
 }
+.projectMore{
+	display: none;
+}

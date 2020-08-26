@@ -283,7 +283,7 @@ public class MemberDAO {
 
 	public ArrayList<ProjectDTO> getProjectList(String seq) {
 		try {
-			String sql = "SELECT PRO.SEQ AS SEQ, PRO.NAME AS NAME, PRO.TYPE AS TYPE, PRO.FIRSTPOPULAR AS FIRSTPOPULAR, PRO.SECONDPOPULAR AS SECONDPOPULAR, COL.COLORCODE AS COLOR FROM TBL_PROJECT PRO INNER JOIN TBL_PROJECT_ATTEND ATT ON PRO.SEQ = ATT.PROJECT_SEQ INNER JOIN TBL_COLOR COL ON COL.SEQ = PRO.COLOR_SEQ WHERE ATT.MEMBER_SEQ = ? AND PRO.DELFLAG = 0 AND ATT.DELFLAG = 0 AND COL.DELFLAG = 0 ORDER BY STARTDATE ASC";
+			String sql = "SELECT * FROM (SELECT PRO.SEQ AS SEQ, PRO.NAME AS NAME, PRO.TYPE AS TYPE, PRO.FIRSTPOPULAR AS FIRSTPOPULAR, PRO.SECONDPOPULAR AS SECONDPOPULAR, COL.COLORCODE AS COLOR FROM TBL_PROJECT PRO INNER JOIN TBL_PROJECT_ATTEND ATT ON PRO.SEQ = ATT.PROJECT_SEQ INNER JOIN TBL_COLOR COL ON COL.SEQ = PRO.COLOR_SEQ WHERE ATT.MEMBER_SEQ = ? AND PRO.DELFLAG = 0 AND ATT.DELFLAG = 0 AND COL.DELFLAG = 0 ORDER BY STARTDATE ASC) WHERE ROWNUM BETWEEN 1 AND 2";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
 			rs = pstat.executeQuery();
@@ -302,6 +302,32 @@ public class MemberDAO {
 			return list;
 		} catch (Exception e) {
 			System.out.println("MemberDAO.getProjectList()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ArrayList<ProjectDTO> getMoreProject(String seq) {
+		try {
+			String sql = "SELECT * FROM (SELECT ROWNUM AS RN, TB.* FROM (SELECT PRO.SEQ AS SEQ, PRO.NAME AS NAME, PRO.TYPE AS TYPE, PRO.FIRSTPOPULAR AS FIRSTPOPULAR, PRO.SECONDPOPULAR AS SECONDPOPULAR, COL.COLORCODE AS COLOR FROM TBL_PROJECT PRO INNER JOIN TBL_PROJECT_ATTEND ATT ON PRO.SEQ = ATT.PROJECT_SEQ INNER JOIN TBL_COLOR COL ON COL.SEQ = PRO.COLOR_SEQ WHERE ATT.MEMBER_SEQ = ? AND PRO.DELFLAG = 0 AND ATT.DELFLAG = 0 AND COL.DELFLAG = 0 ORDER BY STARTDATE ASC)TB) WHERE RN > 2";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+			ArrayList<ProjectDTO> list = new ArrayList<ProjectDTO>();
+			while(rs.next()) {
+				ProjectDTO dto = new ProjectDTO();
+				dto.setSeq(rs.getString("SEQ"));
+				dto.setName(rs.getString("NAME").length() > 7 ? rs.getString("NAME").substring(0, 7) + "..." : rs.getString("NAME"));
+				dto.setType(rs.getString("TYPE"));
+				dto.setFirstpopular(rs.getString("FIRSTPOPULAR"));
+				dto.setSecondpopular(rs.getString("SECONDPOPULAR"));
+				dto.setColor(rs.getString("COLOR"));
+				
+				list.add(dto);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getMoreProject()");
 			e.printStackTrace();
 		}
 		return null;

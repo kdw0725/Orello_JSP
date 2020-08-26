@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,7 @@
 		<div id="contentLeft">
 			<div id="profile">
 				<div id="imgArea">
-					<img src="../images/${member.ori_file}" />
+					<img src="/orello/images/${member.ori_file}" />
 				</div>
 				<!-- 이것도 헤더 -->
 				<a id="signout" onclick="signOut()">Sign out</a>
@@ -195,7 +197,7 @@
 			<div id="projectArea">
 				<h2>Project</h2>
 				<hr />
-				<c:forEach var="list" items="${projectList}" end="1">
+				<c:forEach var="list" items="${projectList}">
 					<div class="projectBox">
 						<div class="index" style="background-color: ${list.color}"></div>
 						<p class="detail">
@@ -204,13 +206,67 @@
 						<div class="projectTitle">
 							<strong class="title">${list.name}</strong>
 							<p>
-								<i class="fab fa-internet-explorer"></i> 웹 프로젝트
+								<c:if test="${list.type eq '웹 프로젝트'}">
+									<i class="fab fa-internet-explorer"></i> 웹 프로젝트
+								</c:if>
+								<c:if test="${list.type eq '안드로이드 프로젝트'}">
+									<i class="fab fa-android"></i> 안드로이드 프로젝트
+								</c:if>
+								<c:if test="${list.type eq 'IOS 프로젝트'}">
+									<i class="fab fa-apple"></i> IOS 프로젝트
+								</c:if>
+								<c:if test="${list.type eq '기타 프로젝트'}">
+									<i class="fas fa-cat"></i> 기타 프로젝트
+								</c:if>
 							</p>
 						</div>
 						<div class="languagebox">
-							<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>
-							<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS</label>
-							<i class="fab fa-java" aria-hidden="true"></i> <label for="fab">Java</label>
+							<c:if test="${list.firstpopular eq 'html' }">
+								<i class="fab fa-html5" aria-hidden="true"></i> <label for="fab">HTML</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'js' }">
+								<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'css' }">
+								<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS3</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'css' }">
+								<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS3</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'python' }">
+								<i class="fab fa-python" aria-hidden="true"></i> <label for="fab">Python</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'swift' }">
+								<i class="fab fa-swift" aria-hidden="true"></i> <label for="fab">Swift</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq 'c' }">
+								<i class="fab fa-cuttlefish" aria-hidden="true"></i> <label for="fab">C</label>
+							</c:if>
+							<c:if test="${list.firstpopular eq '기타' }">
+								<i class="fab fa-cat" aria-hidden="true"></i> <label for="fab">기타</label>
+							</c:if>
+							
+							<c:if test="${list.secondpopular eq 'html' }">
+								<i class="fab fa-html5" aria-hidden="true"></i> <label for="fab">HTML</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq 'js' }">
+								<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq 'css' }">
+								<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS3</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq 'python' }">
+								<i class="fab fa-python" aria-hidden="true"></i> <label for="fab">Python</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq 'swift' }">
+								<i class="fab fa-swift" aria-hidden="true"></i> <label for="fab">Swift</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq 'c' }">
+								<i class="fab fa-cuttlefish" aria-hidden="true"></i> <label for="fab">C</label>
+							</c:if>
+							<c:if test="${list.secondpopular eq '기타' }">
+								<i class="fab fa-cat" aria-hidden="true"></i> <label for="fab">기타</label>
+							</c:if>
 						</div>
 					</div>
 				</c:forEach>
@@ -333,6 +389,199 @@
 	        gapi.auth2.init();
 	      });
 	    }
+	$("#moreProject").click(function () {
+		$.ajax({
+			type : "GET",
+			url : "/orello/member/moreproject.do",
+			dataType : "JSON",
+			success: function(result){
+				for(var i=0;i<result.length;i++){
+					var moreProjectBox = document.createElement("div");
+			        moreProjectBox.className = "projectBox";
+
+			        var index = document.createElement("div");
+			        index.className = "index";
+			       
+			        index.style.backgroundColor = result[i].color;
+			        moreProjectBox.appendChild(index);
+
+			        var detail = document.createElement("p");
+			        detail.className = "detail";
+			        detail.innerHTML =
+			            "자세히 보기<i class='glyphicon glyphicon-play'></i>";
+
+			        moreProjectBox.appendChild(detail);
+
+			        var moreProjectTitle = document.createElement("div");
+			        moreProjectTitle.className = "projectTitle";
+			        var title = document.createElement("strong");
+			        title.className = "title";
+			        title.innerText = result[i].name;
+			        moreProjectTitle.appendChild(title);
+
+			        var moreProjectType = document.createElement("p");
+
+			        if (result[i].type == "웹 프로젝트") {
+			            moreProjectType.innerHTML =
+			                "<i class='fab fa-internet-explorer'></i> 웹 프로젝트";
+			        } else if (result[i].type == "안드로이드 프로젝트") {
+			            moreProjectType.innerHTML =
+			                "<i class='fab fa-android'></i> 안드로이드 프로젝트";
+			        } else if (result[i].type == "IOS 프로젝트") {
+			            moreProjectType.innerHTML =
+			                "<i class='fab fa-apple'></i> IOS 프로젝트";
+			        } else if (result[i].type == "기타 프로젝트") {
+			            moreProjectType.innerHTML =
+			                "<i class='fas fa-cat'></i> 기타 프로젝트";
+			        }
+			        moreProjectTitle.appendChild(moreProjectType);
+			        moreProjectBox.appendChild(moreProjectTitle);
+					
+			        var moreLanguageBox = document.createElement("div");
+			        
+			        var firstpopular = '';
+			        if(result[i].firstpopular == 'html'){
+			        	firstpopular = '<i class="fab fa-html5" aria-hidden="true"></i> <label for="fab">HTML</label>';
+			        } else if(result[i].firstpopular == 'css'){
+			        	firstpopular = '<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS</label>';
+			        } else if(result[i].firstpopular == 'js'){
+			        	firstpopular = '<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>';
+			        } else if(result[i].firstpopular == 'java'){
+			        	firstpopular = '<i class="fab fa-java" aria-hidden="true"></i> <label for="fab">Java</label>';
+			        } else if(result[i].firstpopular == 'python'){
+			        	firstpopular = '<i class="fab fa-python" aria-hidden="true"></i> <label for="fab">Python</label>';
+			        } else if(result[i].firstpopular == 'swift'){
+			        	firstpopular = '<i class="fab fa-swift" aria-hidden="true"></i> <label for="fab">Swift</label>';
+			        } else if(result[i].firstpopular == 'c'){
+			        	firstpopular = '<i class="fab fa-cuttlefish" aria-hidden="true"></i> <label for="fab">C</label>';
+			        } else if(result[i].firstpopular == '기타') {
+			        	firstpopular = '<i class="fas fa-cat" aria-hidden="true"></i> <label for="fab">기타</label>';
+			        }
+			        
+			        moreLanguageBox.insertAdjacentHTML('beforeend',firstpopular);
+			        
+			        var secondpopular = '';
+			        if(result[i].secondpopular == 'html'){
+			        	secondpopular = '<i class="fab fa-html5" aria-hidden="true"></i> <label for="fab">HTML</label>';
+			        } else if(result[i].secondpopular == 'css'){
+			        	secondpopular = '<i class="fab fa-css3" aria-hidden="true"></i> <label for="fab">CSS</label>';
+			        } else if(result[i].secondpopular == 'js'){
+			        	secondpopular = '<i class="fab fa-js" aria-hidden="true"></i> <label for="fab">JS</label>';
+			        } else if(result[i].secondpopular == 'java'){
+			        	secondpopular = '<i class="fab fa-java" aria-hidden="true"></i> <label for="fab">Java</label>';
+			        } else if(result[i].secondpopular == 'python'){
+			        	secondpopular = '<i class="fab fa-python" aria-hidden="true"></i> <label for="fab">Python</label>';
+			        } else if(result[i].secondpopular == 'swift'){
+			        	secondpopular = '<i class="fab fa-swift" aria-hidden="true"></i> <label for="fab">Swift</label>';
+			        } else if(result[i].secondpopular == 'c'){
+			        	secondpopular = '<i class="fab fa-cuttlefish" aria-hidden="true"></i> <label for="fab">C</label>';
+			        } else if(result[i].secondpopular == '기타') {
+			        	secondpopular = '<i class="fas fa-cat" aria-hidden="true"></i> <label for="fab">기타</label>';
+			        }
+			        moreLanguageBox.insertAdjacentHTML('beforeend',secondpopular);
+			        
+			        moreLanguageBox.className = "languagebox";
+			        moreProjectBox.appendChild(moreLanguageBox);
+			        			        
+// 			        var languageList = [
+// 			            "HTML",
+// 			            "CSS",
+// 			            "python",
+// 			            "Java",
+// 			            "JS",
+// 			            "Swift",
+// 			            "C",
+// 			        ];
+// 			        var moreLanguageBox = document.createElement("div");
+// 			        for (var i = 0; i < 3; i++) {
+// 			            var languageTemp =
+// 			                languageList[Math.floor(Math.random() * languageList.length)];
+// 			            var languageIcon = document.createElement("i");
+// 			            var languageText = document.createElement("label");
+// 			            languageText.for = "fab";
+
+// 			            if (languageTemp == "HTML") {
+// 			                languageIcon.className = "fab fa-html5";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "HTML";
+// 			            } else if (languageTemp == "CSS") {
+// 			                languageIcon.className = "fab fa-css3";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "CSS";
+// 			            } else if (languageTemp == "python") {
+// 			                languageIcon.className = "fab fa-python";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "python";
+// 			            } else if (languageTemp == "Java") {
+// 			                languageIcon.className = "fab fa-java";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "Java";
+// 			            } else if (languageTemp == "JS") {
+// 			                languageIcon.className = "fab fa-js";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "JS";
+// 			            } else if (languageTemp == "Swift") {
+// 			                languageIcon.className = "fab fa-swift";
+// 			                languageIcon.ariaHidden = "true";
+// 			                languageText.innerText = "Swift";
+// 			            } else if (languageTemp == "C") {
+// 			                languageIcon.className = "fab fa-cuttlefish";
+// 			                languageText.innerText = "C";
+// 			            }
+// 			            moreLanguageBox.appendChild(languageIcon);
+// 			            moreLanguageBox.appendChild(languageText);
+// 			        }
+// 			        moreLanguageBox.className = "languageBox";
+// 			        moreProjectBox.appendChild(moreLanguageBox);
+			        let moreTemp = moreProjectBox;
+			        moreProjectBox.onmouseover = function () {
+			            if (onmouseFlag == 0) {
+			                var innerDiv = document.createElement("div");
+			                moreTemp.children[0].style.width = "250px";
+			                moreTemp.children[0].style.height = "130px";
+			                var innerIcon = document.createElement("i");
+			                innerIcon.className = "glyphicon glyphicon-zoom-in";
+			                innerIcon.style.fontSize = "80px";
+			                innerIcon.style.color = "#fff";
+			                innerIcon.style.margin = "10px";
+			                innerDiv.appendChild(innerIcon);
+			                innerDiv.style.color = "#fff";
+			                innerDiv.style.textAlign = "center";
+
+			                var innerContent = document.createElement("p");
+			                innerContent.innerText = "자세히 보러가기";
+			                innerContent.style.fontWeight = "bold"
+			                innerDiv.appendChild(innerContent);
+			                
+
+			                moreTemp.children[0].appendChild(innerDiv);
+			                moreTemp.children[0].style.cursor = "pointer";
+
+			                onmouseFlag = 1;
+			            }
+			        };
+			        moreProjectBox.onmouseleave = function () {
+			            if (onmouseFlag == 1) {
+			                moreTemp.children[0].style.width = "50px";
+			                moreTemp.children[0].style.height = "25px";
+			                moreTemp.children[0].removeChild(
+			                    moreTemp.children[0].children[0]
+			                );
+			                moreTemp.children[0].style.cursor = "none";
+			                onmouseFlag = 0;
+			            }
+			        };
+			        $("#newProject").before(moreProjectBox);
+				}
+				$("#moreProject").css("display", "none");
+			    $("#contentLeft").css("height", $("#contentRight").height());
+			},
+			error : function(a, b, c){
+				console.log(a, b, c)
+			}
+		});
+	    
+	});
 	</script>
 </body>
 </html>
