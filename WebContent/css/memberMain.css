@@ -225,14 +225,15 @@
     margin: 0 auto;
 }
 #searchUserResult {
-    border: 1px solid black;
+    border: 1px solid #CCC;
     position: relative;
-    width: 250px;
+    width: 454px;
     height: 250px;
     padding: 10px;
+    display: none;
 }
 #searchUserResult table {
-    width: 230px;
+    width: 454px;
 }
 .userData {
     height: 50px;
@@ -260,7 +261,7 @@
     margin-right: 15px;
 }
 #searchUser {
-    width: 50%;
+    width: 80%;
     height: 0px;
     /* display: none; */
     transition: all 0.5s;
@@ -271,10 +272,11 @@
 .searchUserResult {
     z-index: 700;
     border: 1px solid #ccc;
-    width: 284px;
+    width: 454px;
     position: relative;
     height: 252px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto; 
 }
 .searchUserResult span {
     font-size: 15px;

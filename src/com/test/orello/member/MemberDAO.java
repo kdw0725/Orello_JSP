@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+
 import com.test.orello.DBUtil;
 
 
@@ -328,6 +330,30 @@ public class MemberDAO {
 			return list;
 		} catch (Exception e) {
 			System.out.println("MemberDAO.getMoreProject()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ArrayList<MemberDTO> getMemberByName(String name) {
+		try {
+			String sql = String.format("SELECT MEM.SEQ AS SEQ, MEM.NAME AS NAME, MEM.EMAIL AS EMAIL, MEM.SOCIAL AS SOCIAL, PRO.FILENAME AS FILENAME FROM TBL_MEMBER MEM INNER JOIN TBL_PROFILE PRO ON PRO.SEQ = MEM.PROFILE_SEQ WHERE MEM.NAME LIKE '%s%%' AND MEM.DELFLAG = 0 AND PRO.DELFLAG = 0 ORDER BY MEM.NAME ASC", name);
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setSeq(rs.getString("SEQ"));
+				dto.setName(rs.getString("NAME"));
+				dto.setEmail(rs.getString("EMAIL"));
+				dto.setFile(rs.getString("FILENAME"));
+				dto.setSocial(rs.getString("SOCIAL"));
+				
+				list.add(dto);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getMemberByName()");
 			e.printStackTrace();
 		}
 		return null;

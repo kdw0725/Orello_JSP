@@ -28,6 +28,7 @@ public class Index extends HttpServlet{
 		ArrayList<ProjectDTO> projectList = dao.getProjectList(seq);
 		req.setAttribute("projectList", projectList);
 		
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/index.jsp");
 		dispatcher.forward(req, resp);
 	}

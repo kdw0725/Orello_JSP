@@ -338,78 +338,71 @@ newWorker.onclick = function () {
     searchUser.style.border = "1px solid #ccc";
     searchUser.style.padding = "6px 12px";
     searchUser.autocomplete = "off";
-    var searchArea = document.getElementById("searchArea");
     searchUser.onkeyup = function () {
-        if (searchArea.children.length == 2) {
-            searchArea.removeChild(searchArea.children[1]);
-        }
-        var searchUserResult = document.createElement("div");
-        searchUserResult.className = "searchUserResult";
-        var tbl = document.createElement("table");
-        tbl.style.width = "284px";
-        for (var i = 0; i < Math.random() * 5; i++) {
-            var userData = document.createElement("tr");
-            userData.className = "userData";
-            var td = document.createElement("td");
-            var userImg = document.createElement("img");
-            userImg.src = "../images/dog03.jpg";
-            var userName = document.createElement("strong");
-            userName.innerText = "김동욱";
-            var userId = document.createElement("span");
-            userId.innerText = "kdw0725";
-            var addBtn = document.createElement("input");
-            addBtn.type = "button";
-            addBtn.value = "+ add";
-            addBtn.className = "btn btn-info";
-            addBtn.onclick = function () {
-                if (confirm("김동욱 님을 프로젝트에 추가하시겠습니까?")) {
-                    var workers = document.getElementById("workers");
-                    searchUser.value = "";
-                    searchArea.removeChild(searchArea.children[1]);
-                    var addedWorker = document.createElement("div");
-                    addedWorker.className = "team-worker";
-                    console.log(
-                        workers.children[workers.children.length - 2].style
-                            .zIndex
-                    );
-                    addedWorker.style.zIndex =
-                        parseInt(
-                            workers.children[workers.children.length - 2].style
-                                .zIndex
-                        ) + 1;
-                    addedWorker.style.left =
-                        -(
-                            parseInt(
-                                workers.children[workers.children.length - 2]
-                                    .style.zIndex
-                            ) + 1
-                        ) * 20;
-                    // addedWorker.style.left = "-80px";
-                    workers.children[workers.children.length - 1].style.left =
-                        parseInt(addedWorker.style.left) - 20 + "px";
-                    var newImg = document.createElement("img");
-                    newImg.src = "../images/man_03.png";
-                    addedWorker.appendChild(newImg);
-
-                    workers.children[workers.children.length - 1].before(
-                        addedWorker
-                    );
-                }
-            };
-
-            td.appendChild(userImg);
-            td.appendChild(userName);
-            td.appendChild(userId);
-            td.appendChild(addBtn);
-
-            userData.appendChild(td);
-
-            tbl.appendChild(userData);
-        }
-
-        searchUserResult.appendChild(tbl);
-        searchUser.after(searchUserResult);
-    };
+    	if($("#searchUser").val().length != 0){
+    		$("#searchUserResult").show();
+    	} else{
+    		$("#searchUserResult").hide();
+    	}
+		var pattern = /^[가-힇]{1,6}$/;
+		if(pattern.test($("#searchUser").val())){
+			var nameData = {"name" : $("#searchUser").val()};
+			$.ajax({
+	    		type : "POST",
+	    		url : "/orello/member/listmember.do",
+	    		data : nameData, 
+	    		dataType : "JSON",
+	    		success : function(result){
+	    			var table = document.createElement("table");
+	    			alert(result.length);
+	    			for(var i=0;i<result.length;i++){
+	    				table.innerHTML = "";
+	    				var tr = document.createElement("tr");
+	    				tr.className = "userData"
+	    				var td = document.createElement("td");
+	    				
+	    				var img = document.createElement("img");
+	    				img.src = "/orello/images/" + result[i].file;
+	    				
+	    				var strong = document.createElement("strong");
+	    				strong.innerHTML = result[i].name;
+	    				
+	    				var span = document.createElement("span");
+	    				console.log(result[i].social);
+	    				if(result[i].social == 'KAKAO'){
+	    					span.innerHTML = '<img class="icon-logo" alt="KAKAO" src="/orello/images/kakao-icon.png">';
+	    				} else if(result[i].social == 'GOOGLE'){
+	    					span.innerHTML = '<img class="icon-logo" alt="GOOGLE" src="/orello/images/google-icon.PNG">';
+	    				} else if(result[i].social == 'NAVER'){
+	    					span.innerHTML = '<img class="icon-logo" alt="NAVER" src="/orello/images/naver-icon.png">';
+	    				} else{
+	    					span.innerHTML = "(" + result[i].email + ")"
+	    				}
+	    				
+	    				var btn = document.createElement("input")
+	    				btn.type = "button";
+	    	            btn.value = "+ add";
+	    	            btn.className = "btn btn-info";
+	    	            btn.onclick = function(){
+	    	            	alert();
+	    	            }
+	    	            
+	    	            td.appendChild(img);
+	    	            td.appendChild(strong);
+	    	            td.appendChild(span);
+	    	            td.appendChild(btn);
+	    	            
+	    	            tr.appendChild(td);
+	    	            table.appendChild(tr);
+	    			}
+	    			$("#searchUserResult").append(table);
+	    		},
+	    		error : function(a, b, c){
+	    			console.log(a, b, c);
+	    		}
+	    	});
+	    }
+	}
 };
 $("#editComment").click(function () {
     $("#profileComment").val($("#comment > span").text());
@@ -431,8 +424,7 @@ $("#commentSave").click(function () {
     	url : "/orello/member/updatecomment.do",
     	data : commentData,
     	dataType : "JSON",
-    	success : function(result){
-    		alert();
+    	success : function(){
     	},
     	error : function(a, b, c){
     		console.log(a, b, c);

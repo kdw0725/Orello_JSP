@@ -295,7 +295,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="#" method="GET">
+						<form action="#" method="POST">
 							<div>
 								<h4>프로젝트 이름</h4>
 								<input type="text" class="form-control" placeholder="프로젝트 이름"
@@ -337,24 +337,24 @@
 
 								<h4>참여인원</h4>
 								<div id="searchArea">
-									<input type="text" class="form-control" placeholder="인원 검색"
-										id="searchUser" />
+									<input type="text" class="form-control" placeholder="인원 검색" id="searchUser" />
+									<div id="searchUserResult"></div>
 								</div>
 								<div style="height: 70px; padding: 10px;" id="workers">
-									<div class="team-worker">
-										<img src="../images/man_01.png" alt="worker" />
-									</div>
-									<div class="team-worker" style="z-index: 1; left: -20px;">
-										<img src="../images/man_02.png" alt="worker" />
-									</div>
-									<div class="team-worker" style="z-index: 2; left: -40px;">
-										<img src="../images/dog03.jpg" alt="worker"
-											style="border-radius: 50%;" />
-									</div>
-									<div class="team-worker" style="z-index: 3; left: -60px;">
-										<img src="../images/man_04.png" alt="worker" />
-									</div>
-									<div class="new-worker" style="left: -80px;">
+<!-- 									<div class="team-worker"> -->
+<!-- 										<img src="../images/man_01.png" alt="worker" /> -->
+<!-- 									</div> -->
+<!-- 									<div class="team-worker" style="z-index: 1; left: -20px;"> -->
+<!-- 										<img src="../images/man_02.png" alt="worker" /> -->
+<!-- 									</div> -->
+<!-- 									<div class="team-worker" style="z-index: 2; left: -40px;"> -->
+<!-- 										<img src="../images/dog03.jpg" alt="worker" -->
+<!-- 											style="border-radius: 50%;" /> -->
+<!-- 									</div> -->
+<!-- 									<div class="team-worker" style="z-index: 3; left: -60px;"> -->
+<!-- 										<img src="../images/man_04.png" alt="worker" /> -->
+<!-- 									</div> -->
+									<div class="new-worker">
 										<i class="glyphicon glyphicon-plus"></i>
 									</div>
 								</div>
@@ -483,56 +483,6 @@
 			        moreLanguageBox.className = "languagebox";
 			        moreProjectBox.appendChild(moreLanguageBox);
 			        			        
-// 			        var languageList = [
-// 			            "HTML",
-// 			            "CSS",
-// 			            "python",
-// 			            "Java",
-// 			            "JS",
-// 			            "Swift",
-// 			            "C",
-// 			        ];
-// 			        var moreLanguageBox = document.createElement("div");
-// 			        for (var i = 0; i < 3; i++) {
-// 			            var languageTemp =
-// 			                languageList[Math.floor(Math.random() * languageList.length)];
-// 			            var languageIcon = document.createElement("i");
-// 			            var languageText = document.createElement("label");
-// 			            languageText.for = "fab";
-
-// 			            if (languageTemp == "HTML") {
-// 			                languageIcon.className = "fab fa-html5";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "HTML";
-// 			            } else if (languageTemp == "CSS") {
-// 			                languageIcon.className = "fab fa-css3";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "CSS";
-// 			            } else if (languageTemp == "python") {
-// 			                languageIcon.className = "fab fa-python";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "python";
-// 			            } else if (languageTemp == "Java") {
-// 			                languageIcon.className = "fab fa-java";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "Java";
-// 			            } else if (languageTemp == "JS") {
-// 			                languageIcon.className = "fab fa-js";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "JS";
-// 			            } else if (languageTemp == "Swift") {
-// 			                languageIcon.className = "fab fa-swift";
-// 			                languageIcon.ariaHidden = "true";
-// 			                languageText.innerText = "Swift";
-// 			            } else if (languageTemp == "C") {
-// 			                languageIcon.className = "fab fa-cuttlefish";
-// 			                languageText.innerText = "C";
-// 			            }
-// 			            moreLanguageBox.appendChild(languageIcon);
-// 			            moreLanguageBox.appendChild(languageText);
-// 			        }
-// 			        moreLanguageBox.className = "languageBox";
-// 			        moreProjectBox.appendChild(moreLanguageBox);
 			        let moreTemp = moreProjectBox;
 			        moreProjectBox.onmouseover = function () {
 			            if (onmouseFlag == 0) {
