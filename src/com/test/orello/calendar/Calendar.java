@@ -1,6 +1,7 @@
 package com.test.orello.calendar;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +18,19 @@ public class Calendar extends HttpServlet{
 			, HttpServletResponse resp) throws ServletException, IOException {
 
 		
+		String seq = "2"; //member seq
+		
+		CalendarDAO dao = new CalendarDAO();
+		ArrayList<ProjectDTO> plist = dao.projectList(seq);
+		
+		System.out.println(plist);
 		
 		
+		String test = "test";
+		
+		
+		req.setAttribute("plist", plist);
+		req.setAttribute("test", test);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/calendar/calendar.jsp");

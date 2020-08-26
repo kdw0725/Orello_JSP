@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,8 @@
 <script src="https://uicdn.toast.com/tui.time-picker/v2.0.3/tui-time-picker.min.js"></script>
 <script src="https://uicdn.toast.com/tui.date-picker/v4.0.3/tui-date-picker.min.js"></script>
 <script src="/orello/calendar_file/js/tui-calendar.js"></script>
-<!-- <script src="/orello/calendar_file/js/data/calendars.js"></script> -->
-<!-- <script src="/orello/calendar_file/js/data/schedules.js"></script> -->
+<script src="/orello/calendar_file/js/data/calendars.js"></script>
+<script src="/orello/calendar_file/js/data/schedules.js"></script>
 
 <!-- random data -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
@@ -126,6 +127,7 @@
 	</script>
 	
 	<script type="text/javascript" class="code-js">
+	
     var MONTHLY_CUSTOM_THEME = {
         // month header 'dayname'
         "month.dayname.height": "42px",
@@ -160,79 +162,33 @@
         "month.moreViewList.padding": "10px",
     };
     
-    
     var cal = new tui.Calendar("#calendar", {
         defaultView: "month",
         theme: MONTHLY_CUSTOM_THEME, // set theme
         // 캘린더 카테고리(?) 생성 -> 나중에 멤버별로 적용하기 
-        calendars: [{
-            id: '1',
-            name: 'project1',
-            color: '#ffffff',
-            bgColor: '#F87C85',
-            dragBgColor: '#F87C85',
-            borderColor: '#F87C85',
-        }, 
-        {
-            id: '2',
-            name: 'project2',
-            color: '#ffffff',
-            bgColor: '#feb47f',
-            dragBgColor: '#feb47f',
-            borderColor: '#feb47f',
-        },
-        {
-            id: '3',
-            name: 'project3',
-            color: '#ffffff',
-            bgColor: '#43d6b0',
-            dragBgColor: '#43d6b0',
-            borderColor: '#43d6b0',
-        },
-        {
-            id: '4',
-            name: 'project4',
-            color: '#ffffff',
-            bgColor: '#3498db',
-            dragBgColor: '#3498db',
-            borderColor: '#3498db',
-        },
-        {
-            id: '5',
-            name: 'project5',
-            color: '#ffffff',
-            bgColor: '#b985ea',
-            dragBgColor: '#b985ea',
-            borderColor: '#b985ea',
-        }
-            
-        ],
+       calendars: [
+    	   <c:forEach items="${plist}" var="dto">
+    	   {
+               id: "${dto.seq}",
+               name: "${dto.name}",
+               color: "#ffffff",
+               bgColor: "${dto.colorcode}",
+               dragBgColor: "${dto.colorcode}",
+               borderColor: "${dto.colorcode}",
+           },
+    	   </c:forEach>
+       ],
         useCreationPopup: true,
         useDetailPopup: true
     });
 
     // 캘린더 내용 생성하기 
     cal.createSchedules([
-        {
-            id: '1',
-            calendarId: '1',
-            title: '프론트 구현',
-            category: 'time',
-            start: '2020-07-01T10:30:00',
-            end: '2020-07-20T12:30:00'
-        },
-        {
-            id: '2',
-            calendarId: '2',
-            title: '서버 연결',
-            category: 'time',
-            dueDateClass: '',
-            start: '2020-07-18T14:30:00',
-            end: '2020-07-20T16:30:00',
-            isReadOnly: true // schedule is read-only
-        }
-        ]);
-
+    		
+    	
+    
+    ]);
+    
     // 달력 누르면 팝업 띄우기
     // register templates
     var templates = {
@@ -296,6 +252,247 @@
         }
     };
 </script>
+<script>
+'use strict';
+
+/* eslint-disable require-jsdoc, no-unused-vars */
+
+var CalendarList = [];
+
+function CalendarInfo() {
+    this.id = null;
+    this.name = null;
+    this.checked = true;
+    this.color = null;
+    this.bgColor = null;
+    this.borderColor = null;
+    this.dragBgColor = null;
+}
+
+function addCalendar(calendar) {
+    CalendarList.push(calendar);
+}
+
+function findCalendar(id) {
+    var found;
+
+    CalendarList.forEach(function(calendar) {
+        if (calendar.id === id) {
+            found = calendar;
+        }
+    });
+
+    return found || CalendarList[0];
+}
+
+function hexToRGBA(hex) {
+    var radix = 16;
+    var r = parseInt(hex.slice(1, 3), radix),
+        g = parseInt(hex.slice(3, 5), radix),
+        b = parseInt(hex.slice(5, 7), radix),
+        a = parseInt(hex.slice(7, 9), radix) / 255 || 1;
+    var rgba = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+
+    return rgba;
+}
+
+(function() {
+    var calendar;
+    var id = 0;
+
+    <c:forEach items="${plist}" var="dto">
+    calendar = new CalendarInfo();
+    id += 1;
+    calendar.id = '${dto.seq}';
+    calendar.name = '${dto.name}';
+    calendar.color = '#ffffff';
+    calendar.bgColor = '${dto.colorcode}';
+    calendar.dragBgColor = '${dto.colorcode}';
+    calendar.borderColor = '${dto.colorcode}';
+    addCalendar(calendar);
+	</c:forEach>
+  
+})();
+
+</script>
+
+<script>
+
+'use strict';
+
+/*eslint-disable*/
+
+var ScheduleList = [];
+
+var SCHEDULE_CATEGORY = [
+    'milestone',
+    'task'
+];
+
+function ScheduleInfo() {
+    this.id = null;
+    this.calendarId = null;
+
+    this.title = null;
+    this.body = null;
+    this.isAllday = false;
+    this.start = null;
+    this.end = null;
+    this.category = '';
+    this.dueDateClass = '';
+
+    this.color = null;
+    this.bgColor = null;
+    this.dragBgColor = null;
+    this.borderColor = null;
+    this.customStyle = '';
+
+    this.isFocused = false;
+    this.isPending = false;
+    this.isVisible = true;
+    this.isReadOnly = false;
+    this.goingDuration = 0;
+    this.comingDuration = 0;
+    this.recurrenceRule = '';
+    this.state = '';
+
+    this.raw = {
+        memo: '',
+        hasToOrCc: false,
+        hasRecurrenceRule: false,
+        location: null,
+        class: 'public', // or 'private'
+        creator: {
+            name: '',
+            avatar: '',
+            company: '',
+            email: '',
+            phone: ''
+        }
+    };
+}
+
+function generateTime(schedule, renderStart, renderEnd) {
+    var startDate = moment(renderStart.getTime())
+    var endDate = moment(renderEnd.getTime());
+    var diffDate = endDate.diff(startDate, 'days');
+
+    schedule.isAllday = chance.bool({likelihood: 30});
+    if (schedule.isAllday) {
+        schedule.category = 'allday';
+    } else if (chance.bool({likelihood: 30})) {
+        schedule.category = SCHEDULE_CATEGORY[chance.integer({min: 0, max: 1})];
+        if (schedule.category === SCHEDULE_CATEGORY[1]) {
+            schedule.dueDateClass = 'morning';
+        }
+    } else {
+        schedule.category = 'time';
+    }
+
+    startDate.add(chance.integer({min: 0, max: diffDate}), 'days');
+    startDate.hours(chance.integer({min: 0, max: 23}))
+    startDate.minutes(chance.bool() ? 0 : 30);
+    schedule.start = startDate.toDate();
+
+    endDate = moment(startDate);
+    if (schedule.isAllday) {
+        endDate.add(chance.integer({min: 0, max: 3}), 'days');
+    }
+
+    schedule.end = endDate
+        .add(chance.integer({min: 1, max: 4}), 'hour')
+        .toDate();
+
+    if (!schedule.isAllday && chance.bool({likelihood: 20})) {
+        schedule.goingDuration = chance.integer({min: 30, max: 120});
+        schedule.comingDuration = chance.integer({min: 30, max: 120});;
+
+        if (chance.bool({likelihood: 50})) {
+            schedule.end = schedule.start;
+        }
+    }
+}
+
+function generateNames() {
+    var names = [];
+    var i = 0;
+    var length = chance.integer({min: 1, max: 10});
+
+    for (; i < length; i += 1) {
+        names.push(chance.name());
+    }
+
+    return names;
+}
+
+function generateRandomSchedule(calendar, renderStart, renderEnd) {
+   
+	
+	var schedule = new ScheduleInfo();
+
+    schedule.id = chance.guid();
+    schedule.calendarId = calendar.id;
+
+    schedule.title = chance.sentence({words: 3});
+    schedule.body = chance.bool({likelihood: 20}) ? chance.sentence({words: 10}) : '';
+    schedule.isReadOnly = chance.bool({likelihood: 20});
+    generateTime(schedule, renderStart, renderEnd);
+
+    schedule.isPrivate = chance.bool({likelihood: 10});
+    schedule.location = chance.address();
+    schedule.attendees = chance.bool({likelihood: 70}) ? generateNames() : [];
+    schedule.recurrenceRule = chance.bool({likelihood: 20}) ? 'repeated events' : '';
+    schedule.state = chance.bool({likelihood: 20}) ? 'Free' : 'Busy';
+    schedule.color = calendar.color;
+    schedule.bgColor = calendar.bgColor;
+    schedule.dragBgColor = calendar.dragBgColor;
+    schedule.borderColor = calendar.borderColor;
+
+    if (schedule.category === 'milestone') {
+        schedule.color = schedule.bgColor;
+        schedule.bgColor = 'transparent';
+        schedule.dragBgColor = 'transparent';
+        schedule.borderColor = 'transparent';
+    }
+
+    schedule.raw.memo = chance.sentence();
+    schedule.raw.creator.name = chance.name();
+    schedule.raw.creator.avatar = chance.avatar();
+    schedule.raw.creator.company = chance.company();
+    schedule.raw.creator.email = chance.email();
+    schedule.raw.creator.phone = chance.phone();
+
+    if (chance.bool({ likelihood: 20 })) {
+        var travelTime = chance.minute();
+        schedule.goingDuration = travelTime;
+        schedule.comingDuration = travelTime;
+    }
+
+    ScheduleList.push(schedule);
+}
+
+
+<c:forEach items="plist" var="dto">
+function generateSchedule(viewName, renderStart, renderEnd) {
+    ScheduleList = [];
+    CalendarList.forEach(function(calendar) {
+        var i = 0, length = 10;
+        if (viewName === 'month') {
+            length = 3;
+        } else if (viewName === 'day') {
+            length = 4;
+        }
+        for (; i < length; i += 1) {
+            generateRandomSchedule(calendar, renderStart, renderEnd);
+        }
+    });
+}
+</c:forEach>
+
+
+
+</script>
+
 <script src="/orello/calendar_file/js/default.js"></script>
 	
 	
