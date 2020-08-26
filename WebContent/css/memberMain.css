@@ -248,7 +248,6 @@
     background-color: #f0f0f0;
 }
 .userData img {
-    border: 1px solid #ccc;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -258,7 +257,7 @@
 .userData input {
     margin-left: 15px;
     float: right;
-    margin-right: 15px;
+    margin-right: 30px;
 }
 #searchUser {
     width: 80%;
@@ -269,7 +268,7 @@
     padding: 0px;
 }
 
-.searchUserResult {
+#searchUserResult {
     z-index: 700;
     border: 1px solid #ccc;
     width: 454px;
@@ -278,7 +277,7 @@
     overflow-x: hidden;
     overflow-y: auto; 
 }
-.searchUserResult span {
+#searchUserResult span {
     font-size: 15px;
     margin-left: 5px;
     margin-right: 5px;
@@ -408,4 +407,9 @@
 }
 .projectMore{
 	display: none;
+}
+.userData span img{
+	border-radius: 0%;
+	width: 30px;
+	height: 30px;
 }

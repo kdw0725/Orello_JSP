@@ -353,10 +353,11 @@ newWorker.onclick = function () {
 	    		data : nameData, 
 	    		dataType : "JSON",
 	    		success : function(result){
+					var searchResult = document.getElementById("searchUserResult");
+					searchResult.innerHTML = "";
 	    			var table = document.createElement("table");
-	    			alert(result.length);
+	    			table.innerHTML = "";
 	    			for(var i=0;i<result.length;i++){
-	    				table.innerHTML = "";
 	    				var tr = document.createElement("tr");
 	    				tr.className = "userData"
 	    				var td = document.createElement("td");
@@ -368,13 +369,13 @@ newWorker.onclick = function () {
 	    				strong.innerHTML = result[i].name;
 	    				
 	    				var span = document.createElement("span");
-	    				console.log(result[i].social);
+	
 	    				if(result[i].social == 'KAKAO'){
 	    					span.innerHTML = '<img class="icon-logo" alt="KAKAO" src="/orello/images/kakao-icon.png">';
 	    				} else if(result[i].social == 'GOOGLE'){
-	    					span.innerHTML = '<img class="icon-logo" alt="GOOGLE" src="/orello/images/google-icon.PNG">';
+	    					span.innerHTML = '<img class="icon-logo" alt="GOOGLE" src="/orello/images/google-icon.png">';
 	    				} else if(result[i].social == 'NAVER'){
-	    					span.innerHTML = '<img class="icon-logo" alt="NAVER" src="/orello/images/naver-icon.png">';
+	    					span.innerHTML = '<img class="icon-logo" alt="NAVER" src="/orello/images/naver-icon.PNG">';
 	    				} else{
 	    					span.innerHTML = "(" + result[i].email + ")"
 	    				}
@@ -383,8 +384,11 @@ newWorker.onclick = function () {
 	    				btn.type = "button";
 	    	            btn.value = "+ add";
 	    	            btn.className = "btn btn-info";
+						var param = result[i];
 	    	            btn.onclick = function(){
-	    	            	alert();
+	    	            	if(confirm(result[i].name + "님을 추가하시겠습니까?")){
+								
+							}		
 	    	            }
 	    	            
 	    	            td.appendChild(img);
