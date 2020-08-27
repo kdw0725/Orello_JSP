@@ -23,7 +23,7 @@ public class Calendar extends HttpServlet{
 		CalendarDAO dao = new CalendarDAO();
 		ArrayList<ProjectDTO> plist = dao.projectList(seq);
 		
-		System.out.println(plist);
+//		System.out.println(plist);
 		
 		
 		String test = "test";
