@@ -211,9 +211,6 @@ for (var i = 0; i < projectBox.length - 1; i++) {
             onmouseFlag = 0;
         }
     };
-    projectBox[i].onclick = function () {
-        alert("상세정보 들어가기");
-    };
 }
 
 var moreProject = document.getElementById("moreProject");

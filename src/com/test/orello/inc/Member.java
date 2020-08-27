@@ -19,7 +19,8 @@ public class Member extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//프로젝트 번호 넘겨받음
-		String pseq = "1";
+		String pseq = req.getParameter("pseq");
+		System.out.println(pseq);
 		
 		//DB에서 프로젝트 정보 가져옴
 		ProjectDAO dao = new ProjectDAO();

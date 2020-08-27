@@ -25,9 +25,7 @@ public class List extends HttpServlet{
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
-		//String pseq = (String)session.getAttribute("pseq");
-		
-		String pseq = "1";
+		String pseq = req.getParameter("pseq");
 		map.put("pseq", pseq);
 		
 		
@@ -166,6 +164,7 @@ public class List extends HttpServlet{
 		req.setAttribute("totalPage", totalPage);
 		
 		req.setAttribute("pagebar", pagebar);
+		req.setAttribute("pseq", pseq);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/list.jsp");
 		dispatcher.forward(req, resp);

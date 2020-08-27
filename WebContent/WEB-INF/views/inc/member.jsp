@@ -20,16 +20,15 @@
             </div>
         </div>
         <div id="menu">
-            <ul class="accordion"><div><i class="glyphicon glyphicon-home"></i>Project Home</div></ul>            
-            <ul class="accordion"><div><i class="glyphicon glyphicon-calendar"></i>Schedule</div></ul>         
-            <ul class="accordion"><div><i class="glyphicon glyphicon-check"></i>Check List</div></ul>
+            <ul class="accordion" onclick="location.href='/orello/project/index.do?pseq=${pseq}';"><div><i class="glyphicon glyphicon-home"></i>Project Home</div></ul>            
+            <ul class="accordion" onclick="location.href='/orello/calendar/calendar.do?pseq=${pseq}';"><div><i class="glyphicon glyphicon-calendar"></i>Schedule</div></ul>         
+            <ul class="accordion" onclick="location.href='/orello/checklist/list.do?pseq=${pseq}';"><div><i class="glyphicon glyphicon-check"></i>Check List</div></ul>
             <ul class="accordion parent"><div><i class="glyphicon glyphicon-list-alt"></i>Board</div>
                 <li class="panel"><div><i class="glyphicon glyphicon-minus"></i>Notice</div></li>
-                <li class="panel"><div><i class="glyphicon glyphicon-minus"></i>Codes</div></li>
-                <li class="panel"><div><i class="glyphicon glyphicon-minus"></i>Free</div></li>
+                <li class="panel" onclick="location.href='/orello/codeboard/list.do?pseq=${pseq}';"><div><i class="glyphicon glyphicon-minus"></i>Codes</div></li>
+                <li class="panel" onclick="location.href='/orello/board/list.do?pseq=${pseq}';"><div><i class="glyphicon glyphicon-minus"></i>Free</div></li>
             </ul>
             <ul class="accordion"><div><i class="glyphicon glyphicon-hdd"></i>Files</div></ul>
-            <ul class="accordion"><div><i class="fas fa-code-branch"></i>Git</div></ul>
             <ul class="accordion"><div><i class="glyphicon glyphicon-comment"></i>Chat</div></ul>
         </div>
     </div>

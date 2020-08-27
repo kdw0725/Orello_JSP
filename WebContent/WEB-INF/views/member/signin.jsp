@@ -8,11 +8,11 @@
 <style>
 
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/signIn.css">
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
 		<div class="imgContainer">
         <img src="../images/Logo-wide.jpg" alt="Logo" id="logoBig" />
@@ -178,7 +178,7 @@
 	    </div>
 	</section>
 	
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script>
 		var nameChecked = false;
 		var emailChecked = false;

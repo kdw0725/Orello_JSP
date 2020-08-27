@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,9 +26,10 @@ public class Index extends HttpServlet {
 		
 		//회원번호 넘겨받았다고 가정
 		//프로젝트 번호 넘겨받았다고 가정
+		HttpSession session = req.getSession();
 		
-		String mseq = "95";
-		String pseq = "1";
+		String mseq = session.getAttribute("seq").toString();
+		String pseq = req.getParameter("pseq");
 
 		//DB에서 정보 받아오기
 		ProjectDAO dao = new ProjectDAO();
@@ -126,6 +128,7 @@ public class Index extends HttpServlet {
 		
 		req.setAttribute("arr", arr);
 		req.setAttribute("chart", chartArr);
+		req.setAttribute("pseq", pseq);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/project/index.jsp");
 		dispatcher.forward(req, resp);

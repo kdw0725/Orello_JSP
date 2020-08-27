@@ -177,8 +177,8 @@
                 </div>
 
                 <div id="btn">
-                    <button>sign in</button>
-                    <button>join in</button>
+                    <button onclick="location.href='/orello/member/login.do';">sign in</button>
+                    <button onclick="location.href='/orello/member/signin.do';">join in</button>
                 </div>
             </div>
         </div>

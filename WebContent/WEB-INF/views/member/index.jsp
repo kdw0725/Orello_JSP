@@ -11,7 +11,7 @@
 
 <style>
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/calendar/css/tui-date-picker.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/calendar/css/tui-time-picker.css" />
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/calendar/css/tui-calendar.css"/>
@@ -45,7 +45,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/memberMain.css">
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
 		<div id="contentLeft">
 			<div id="profile">
@@ -199,7 +199,7 @@
 				<hr />
 				<c:forEach var="list" items="${projectList}">
 					<div class="projectBox">
-						<div class="index" style="background-color: ${list.color}"></div>
+						<div class="index" style="background-color: ${list.color}" onclick="location.href = '/orello/project/index.do?pseq=${list.seq}';"></div>
 						<p class="detail">
 							자세히 보기 <i class="glyphicon glyphicon-play"></i>
 						</p>
@@ -371,7 +371,7 @@
 		</div>
 	</section>
 
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script src="<%= request.getContextPath() %>/js/memberMain.js"></script>
 	<script src="<%= request.getContextPath() %>/calendar/js/myDefault.js"></script>
 	<script>

@@ -30,19 +30,19 @@
 				<div id="projectMember"></div>
 			</div>
 			<div id="menu">
-				<ul class="accordion">
+				<ul class="accordion" onclick="location.href='/orello/achart/amain.do';">
 					<div>
 						<i class="glyphicon glyphicon-home"></i>Home
 					</div>
 				</ul>
 				<ul class="accordion">
-					<div onclick="location.href='/orello/aproject/projectlist.do'">
+					<div onclick="location.href='/orello/aproject/projectlist.do';">
 						<i class="glyphicon glyphicon-calendar"></i>Project
 					</div>
 					<!-- <li class="panel"><div><i class="glyphicon glyphicon-minus"></i></div></li>
                 <li class="panel"><div><i class="glyphicon glyphicon-minus"></i></div></li>    -->
 				</ul>
-				<ul class="accordion">
+				<ul class="accordion" onclick="location.href='/orello/amember/userlist.do';">
 					<div>
 						<i class="glyphicon glyphicon-check"></i>User
 					</div>
@@ -52,23 +52,23 @@
 						<i class="glyphicon glyphicon-list-alt"></i>Chart
 					</div>
 					<li class="panel">
+						<div >
+							<i class="glyphicon glyphicon-minus"></i>Archive
+						</div>
+					</li>
+					<li class="panel" onclick="location.href='/orello/achart/apoint.do';">
 						<div>
-							<i class="glyphicon glyphicon-minus"></i>자료실(사용량)
+							<i class="glyphicon glyphicon-minus"></i>Point
 						</div>
 					</li>
 					<li class="panel">
 						<div>
-							<i class="glyphicon glyphicon-minus"></i>포인트(결제)
+							<i class="glyphicon glyphicon-minus"></i>New Projects
 						</div>
 					</li>
-					<li class="panel">
+					<li class="panel" onclick="location.href='/orello/achart/ajoin.do';">
 						<div>
-							<i class="glyphicon glyphicon-minus"></i>프로젝트 신규
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>유저 신규
+							<i class="glyphicon glyphicon-minus"></i>New Users
 						</div>
 					</li>
 				</ul>
@@ -78,14 +78,14 @@
 					</div>
 				</ul>
 				<!-- <ul class="accordion"><div><i class="fas fa-code-branch"></i>Git</div></ul> -->
-				<ul class="accordion">
+				<ul class="accordion" onclick="location.href='/orello/faq/faq.do';">
 					<div>
 						<i class="glyphicon glyphicon-user"></i>FAQ
 					</div>
 				</ul>
-				<ul class="accordion">
+				<ul class="accordion" onclick="location.href='/orello/notice/notice.do';">
 					<div>
-						<i class="glyphicon glyphicon-user"></i>공지사항
+						<i class="glyphicon glyphicon-user"></i>Notice
 					</div>
 				</ul>
 

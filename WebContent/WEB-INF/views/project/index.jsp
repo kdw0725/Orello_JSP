@@ -18,7 +18,7 @@
 	<section id="content" class="container">
 	<%
 		out.flush();
-	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/member.do");
+	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/member.do?pseq=" + request.getAttribute("pseq"));
 	    dheader.include(request, response);
 	%>
 	

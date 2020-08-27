@@ -34,12 +34,16 @@
 <style>
 
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-	<%@ include file="/inc/member.jsp"%>
+	<%
+		out.flush();
+	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/member.do?pseq=" + request.getAttribute("pseq"));
+	    dheader.include(request, response);
+	%>
 	
 	    <div id="contentRight">
         <div id="calendarArea">
@@ -119,7 +123,7 @@
 	
 	</section>
 	
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
 	

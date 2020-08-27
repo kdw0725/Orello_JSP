@@ -8,7 +8,7 @@
 <style>
 
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -24,7 +24,7 @@
 />
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
 		<div id="inputArea">
         <img src="<%= request.getContextPath() %>/images/Logo-big.png" alt="Logo" id="logoBig" />
@@ -209,7 +209,7 @@
     </div>
 	</section>
 	
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script>
 		$("#findId").click(function() {
 			$("#idFind").modal("show");

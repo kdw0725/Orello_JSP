@@ -39,7 +39,7 @@ public class SignInOk extends HttpServlet {
 		//multi.getOriginalFileName("profile")
 		//multi.getFilesystemName("profile")
 		String ori_file = multi.getOriginalFileName("profile") != null ? multi.getOriginalFileName("profile") : "nopic.png" ;
-		String file = multi.getFilesystemName("profile") != null ? multi.getParameter("profile") : "nopic.png";
+		String file = multi.getFilesystemName("profile") != null ? multi.getFilesystemName("profile") : "nopic.png";
 		// String file = multi.getParameter("profile") != null ? multi.getParameter("profile") : "nopic.png";
 		String company = multi.getParameter("company");
 		
