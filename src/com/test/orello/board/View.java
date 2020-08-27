@@ -17,6 +17,7 @@ public class View extends HttpServlet{
 	protected void doGet(HttpServletRequest req
 			, HttpServletResponse resp) throws ServletException, IOException {
 
+		String pseq = req.getParameter("pseq");
 		String bseq = req.getParameter("seq"); //현재 게시글의 게시글 번호 list에서 받아옴
 		String seq = "104"; //member seq
 		
@@ -39,7 +40,7 @@ public class View extends HttpServlet{
 		
 		
 		req.setAttribute("ccnt", commentCount);
-		
+		req.setAttribute("pseq", pseq);
 		
 		
 		
