@@ -1,4 +1,4 @@
-package com.test.allsearch;
+package com.test.orello.allsearch;
 
 public class SearchDTO {
 

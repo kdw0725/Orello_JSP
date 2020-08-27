@@ -1,4 +1,4 @@
-package com.test.email;
+package com.test.orello.email;
 
 import java.io.IOException;
 import java.io.PrintWriter;

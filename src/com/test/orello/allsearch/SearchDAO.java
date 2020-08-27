@@ -1,4 +1,4 @@
-package com.test.allsearch;
+package com.test.orello.allsearch;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

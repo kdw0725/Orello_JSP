@@ -1,4 +1,4 @@
-package com.test.notice;
+package com.test.orello.notice;
 
 import java.io.IOException;
 
