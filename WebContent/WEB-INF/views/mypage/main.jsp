@@ -13,12 +13,12 @@
 	href="<%=request.getContextPath()%>/css/mypage_main.css">
 <style>
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-		<%@ include file="/inc/member.jsp"%>
+		<%@ include file="/WEB-INF/views/inc/member.jsp"%>
 
 		<div id="contentRight">
 			<div></div>
@@ -104,9 +104,7 @@
 										<div>${dto.statusmsg}</div>
 									</td>
 									<td>
-										<button type="button" class="btn btn-info" id="unfollow"
-											onclick="unfollow(${dto.friend_seq})">unfollow</button>
-
+										<button type="button" class="btn btn-info" id="unfollow" onclick="unfollow(${dto.friend_seq})">unfollow</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -188,7 +186,7 @@
 
 	</section>
 
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
 	
