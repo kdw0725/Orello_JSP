@@ -4,19 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-
+<%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 <style>
 
 </style>
-<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
+
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<section id="content" class="container">
+	<!--  -->
 	
-	</section>
+	<div class="container">
 	
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	</div>
+	
 	<script>
 	
 	</script>
