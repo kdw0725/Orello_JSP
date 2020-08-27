@@ -8,15 +8,15 @@
 <style>
 
 </style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
 	
 	</section>
 	
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script>
 	
 	</script>
