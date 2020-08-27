@@ -30,6 +30,7 @@
 	height: 50px;
 	display: inline-block;
 	float: right;
+	cursor: pointer;
 }
 
 #title .titleBarFunction i {
@@ -181,7 +182,7 @@
 }
 
 .steps input[type='checkbox']:checked+div:before {
-	background: url("orello/images/tick.png") no-repeat center center;
+	background: url("/orello/images/tick.png") no-repeat center center;
 	background-size: contain;
 	/* transition: all 0.7s ease; */
 }
@@ -231,18 +232,23 @@
 	font-size: 2em;
 	margin-top: 20px;
 }
-
+.steps .addCheckList i {
+	cursor: pointer;	
+}
 .steps .addCheckList i:hover {
 	color: #5bc0de;
 	text-shadow: 2px 2px 2px #ddd;
 }
 
-/* **체크리스트 추가 모달창** */
+/* **체크리스트 모달창** */
 .modal * {
 	/* border: 1px solid gray; */
 	outline: none !important;
 }
-
+.modal-header #titleModify{
+	display: none;
+	width: 100px;
+}
 .modal .modal-content {
 	border: 0px;
 	border-radius: 0%;
@@ -314,11 +320,14 @@
 	background-color: #eee;
 }
 
-.memberCheck:checked+label>.memberBox {
-	/* border: 3px solid tomato; */
+.memberCheck:checked + label > .memberBox {
 	box-shadow: -2px -2px -2px #ddd;
 	background-color: #3dcffc;
 	color: white;
+}
+h5 > small {
+	float: right;
+	cursor: pointer;
 }
 
 .fileUploadBox {
@@ -440,11 +449,8 @@
 	
 }
 
-.modal .modal-footer #btnDelete {
-	float: left;
-	margin-left: -5px;
+.modal .controls {
+	/*float: right;*/
+	margin-left: 0px;
 }
 
-#titleModify {
-	display: none;
-}

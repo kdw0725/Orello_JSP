@@ -11,3 +11,6 @@
     crossorigin="anonymous"/>
     
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/chat.css">
+<script src="<%= request.getContextPath() %>/js/chat.js"></script>

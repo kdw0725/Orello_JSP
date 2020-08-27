@@ -1,5 +1,7 @@
 package com.test.orello.checklist;
 
+import java.util.ArrayList;
+
 public class ChecklistItemDTO {
 	
 	private String seq;		//체크리스트 항목 번호
@@ -16,9 +18,25 @@ public class ChecklistItemDTO {
 	private String name;		//체크리스트 할당 멤버 이름
 	private int commentcount;	//체크리스트 댓글 수
 	private int attachcount;	//체크리스트 첨부파일 수
+	private ArrayList<String> filename;		//체크리스트 첨부파일 이름 배열
+	private ArrayList<String> orgfilename;	//체크리스트 첨부파일 원래이름 배열
+	private String mseq;
+	
 	
 	
 
+	public ArrayList<String> getFilename() {
+		return filename;
+	}
+	public void setFilename(ArrayList<String> filename) {
+		this.filename = filename;
+	}
+	public ArrayList<String> getOrgfilename() {
+		return orgfilename;
+	}
+	public void setOrgfilename(ArrayList<String> orgfilename) {
+		this.orgfilename = orgfilename;
+	}
 	public String getSeq() {
 		return seq;
 	}
@@ -96,6 +114,12 @@ public class ChecklistItemDTO {
 	}
 	public void setAttachcount(int attachcount) {
 		this.attachcount = attachcount;
+	}
+	public String getMseq() {
+		return mseq;
+	}
+	public void setMseq(String mseq) {
+		this.mseq = mseq;
 	}	
 	
 }

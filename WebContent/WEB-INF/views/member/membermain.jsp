@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style></style>
-<%@ include file="/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section class="container">
 		
 		
 	</section>
 	
-	<%@ include file="/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script>
 	</script>
 </body>

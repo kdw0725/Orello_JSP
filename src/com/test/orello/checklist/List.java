@@ -18,6 +18,8 @@ public class List extends HttpServlet {
 		
 		//프로젝트 번호 임의로 설정
 		String pseq = "1";
+		//프로젝트 참여번호 임의로 설정
+		String paseq = "1";
 
 		//데이터 받아오기
 		ChecklistDAO dao = new ChecklistDAO();
@@ -30,6 +32,8 @@ public class List extends HttpServlet {
 
 		//데이터 넘겨주기
 		req.setAttribute("list", list);
+		req.setAttribute("pseq", pseq);
+		req.setAttribute("paseq", paseq);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/checklist/list.jsp");
 		dispatcher.forward(req, resp);

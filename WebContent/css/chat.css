@@ -1,0 +1,391 @@
+	#chatModal .modal * {
+        /*border: 1px solid gray;*/
+        outline: none !important;
+    }
+    #chatModal #modal-dialog {
+        width: 750px;
+        margin: 0px auto;
+    }
+    #chatModal .modal .modal-content {
+        width: 750px;
+        height: 850px;
+        border: 0px;
+        border-radius: 0%;
+        box-shadow: 0px 0px 0px #ddd;
+        background-color: transparent;
+    }
+
+    #chatModal .container {
+        margin: 0 auto;
+        width: 800px;
+        background-color: #5bc0de;
+        border-radius: 5px;
+        padding: 0;
+        margin: 0;
+    }
+    #chatModal .listConvert {
+        /* padding-top: 100px; */
+        width: 310px;
+        height: 30px;
+        padding-left: 30px;
+        margin-top: 15px;
+        /* background-color: white; */
+        text-align: center;
+    }
+    #chatModal .listConvert .convertBtn {
+        min-width: 50px;
+        height: 30px;
+        float: left;
+        padding: 0px 10px;
+        padding-top: 5px;
+        background-color: #5bc0de;
+        color: white;
+        /* border: 1px solid #bbb; */
+        border-top-left-radius: 10px 10px;
+        border-top-right-radius: 10px 10px;
+        /* margin-right: 1px; */
+        cursor: pointer;
+    }
+    #chatModal .listConvert div.active {
+        border: 1px solid white;
+        border-bottom: 0px;
+        background-color: #5bc0de;
+    }
+    #chatModal .listConvert .convertBtn {
+        background-color: #0784aa;
+        
+    }
+
+    #chatModal .people-list {
+        width: 310px;
+        float: left;
+
+    }
+
+    #chatModal .people-list .search {
+        /* padding: 20px; */
+        padding-left: 30px;
+        padding-top: 20px;
+
+    }
+
+    #chatModal .people-list input {
+        border-radius: 3px;
+        border: none;
+        padding: 14px;
+        color: white;
+        background: #87d2e9;
+        width: 90%;
+        font-size: 14px;
+    }
+
+    #chatModal .people-list .fa-search {
+        position: relative;
+        left: -25px;
+    }
+
+    #chatModal .people-list ul {
+        padding: 20px;
+        padding-left: 30px;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        height: 750px;
+        overflow-y: auto;
+        margin: 0;
+    }
+    #chatModal .people-list ul li {
+        padding-bottom: 20px;
+        list-style: none;
+    }
+    #chatModal .people-list img,
+    .chat-header img {
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ffffb3;
+        margin-right: 5px;
+        float: left;
+        border: 3px solid white;
+    }
+    #chatModal .people-list .about {
+        float: left;
+        margin-top: 8px;
+        padding-left: 8px;
+    }
+    #chatModal .people-list .about .name {
+        color: #eee;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    #chatModal .people-list .status {
+        color: #e6e6ec;
+    }
+    #chatModal .multiUser img {
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #ffffb3;
+        margin-right: 5px;
+        float: left;
+        border: 1.5px solid white;
+        margin-right: 0px;
+    }
+    #chatModal .people-list .multiUser .imgBox {
+        width: 56px;
+        height: 56px;
+        float: left;
+        padding-top: 3px;
+    }
+
+    #chatModal .chat {
+        width: 490px;
+        float: left;
+        /* background: #F2F5F8; */
+        background-color: white;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        color: #444;
+        margin: 0;
+    }
+    #chatModal ul,
+    #chatModal li {
+        list-style: none;
+        padding-left: 0;
+    }
+    #chatModal .people-list li:hover {
+        opacity: 0.8;
+    }
+    #chatModal .chat .chat-header {
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    #chatModal .chat .chat-header .imgBox {
+        width: 56px;
+        height: 56px;
+        padding-top: 3px;
+        float: left;
+    }
+    #chatModal .chat .chat-header img {
+        float: left;
+        cursor: pointer;
+    }
+    #chatModal .chat .chat-header .chat-about {
+        float: left;
+        padding-left: 10px;
+        margin-top: 6px;
+    }
+    #chatModal .chat .chat-header .chat-with {
+    	padding-top: 5px;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    #chatModal .chat .chat-header .chat-num-messages {
+        color: #92959E;
+    }
+    #chatModal #chatMemberList {
+        position: absolute;
+        top: 60px;
+        left: 350px;
+        border: 1px solid #ddd;
+    }
+    #chatModal #chatMemberList .chatMember {
+        width: 220px;
+        height: 60px;
+        background-color: white;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        display: none;
+        cursor: pointer;
+    }
+    #chatModal #chatMemberList .chatMember:last-child {
+        border-bottom: 0px solid #eee;
+    }
+    #chatModal #chatMemberList .chatMember:hover {
+        background-color: #b5e7f7;
+    }
+
+    #chatModal #chatMemberList .chatMember img { 
+        display: block;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: #ffffb3;
+        margin-right: 5px;
+        float: left;
+        border: 3px solid white;
+        margin-right: 15px;
+        margin-top: -2px;
+    }
+    #chatModal #chatMemberList .chatMember .memberName {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #555;
+    }
+    #chatModal #chatMemberList .chatMember .memberRole {
+        font-size: 0.9em;
+        font-style: italic;
+        color: #777;
+    }
+    #chatModal .chat .chat-history {
+        padding: 30px 30px 20px;
+        border-bottom: 1px solid #ddd;
+        overflow-y: scroll;
+        height: 587px;
+    }
+    #chatModal .chat .chat-history .message-data {
+        margin-bottom: 15px;
+    }
+    #chatModal .chat .chat-history .message-data-time {
+        color: #a8aab1;
+        padding-left: 6px;
+    }
+    #chatModal .chat .chat-history .message {
+        color: white;
+        padding: 18px 20px;
+        line-height: 26px;
+        font-size: 16px;
+        border-radius: 7px;
+        margin-bottom: 30px;
+        width: 90%;
+        position: relative;
+    }
+    #chatModal .chat .chat-history .message:after {
+        bottom: 100%;
+        left: 7%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: #bcdf81;
+        border-width: 10px;
+        margin-left: -10px;
+    }
+    #chatModal .chat .chat-history .my-message {
+        color: #555;
+        background: rgb(183, 229, 250);
+    }
+    #chatModal .chat .chat-history .other-message {
+        background: #bcdf81;
+        color: #555;
+    }
+    #chatModal .chat .chat-history .my-message:after {
+        border-bottom-color: rgb(183, 229, 250);
+        left: 93%;
+    }
+    #chatModal .chat .chat-message {
+        padding: 30px;
+    }
+    #chatModal .fileSend {
+        min-height: 50px;    
+        margin-top: 10px;
+        width: 100%;
+        padding-left: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #chatModal .other-message .fileSend {
+        background-color: #e3f3ca;
+    }
+    #chatModal .my-message .fileSend {
+        background-color:  rgb(220, 242, 252);
+    }
+    #chatModal .fileSend .fileThumbnail {
+        width: 50px;
+        height: 50px;    
+        float: left;
+        font-size: 2.5em;
+        text-align: center;
+        padding-top: 7px;
+    }
+    #chatModal .fileSend .fileContent {
+        width: 250px;
+        min-height: 50px;
+        float: left;
+        margin-left: 5px;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+    #chatModal .fileSend .fileContent .fileName {
+        display: block;
+    }
+    #chatModal .fileSend .fileContent .fileSize {
+        display: block;
+        color: #888;
+        font-size: 0.8em;
+        margin-top: -7px;
+    }
+    #chatModal .imageSend {
+        max-width: 100%;
+        margin-top: 10px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    #chatModal .imageSend .img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    #chatModal .chat .chat-message textarea {
+        width: 100%;
+        border: none;
+        padding: 10px 20px;
+        font: 14px/22px "Lato", Arial, sans-serif;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        resize: none;
+        background-color: rgb(243, 243, 243);
+    }
+    #chatModal .chat .chat-message .fa-file-o,
+    #chatModal .chat .chat-message .fa-file-image-o {
+        font-size: 16px;
+        color: gray;
+        cursor: pointer;
+    }
+    #chatModal .chat .chat-message input[type='file'] {
+        display: none;
+    }
+    #chatModal .chat .chat-message input[type='text'] {
+        border: 0px;
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 10px;
+    }
+    #chatModal .chat .chat-message button {
+        float: right;
+        /* color: #94C2ED; */
+        font-size: 16px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        /* background: #F2F5F8; */
+    }
+    #chatModal .chat .chat-message button:hover {
+        color: #beddfa;
+    }
+    #chatModal .online,
+    #chatModal .offline,
+    #chatModal .me,
+    #chatModal i.multiUser {
+        margin-right: 3px;
+        font-size: 10px;
+    }
+    #chatModal i.multiUser { color: #ddd;}
+    #chatModal .online { color: #b3de69; }
+    #chatModal .offline { color: #E38968; }
+    #chatModal .me { color: rgb(183, 229, 250); }
+
+    #chatModal .align-left { text-align: left; }
+    #chatModal .align-right { text-align: right; }
+    #chatModal .float-right { float: right; }
+
+    #chatModal .clearfix:after {
+        display: block;
+        content: " ";
+        clear: both;
+    }
