@@ -1,0 +1,329 @@
+/* 메뉴 위 프로젝트 정보 */
+#contentLeft>#projectInfo {
+	width: 250px;
+	height: 200px;
+	margin: 30px auto;
+	text-align: center;
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+#contentLeft #projectName {
+	width: 150px;
+	height: 150px;
+	/* border: 1px solid black; */
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 1.5em;
+	background-image: url(/orello/images/woman_04.png);
+	background-repeat: no-repeat;
+	background-size: 150px 150px;
+}
+
+#contentLeft #projectPeriod {
+	margin-top: 20px;
+	font-size: 23px;
+	font-style: italic;
+}
+
+#contentLeft #projectContent {
+	margin-top: 10px;
+	/* font-style: italic; */
+}
+
+#contentLeft #projectMember {
+	width: 100%;
+	height: 60px;
+	position: relative;
+	top: 0;
+	left: 0;
+	/* bottom: 30px; */
+	margin-top: 30px;
+}
+
+#projectMember .profilePic {
+	width: 50px;
+	height: 50px;
+	border: 3px solid white;
+	border-radius: 25px;
+	box-shadow: 3px 3px 2px #ccc;
+	display: inline-block;
+	background-color: #ccc;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-left: -10px;
+}
+
+#projecMember .profilePic:first-child {
+	margin-left: 0px;
+}
+
+#projectMember .profilePic:hover {
+	transform: translate(0px, -15px);
+	transition: tranform 0.5s;
+}
+/* 메뉴 */
+#contentLeft>#menu {
+	width: 230px;
+	min-height: 400px;
+	margin: 100px auto;
+	/* border: 1px solid black; */
+}
+
+#contentLeft #menu ul, #menu li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px white;
+}
+
+#contentLeft #menu .accordion>div, #menu .panel>div {
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-top: 9px;
+	border-bottom: 1px solid #999;
+	height: 40px;
+	padding-right: 10px;
+}
+
+#contentLeft #menu .panel>div {
+	margin-left: 30px;
+}
+
+#contentLeft #menu ul.active>div {
+	color: #5bc0de;
+	border-bottom: 1px solid #5bc0de;
+}
+
+#contentLeft #menu>ul.active>div>i {
+	color: #5bc0de;
+}
+
+#contentLeft #menu>ul.active li {
+	display: block;
+}
+
+#contentLeft #menu ul i {
+	margin-right: 10px;
+	color: #555;
+}
+
+#contentLeft #menu li.panel {
+	display: none;
+}
+
+#contentLeft #menu ul.parent>div::after {
+	content: "\f078";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	float: right;
+}
+
+#contentLeft #menu ul.active.parent>div::after {
+	content: "\f077";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	float: right;
+}
+
+#contentLeft #menu ul:hover>div {
+	color: #5bc0de;
+	border-bottom: 1px solid #5bc0de;
+}
+
+#contentLeft #menu ul:hover>div>i {
+	color: #5bc0de;
+}
+
+#contentLeft #menu li:hover>div {
+	color: #5bc0de;
+	border-bottom: 1px solid #5bc0de;
+}
+
+#contentLeft #menu li:hover>div>i {
+	color: #5bc0de;
+}
+
+#contentRight #main_list {
+	width: 800px;
+	margin-top: 30px;
+	margin-left: 50px;
+	/* border-bottom: 1px solid #ddd; */
+}
+
+#contentRight #main_title {
+	font-size: 30px;
+	font-weight: bold;
+	color: #444;
+}
+
+#contentRight #tbl {
+	margin-top: 10px;
+	border: none;
+	padding-top: 10px;
+	clear: both;
+	display: hidden;
+}
+
+#contentRight #tbl tr {
+	color: #444;
+}
+
+#contentRight #tbl tr th {
+	font-size: 15px;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #eee;
+	border-top: 1px solid #ddd;
+	background-color: #5bc0de;
+	color: white;
+}
+
+#contentRight #tbl td {
+	border: none;
+	border-bottom: 1px solid #eee;
+	/* height: 30px; */
+	padding: 10px;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 8px;
+	/* padding-left: 10px; */
+}
+
+#contentRight #tbl tr:first-child:hover {
+	cursor: auto;
+}
+
+#contentRight #tbl tr:hover {
+	background-color: rgb(216, 235, 252);
+	cursor: pointer;
+}
+
+#tbl td:first-child {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#contentRight #tbl td:nth-child(2) {
+	text-align: left;
+}
+
+#contentRight #write {
+	float: right;
+	margin-bottom: 20px;
+}
+
+#contentRight #search {
+	/* border: 1px solid black; */
+	text-align: right;
+	/* float:right; */
+	margin-left: 200px;
+	/* margin-top: 70px; */
+	height: 30px;
+	/* width: 450px; */
+}
+
+#contentRight #search>input.form-control {
+	outline: none;
+	display: block;
+	float: left;
+	width: 200px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+#contentRight #select_title>select.form-control {
+	outline: none;
+	display: block;
+	float: left; 
+	width: 120px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+#contentRight #dateform {
+	display: inline-block;
+	border-bottom: 1px solid #ccc;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	width: 800px;
+}
+
+#contentRight #btnbox {
+	outline: none;
+	display: block;
+	float: left;
+	width: 80px;
+	height: 30px;
+}
+
+#contentRight #okbtn {
+	float: right;
+}
+
+#contentRight #search button {
+	display: block;
+	/* float: right; */
+	float: left;
+	height: 30px;
+
+	/* margin-top: 20px; */
+}
+
+#contentRight #paging {
+	margin-top: 0px;
+	text-align: center;
+}
+
+#contentRight #paging nav {
+	height: 80px;
+}
+
+#contentRight .pagination {
+	height: 60px;
+	margin-top: 25px;
+	margin-left: 100px;
+}
+
+#contentRight .pagination>li>a {
+	padding-top: 9px;
+	width: 36px;
+	border: none;
+	color: #444;
+}
+
+#contentRight .pagination>li:first-child>a {
+	padding-top: 8px;
+	width: 35px;
+}
+
+#contentRight .pagination>li:last-child>a {
+	padding-top: 8px;
+	width: 35px;
+}
+
+#contentRight .pagination>li>a:hover {
+	color: white;
+	background-color: #ccc;
+}
+
+#contentRight .pagination>.active>a {
+	background-color: #5bc0de;
+	color: white;
+}
+
+#contentRight .pagination>.active>a:hover {
+	background-color: #5bc0de;
+}
+
+#contentRight .btn {
+	outline: none;
+}
+
+#contentRight #hidden_container {
+	padding-top: 50px;
+}
