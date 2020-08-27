@@ -154,6 +154,7 @@
     height: 50px;
     float: left;
     background-color: white;
+    margin-right: 5px;
 }
 .team-worker:first-child {
     left: 0px;
@@ -231,6 +232,7 @@
     height: 250px;
     padding: 10px;
     display: none;
+    margin-bottom: 15px;
 }
 #searchUserResult table {
     width: 454px;

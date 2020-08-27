@@ -383,13 +383,50 @@ newWorker.onclick = function () {
 	    				var btn = document.createElement("input")
 	    				btn.type = "button";
 	    	            btn.value = "+ add";
-	    	            btn.className = "btn btn-info";
-						var param = result[i];
-	    	            btn.onclick = function(){
-	    	            	if(confirm(result[i].name + "님을 추가하시겠습니까?")){
-								
-							}		
+	    	            btn.className = "btn btn-info add-member";
+	    	            btn.dataset.target = result[i].seq;
+	    	            
+	    	            for(var i=0; i<$(".team-worker").length;i++){
+	    	            	if(btn.dataset.target == $(".team-worker")[i].val()){
+	    	            		btn.value = "추가됨";
+	    	            		btn.disabled = 'disabled';
+	    	            	}
 	    	            }
+	    	            btn.onclick = function(){
+	    	            	var memberData = {"seq" : event.srcElement.dataset.target};
+	    	            	var temp = event.srcElement;
+	    	            	$.ajax({
+	    	            		type : "POST",
+	    	            		data : memberData,
+	    	            		dataType : "JSON",
+	    	            		url : "/orello/member/getmemberinfo.do",
+	    	            		success: function(result){
+	    	            			if(confirm(result.name + "님을 추가하시겠습니까?")){
+	    	            				var teamWorker = document.createElement("div");
+	    	            				teamWorker.className = "team-worker";
+	    	            				
+	    	            				var img = document.createElement("img");
+	    	            				img.src = "/orello/images/" + result.file;
+	    	            				img.alt = "worker";
+	    	            				
+	    	            				var input = document.createElement("input");
+	    	            				input.type = "hidden";
+	    	            				input.value = result.seq 
+	    	            				
+	    	            				teamWorker.appendChild(img);
+	    	            				
+	    	            				//$("#workers").before(teamWorker, $(".new-worker"));
+	    	            				$(".new-worker").before(teamWorker);
+	    	            				temp.value = "추가됨";
+	    	            				temp.disabled = 'disabled';
+	    	            			}
+	    	            		},
+	    	            		error: function(a, b, c){
+	    	            			console.log(a, b, c);
+	    	            		}
+	    	            	});
+	    	            }
+	    	            	
 	    	            
 	    	            td.appendChild(img);
 	    	            td.appendChild(strong);
@@ -408,6 +445,7 @@ newWorker.onclick = function () {
 	    }
 	}
 };
+
 $("#editComment").click(function () {
     $("#profileComment").val($("#comment > span").text());
     $("#commentInput").css("display", "block").css("height", "70px");

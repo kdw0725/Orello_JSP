@@ -238,7 +238,9 @@
 								data : loginInfo,
 								dataType : "JSON",
 								success : function(result){
-									console.log(result)
+									if(result.result == 1){
+										location.href = "/orello/member/index.do"
+									}
 								},
 								error : function(a, b, c){
 									console.log(a, b, c);

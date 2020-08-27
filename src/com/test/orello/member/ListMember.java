@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,11 +20,17 @@ public class ListMember extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+		
 		String name = req.getParameter("name");
+		String seq = (String) session.getAttribute("seq");
 		
 		MemberDAO dao = new MemberDAO();
+		MemberDTO member = new MemberDTO();
+		member.setSeq(seq);
+		member.setName(name);
 		
-		ArrayList<MemberDTO> list =dao.getMemberByName(name);
+		ArrayList<MemberDTO> list =dao.getMemberByName(member);
 		
 		JSONArray arr = new JSONArray();
 		

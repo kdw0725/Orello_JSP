@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -105,7 +105,19 @@ public class NaverCallback extends HttpServlet {
 				dao.close();
 				// HttpSession session = req.getSession();
 				session.setAttribute("seq", member.getSeq());
-				resp.sendRedirect("/orello/member/index.do");
+				//resp.sendRedirect("/orello/member/index.do");
+				PrintWriter writer = resp.getWriter();
+				
+				writer.print("<html>");
+				writer.print("<head>");
+				writer.print("</head>");
+				writer.print("<body>");
+				writer.print("</body>");
+				writer.print("<script>");
+				writer.print("window.close();");
+				writer.print("opener.document.location.replace('/orello/member/index.do');");
+				writer.print("</script>");
+				writer.print("</html>");
 
 			}
 		} catch (Exception e) {

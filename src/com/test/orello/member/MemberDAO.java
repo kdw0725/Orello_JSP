@@ -335,9 +335,9 @@ public class MemberDAO {
 		return null;
 	}
 
-	public ArrayList<MemberDTO> getMemberByName(String name) {
+	public ArrayList<MemberDTO> getMemberByName(MemberDTO member) {
 		try {
-			String sql = String.format("SELECT MEM.SEQ AS SEQ, MEM.NAME AS NAME, MEM.EMAIL AS EMAIL, MEM.SOCIAL AS SOCIAL, PRO.FILENAME AS FILENAME FROM TBL_MEMBER MEM INNER JOIN TBL_PROFILE PRO ON PRO.SEQ = MEM.PROFILE_SEQ WHERE MEM.NAME LIKE '%s%%' AND MEM.DELFLAG = 0 AND PRO.DELFLAG = 0 ORDER BY MEM.NAME ASC", name);
+			String sql = String.format("SELECT MEM.SEQ AS SEQ, MEM.NAME AS NAME, MEM.EMAIL AS EMAIL, MEM.SOCIAL AS SOCIAL, PRO.FILENAME AS FILENAME FROM TBL_MEMBER MEM INNER JOIN TBL_PROFILE PRO ON PRO.SEQ = MEM.PROFILE_SEQ WHERE MEM.NAME LIKE '%s%%' AND MEM.DELFLAG = 0 AND PRO.DELFLAG = 0 AND MEM.SEQ <>%s ORDER BY MEM.NAME ASC", member.getName(), member.getSeq());
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
@@ -354,6 +354,28 @@ public class MemberDAO {
 			return list;
 		} catch (Exception e) {
 			System.out.println("MemberDAO.getMemberByName()");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public MemberDTO getMemberInfo(String seq) {
+		try {
+			String sql = "SELECT MEM.SEQ AS SEQ, MEM.NAME AS NAME, PRO.FILENAME AS FILENAME FROM TBL_MEMBER MEM INNER JOIN TBL_PROFILE PRO ON PRO.SEQ = MEM.PROFILE_SEQ WHERE MEM.SEQ = ? AND MEM.DELFLAG = 0 AND PRO.DELFLAG = 0";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			rs = pstat.executeQuery();
+			
+			MemberDTO dto = new MemberDTO();
+			
+			if(rs.next()) {
+				dto.setSeq(rs.getString("SEQ"));
+				dto.setName(rs.getString("NAME"));
+				dto.setFile(rs.getString("FILENAME"));
+			}
+			return dto;
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getMemberInfo()");
 			e.printStackTrace();
 		}
 		return null;

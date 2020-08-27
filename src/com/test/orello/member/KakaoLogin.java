@@ -1,6 +1,7 @@
 package com.test.orello.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -56,7 +57,12 @@ public class KakaoLogin extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		session.setAttribute("seq", member.getSeq());
-		resp.sendRedirect("/orello/member/index.do");
+		
+		JSONObject obj = new JSONObject();
+		obj.put("result", 1);
+		PrintWriter writer = resp.getWriter();
+		writer.print(obj);
+		writer.close();
 		
 		
 	}
