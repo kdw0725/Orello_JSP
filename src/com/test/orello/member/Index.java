@@ -44,6 +44,7 @@ public class Index extends HttpServlet{
 			req.setAttribute("member", dto);
 			
 			ArrayList<ProjectDTO> projectList = dao.getProjectList(seq);
+			dao.close();
 			req.setAttribute("projectList", projectList);
 			
 			

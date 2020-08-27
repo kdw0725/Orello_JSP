@@ -56,7 +56,7 @@ public class SignInOk extends HttpServlet {
 		
 		System.out.println(dto.toString());
 		int result = dao.signIn(dto);
-		
+		dao.close();
 		if(result == 1) {
 			resp.sendRedirect("/orello/index.do");
 		} else {

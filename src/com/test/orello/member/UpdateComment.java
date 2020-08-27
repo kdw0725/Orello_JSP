@@ -26,6 +26,7 @@ public class UpdateComment extends HttpServlet {
 		dto.setStatusmsg(comment);
 		
 		dao.updateComment(dto);
+		dao.close();
 		
 		
 	}

@@ -28,6 +28,7 @@ public class LogInOk extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		MemberDTO member = new MemberDTO();
 		member = dao.login(dto);
+		dao.close();
 		resp.setCharacterEncoding("UTF-8");
 		if(member.getSeq() == null) {
 			PrintWriter writer = resp.getWriter();

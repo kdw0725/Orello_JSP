@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
  <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -9,15 +12,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="<%= request.getContextPath() %>/images/logo.png" alt="Logo" id="logo-img" style="width: 20px;" /></a>
+            <a class="navbar-brand" href="/orello/index.do"><img src="<%= request.getContextPath() %>/images/logo.png" alt="Logo" id="logo-img" style="width: 20px;" /></a>
           </div>
       
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</span><span class="sr-only">(current)</span></a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp; Notice</span></a></li>
+              <li class="active"><a href="/orello/member/index.do"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</span><span class="sr-only">(current)</span></a></li>
+              <li><a href="/orello//notice/notice.do"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp; Notice</span></a></li>
               <li><a href="#"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Project</span></a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i>&nbsp; QnA</span></a></li>
+              <li><a href="/orello/faq/faq.do"><i class="glyphicon glyphicon-question-sign"></i>&nbsp; QnA</span></a></li>
             </ul>
             <form method="GET" action="/orello/allsearch/allsearch.do" class="navbar-form navbar-right" role="search" id="searchForm">
               <div class="form-group">
@@ -27,12 +30,23 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User Name<span class="caret"></span></a>
+              	<c:if test="${seq != null }">
+              	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.name}<span class="caret"></span></a>
+              	</c:if>
+              	<c:if test="${seq == null }">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User Name<span class="caret"></span></a>
+              	</c:if>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Friends</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Log out</a></li>
+                  <c:if test="${seq != null }">
+                  	<li><a id="signout" onclick="signOut()" style="cursor: pointer;">Log out</a></li>
+                  </c:if>
+                  <c:if test="${seq == null }">
+					<li><a href="/orello/member/login.do">Log In</a></li>
+                  </c:if>
+                  
                 </ul>
               </li>
             </ul>

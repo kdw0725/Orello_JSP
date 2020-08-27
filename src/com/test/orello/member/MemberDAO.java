@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 
@@ -293,7 +294,7 @@ public class MemberDAO {
 			while(rs.next()) {
 				ProjectDTO dto = new ProjectDTO();
 				dto.setSeq(rs.getString("SEQ"));
-				dto.setName(rs.getString("NAME").length() > 7 ? rs.getString("NAME").substring(0, 7) + "..." : rs.getString("NAME"));
+				dto.setName(rs.getString("NAME").length() > 10 ? rs.getString("NAME").substring(0, 10) + "..." : rs.getString("NAME"));
 				dto.setType(rs.getString("TYPE"));
 				dto.setFirstpopular(rs.getString("FIRSTPOPULAR"));
 				dto.setSecondpopular(rs.getString("SECONDPOPULAR"));
@@ -379,6 +380,50 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void createProject(ProjectDTO dto) {
+		try {
+			Random rnd = new Random();
+			String sql = "INSERT INTO TBL_PROJECT(SEQ, NAME, STARTDATE, ENDDATE, REGDATE, DESCRIPTION, TYPE, COLOR_SEQ, DELFLAG) VALUES(SEQ_PROJECT.NEXTVAL, ?, ?, ?, DEFAULT, ?, ?, ?, DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getStartdate());
+			pstat.setString(3, dto.getEnddate());
+			pstat.setString(4, dto.getDescription());
+			pstat.setString(5, dto.getType());
+			pstat.setInt(6, rnd.nextInt(12)+1);
+			
+			pstat.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.createProject()");
+			e.printStackTrace();
+		}
+	}
+	public void insertLeader(String seq) {
+		try {
+			String sql = "INSERT INTO TBL_PROJECT_ATTEND(SEQ, PROJECT_SEQ, MEMBER_SEQ, POSITION, DELFLAG) VALUES(SEQ_PROJECT_ATTEND.NEXTVAL, SEQ_PROJECT.CURRVAL, ?, '팀장', DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			pstat.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.insertLeader()");
+			e.printStackTrace();
+		}
+	}
+
+	public void insertMember(String seq) {
+		try {
+			String sql = "INSERT INTO TBL_PROJECT_ATTEND(SEQ, PROJECT_SEQ, MEMBER_SEQ, POSITION, DELFLAG) VALUES(SEQ_PROJECT_ATTEND.NEXTVAL, SEQ_PROJECT.CURRVAL, ?, '팀원', DEFAULT)";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			pstat.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("MemberDAO.insertMember()");
+			e.printStackTrace();
+		}
 	}
 	
 	

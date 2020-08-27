@@ -383,8 +383,9 @@ newWorker.onclick = function () {
 	    	            btn.className = "btn btn-info add-member";
 	    	            btn.dataset.target = result[i].seq;
 	    	            
-	    	            for(var i=0; i<$(".team-worker").length;i++){
-	    	            	if(btn.dataset.target == $(".team-worker")[i].val()){
+	    	            for(var j=0; j<$(".team-worker").length;j++){
+							console.log();
+	    	            	if(btn.dataset.target == $(".team-worker > input")[j].value){
 	    	            		btn.value = "추가됨";
 	    	            		btn.disabled = 'disabled';
 	    	            	}
@@ -408,9 +409,11 @@ newWorker.onclick = function () {
 	    	            				
 	    	            				var input = document.createElement("input");
 	    	            				input.type = "hidden";
-	    	            				input.value = result.seq 
+	    	            				input.value = result.seq;
+										input.name = "member_seq";
 	    	            				
 	    	            				teamWorker.appendChild(img);
+										teamWorker.appendChild(input);
 	    	            				
 	    	            				//$("#workers").before(teamWorker, $(".new-worker"));
 	    	            				$(".new-worker").before(teamWorker);
@@ -432,6 +435,7 @@ newWorker.onclick = function () {
 	    	            
 	    	            tr.appendChild(td);
 	    	            table.appendChild(tr);
+						
 	    			}
 	    			$("#searchUserResult").append(table);
 	    		},
@@ -524,3 +528,14 @@ var picker = tui.DatePicker.createRangePicker({
     //     [today, new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())]
     // ]
 });
+$("#createProjectBtn").click(function(){
+	if($(".modal-body input[name]").val().length == 0){
+		alert("프로젝트 이름을 입력해주세요!");
+	} else{
+		if($(".modal-body input[name='projectType']:checked").val() == undefined){
+			alert('프로젝트 유형을 선택해주세요!');
+		} else{
+			$("#projectForm").submit();
+		}
+	}
+})

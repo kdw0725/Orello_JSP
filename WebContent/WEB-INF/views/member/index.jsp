@@ -26,11 +26,6 @@
 <script src="<%= request.getContextPath() %>/calendar/js/data/calendars.js"></script>
 <script src="<%= request.getContextPath() %>/calendar/js/data/schedules.js"></script>
 
-<!-- 헤더에 넣어야할것 -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="380478341630-8p93j9l00a6tq6s1vlb7tnjlnqts1vj2.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-<!-- 헤더헤더 -->
 <link
     rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -52,9 +47,6 @@
 				<div id="imgArea">
 					<img src="/orello/images/${member.ori_file}" />
 				</div>
-				<!-- 이것도 헤더 -->
-				<a id="signout" onclick="signOut()">Sign out</a>
-				<!-- 헤더헤더 -->
 				<div id="infoArea">
 					<div id="name">${member.name}</div>
 					<div id="commentArea">
@@ -295,42 +287,42 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="#" method="POST">
+						<form action="/orello/member/createproject.do" method="POST" id="projectForm">
 							<div>
 								<h4>프로젝트 이름</h4>
-								<input type="text" class="form-control" placeholder="프로젝트 이름"
+								<input type="text" class="form-control" placeholder="프로젝트 이름" name="name"
 									required />
 								<h4>프로젝트 설명</h4>
-								<input type="text" class="form-control" placeholder="프로젝트 설명"
+								<input type="text" class="form-control" placeholder="프로젝트 설명" name="description" 
 									required />
 								<h4>프로젝트 기간</h4>
 								<div id="datePicker">
 									<div
 										class="tui-datepicker-input tui-datetime-input tui-has-focus">
-										<input id="startpicker-input" type="text" aria-label="Date" />
+										<input id="startpicker-input" type="text" aria-label="Date" name="startdate" />
 										<span class="tui-ico-date"></span>
 										<div id="startpicker-container" style="margin-left: -1px;"></div>
 									</div>
 									<span>to</span>
 									<div
 										class="tui-datepicker-input tui-datetime-input tui-has-focus">
-										<input id="endpicker-input" type="text" aria-label="Date" />
+										<input id="endpicker-input" type="text" aria-label="Date" name="enddate" />
 										<span class="tui-ico-date"></span>
 										<div id="endpicker-container" style="margin-left: -1px;"></div>
 									</div>
 								</div>
 								<h4>프로젝트 유형</h4>
 								<div id="checkProjectType">
-									<input type="radio" id="web" name="projectType" />
+									<input type="radio" id="web" name="projectType" value="web"/>
 									<label for="web"><i
 										class="fab fa-internet-explorer"></i> 웹 프로젝트</label> <input
-										type="radio" id="android" name="projectType" />
+										type="radio" id="android" value="android" name="projectType" />
 									<label for="android"><i
 										class="fab fa-android"></i>안드로이드 프로젝트</label> <input type="radio"
-										id="ios" name="projectType" />
+										id="ios" value="ios" name="projectType" />
 									<label for="ios"><i
 										class="fab fa-apple"></i> IOS 프로젝트</label> <br /> <input type="radio"
-										id="extra" name="projectType" />
+										id="extra" value="extra" name="projectType" />
 									<label for="extra"><i
 										class="fas fa-cat"></i> 기타 프로젝트</label>
 								</div>
@@ -341,19 +333,6 @@
 									<div id="searchUserResult"></div>
 								</div>
 								<div style="height: 70px; padding: 10px;" id="workers">
-<!-- 									<div class="team-worker"> -->
-<!-- 										<img src="../images/man_01.png" alt="worker" /> -->
-<!-- 									</div> -->
-<!-- 									<div class="team-worker" style="z-index: 1; left: -20px;"> -->
-<!-- 										<img src="../images/man_02.png" alt="worker" /> -->
-<!-- 									</div> -->
-<!-- 									<div class="team-worker" style="z-index: 2; left: -40px;"> -->
-<!-- 										<img src="../images/dog03.jpg" alt="worker" -->
-<!-- 											style="border-radius: 50%;" /> -->
-<!-- 									</div> -->
-<!-- 									<div class="team-worker" style="z-index: 3; left: -60px;"> -->
-<!-- 										<img src="../images/man_04.png" alt="worker" /> -->
-<!-- 									</div> -->
 									<div class="new-worker">
 										<i class="glyphicon glyphicon-plus"></i>
 									</div>
@@ -362,7 +341,7 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-info">생성 완료</button>
+						<button type="button" class="btn btn-info" id="createProjectBtn">생성 완료</button>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">취소</button>
 					</div>

@@ -20,6 +20,7 @@ public class GetMemberInfo extends HttpServlet {
 
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMemberInfo(seq);
+		dao.close();
 		
 		JSONObject obj = new JSONObject();
 		obj.put("seq", dto.getSeq());

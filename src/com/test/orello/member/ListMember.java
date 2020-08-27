@@ -44,6 +44,7 @@ public class ListMember extends HttpServlet {
 			
 			arr.add(obj);
 		}
+		dao.close();
 		
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter writer = resp.getWriter();

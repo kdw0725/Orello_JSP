@@ -73,8 +73,9 @@
     margin-top: -5px;
 }
 .title {
-    display: inline;
+    display: inline-block;
     font-size: 1.4em;
+    width: 208px;
 }
 .languagebox label {
     display: inline;
