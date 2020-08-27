@@ -19,11 +19,11 @@
               <li><a href="#"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Project</span></a></li>
               <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i>&nbsp; QnA</span></a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search" id="search">
+            <form method="GET" action="/orello/allsearch/allsearch.do" class="navbar-form navbar-right" role="search" id="searchForm">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요." name="searchAll" id="searchAll" required value="${searchAll}">
               </div>
-              <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+              <button type="button" class="btn btn-default" style="cursor:pointer;" onclick="$('#allSearchForm').submit();"><i class="glyphicon glyphicon-search"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
