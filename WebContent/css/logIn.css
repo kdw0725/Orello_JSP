@@ -1,0 +1,79 @@
+
+#content{
+    height: 850px;
+}
+#inputArea {
+    width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    height: 700px;
+    padding-top: 0px;
+}
+#logoBig {
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#inputArea input {
+    height: 50px;
+    margin-bottom: 20px;
+}
+#inputArea #logIn,
+#inputArea #signIn {
+    width: 100%;
+}
+#signIn{
+    color: #999;
+}
+#socialLogIn {
+	text-align: center;
+}
+#socialLogIn div{
+	display: inline-block;
+}
+#socialLogIn a{
+	cursor: pointer;
+}
+.btn-social-login {
+    transition: all 0.2s;
+    outline: 0;
+    border: 1px solid transparent;
+    padding: 0.5rem !important;
+    border-radius: 50%;
+    color: #fff;
+    margin: 0px 20px;
+}
+.btn-social-login:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.text-dark {
+    color: #343a40 !important;
+}
+#findArea a{
+    padding: 0px 20px;
+    color: #999;
+}
+
+#findArea a:hover, #findArea a:link, #findArea a:visited{
+    text-decoration: none;
+}
+
+#findArea a:first-child{
+    border-right: 1px solid #eee;
+}
+
+#inputArea #signIn{
+	margin-bottom: 0px;
+}
+#socialLogIn img{
+	width: 200px;
+	height: 40px;
+}
+#socialImg{
+	text-align: center;
+}
+#socialImg img{
+	width: 200px;
+	height: 40px;
+}

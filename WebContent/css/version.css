@@ -1,0 +1,202 @@
+#contentRight {
+	padding: 40px;
+	padding-right: 0px;
+}
+
+#projectName {
+	margin-left: 15px;
+	color: #555;
+}
+
+#fileArea {
+	border: 1px solid #ccc;
+	width: 250px;
+	height: 610px;
+	float: left;
+	background-color: #eceadf;
+	/* background-color: #eee; */
+	padding: 15px;
+}
+
+#fileList {
+	width: 220px;
+	height: 250px;
+	background-color: white;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#codeArea {
+	float: left;
+	border: 1px solid #ccc;
+	width: 600px;
+}
+/* #tabs-1 {
+            background-color: #eee;
+        }
+        .ui-state-active {
+            background-color: #eee;
+        } */
+#code {
+	background-color: white;
+	height: 480px;
+}
+
+#fileArea button {
+	width: 50px;
+	margin: 0 auto;
+}
+
+#codeArea li span {
+	position: absolute;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	/* left: -6px; */
+	right: 1px;
+	/* border: 1px solid #333; */
+	/* border-radius: 50%; */
+	/* border: 1px solid #333; */
+	text-align: center;
+	background-color: #eceadf;
+	font-size: 16px;
+}
+
+#codeArea li:hover span {
+	background-color: #654b24;
+}
+
+#codeArea li span:hover {
+	/* border: 1px solid #333; */
+	cursor: pointer;
+}
+
+#codeArea>div {
+	height: 560px;
+}
+
+textarea {
+	resize: none;
+}
+
+#codeArea>div>input {
+	margin-top: 20px;
+	width: 90%;
+	float: left;
+}
+
+#codeArea>div>button {
+	margin-top: 22px;
+	float: right;
+}
+
+#commitHistory {
+	background-color: white;
+	width: 220px;
+	height: 240px;
+	margin-top: 10px;
+	color: #333;
+}
+
+.CodeMirror-scroll {
+	/* border: 1px solid black; */
+	height: 483px;
+	width: 550px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.CodeMirror {
+	height: 483px;
+}
+
+.CodeMirror-sizer {
+	height: 460px;
+}
+
+.fab {
+	font-family: "Font Awesome 5 Brands";
+	font-size: 15px;
+}
+
+.fa-html5 {
+	color: #e44d26;
+}
+
+.fa-css3 {
+	color: #42a5f5;
+}
+
+.fa-js {
+	color: #f1e05a;
+}
+
+.fa-java {
+	background: linear-gradient(-180deg, #e4292f 59%, #0d73ad 41%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	white-space: nowrap;
+}
+
+.fa-python {
+	background: linear-gradient(-215deg, #3674a7 50%, #f1e05a 50%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	white-space: nowrap;
+}
+
+.fa-swift {
+	color: #fb7039;
+}
+
+.fa-cuttlefish {
+	color: #26338f;
+}
+
+.ztree li span.button.ico_docu {
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.htmlIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/html5.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.jsIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/javascript.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.javaIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/java.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.cssIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/css3.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.pythonIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/python.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.mdIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/markdown.png);
+	background-size: 16px 16px;
+}
+
+.ztree li span.button.swiftIco_ico_docu {
+	margin-right: 2px;
+	background-image: url(../images/icon/code/swift.png);
+	background-size: 16px 16px;
+}
