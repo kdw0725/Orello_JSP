@@ -26,12 +26,12 @@
 <script type="text/javascript" src="/orello/js/service/SE2BasicCreator.js" charset="utf-8"></script>
 
 
-<%@ include file="/WEB-INF/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-	<%@ include file="/WEB-INF/inc/member.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/member.jsp"%>
 	
 	<div id="contentRight">
 	
@@ -846,7 +846,7 @@
 	
 	</section>
 	
-	<%@ include file="/WEB-INF/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
 	1

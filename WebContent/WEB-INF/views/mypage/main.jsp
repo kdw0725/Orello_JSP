@@ -186,7 +186,7 @@
 
 	</section>
 
-	<%@ include file="/WEB-INF/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
 	

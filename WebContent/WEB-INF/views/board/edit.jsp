@@ -8,16 +8,16 @@
 <style>
 
 </style>
-<%@ include file="/WEB-INF/inc/asset.jsp"%>
+<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-	<%@ include file="/WEB-INF/inc/member.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/member.jsp"%>
 	
 	</section>
 	
-	<%@ include file="/WEB-INF/inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/memberLeft.js">
 	
