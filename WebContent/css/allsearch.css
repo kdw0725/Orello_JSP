@@ -1,0 +1,96 @@
+li {
+	list-style: none;
+}
+
+a {
+	color: #5BC0DE;
+}
+
+/* contentRight */
+.search {
+	width: 450px;
+	margin: 20px auto;
+}
+
+#textbox {
+	width: 400px;
+	height: 50px;
+}
+
+#searchbtn {
+	background-color: #31B0D5;
+	color: #eee;
+	width: 20px;
+}
+.search_Icon {
+	font-size: 20px;
+}
+
+#allSearch {
+	text-align: center;
+	height: 40px;
+	border-bottom: 1px solid #ddd;
+	width: 1000px;
+	margin: 0 auto;
+}
+/* 2020-07-26 통합검색 리스트 css */
+.search_listbox {
+	margin: 0 auto;
+	width: 700px;
+	margin-top: 35px;
+}
+
+.bd_box {
+	border-bottom: 1px solid #ddd;
+	margin: 0 0 30px 0;
+	height: auto;
+	position: relative;
+	width: 1000px;
+	left: -150px;
+}
+
+.btn_box1 {
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.sh_box {
+	padding: 13px 10px;
+	background: #fafafa;
+}
+
+.sh_box>li {
+	padding: 0;
+}
+
+.sh_box>li>a {
+	font-size: 1.1em;
+	color: #999;
+}
+
+.text_blue {
+	color: #5BC0DE
+}
+
+.box5 {
+	border-bottom-left-radius: 50px;
+	background: #7F7FD5;
+	background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+	background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+	float: left;
+	margin-right: 5px;
+	width: 20px;
+	height: 20px;
+}
+
+
+
+.info {
+	font-size: 15px;
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+.menu {
+	margin-bottom: 3px;
+}
