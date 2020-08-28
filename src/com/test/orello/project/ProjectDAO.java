@@ -71,7 +71,7 @@ public class ProjectDAO {
 
 		try {
 			
-			String sql = "select m.seq, m.name, decode(m.profile_seq, null, 0, m.profile_seq) as profile from tbl_project_attend a inner join tbl_member m on a.member_seq = m.seq where a.delflag = 0 and a.project_seq = ?";
+			String sql = "select m.seq, m.name, decode((select filename from tbl_profile where seq = m.profile_seq), null, '0.png', (select filename from tbl_profile where seq = m.profile_seq)) as profile from tbl_project_attend a inner join tbl_member m on a.member_seq = m.seq where a.delflag = 0 and a.project_seq = ?";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, pseq);
 			rs = pstat.executeQuery();
@@ -191,7 +191,63 @@ public class ProjectDAO {
 	}
 
 	public HashMap<String, Integer> getProcess(String pseq) {
-		// TODO Auto-generated method stub
+
+		try {
+			
+			String sql = "select enddate - startdate as days, round(sysdate - startdate) as progress from tbl_project where seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pseq);
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				HashMap<String, Integer> map = new HashMap<String, Integer>();
+				//progress 총날짜, 남은날짜
+				int total = rs.getInt("days");
+				int passed = rs.getInt("progress");
+				
+				if (passed < 0) {	//지난 날짜가 음수인 경우 (아직 시작하지 않은 경우)
+					passed = 0;
+				} else if (total <= passed) {	//지난 날짜가 총날짜보다 훌쩍 지난 경우(이미 끝난 경우)
+					passed = total;
+				} 
+				
+				map.put("total", total);	//총날짜
+				map.put("passed", passed);	//지난날짜
+				map.put("value", (int)(passed/total*100));
+				return map;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<String> getActivity(String pseq) {
+
+		try {
+			
+			String sql= "select a.content, (select name from tbl_member where p.member_seq = seq)as name from tbl_activity a inner join tbl_project_attend p on a.project_attend_seq = p.seq where p.project_seq = ? order by a.regdate desc";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, pseq);
+			rs = pstat.executeQuery();
+			
+			ArrayList<String> list = new ArrayList<String>();
+			
+			while(rs.next()) {
+				
+				String temp = String.format("'%s'님이 %s", rs.getString("name"), rs.getString("content"));
+				list.add(temp);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 

@@ -8,6 +8,7 @@ public class ChecklistCommentDTO {
 	private String regdate;
 	private String writer;
 	private String content;
+	private String profilepic;
 	
 	public String getSeq() {
 		return seq;
@@ -44,6 +45,12 @@ public class ChecklistCommentDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getProfilepic() {
+		return profilepic;
+	}
+	public void setProfilepic(String profilepic) {
+		this.profilepic = profilepic;
 	}
 		
 

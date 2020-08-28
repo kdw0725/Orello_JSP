@@ -12,6 +12,11 @@ import java.util.Random;
 import com.test.orello.DBUtil;
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 채팅에 필요한 데이터베이스 조회, 수정, 삽입 작업에 관련된 메소드를 구현한 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ChatDAO {
 
 	private Connection conn;
@@ -21,14 +26,18 @@ public class ChatDAO {
 	private ResultSet rs;
 	private Random rnd;
 	
-	//생성자
+	/**
+	 * 데이터베이스와 연결해주는 생성자 메소드입니다.
+	 */
 	public ChatDAO() {
 		//DB연결
 		DBUtil util = new DBUtil();
 		conn = util.open();
 	}
 	
-	//DB종료
+	/**
+	 * 데이터베이스 연결을 끊는 메소드입니다.
+	 */
 	public void close() {
 		try {
 			conn.close();
@@ -36,12 +45,17 @@ public class ChatDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * 채팅창을 열어 로그인한 유저의 친구 목록을 가져와 반환하는 메소드입니다.
+	 * @param mseq	로그인한 유저의 회원번호(기본키)
+	 * @return	로그인한 유저의 친구 목록
+	 */
 	public ArrayList<MemberDTO> getFriendList(String mseq) {
 
 		try {
 
-			String sql = "select m.seq, m.name, decode(m.profile_seq, null, 0, m.profile_seq) as profile from tbl_friend f inner join tbl_member m on f.friend_seq = m.seq where f.delflag = 0 and f.member_seq =? order by m.name";
+			String sql = "select m.seq, m.name, decode((select filename from tbl_profile where seq = m.profile_seq), null, '0.png', (select filename from tbl_profile where seq = m.profile_seq)) as profile from tbl_friend f inner join tbl_member m on f.friend_seq = m.seq where f.delflag = 0 and f.member_seq =? order by m.name";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, mseq);
 			
@@ -67,6 +81,11 @@ public class ChatDAO {
 		return null;
 	}
 
+	/**
+	 * 선택한 친구와의 대화 목록을 가져와 반환하는 메소드입니다.
+	 * @param map	로그인한 유저의 회원번호와 선택한 친구의 회원번호
+	 * @return 로그인한 유저와 선택한 친구의 대화 목록
+	 */
 	public ArrayList<MessageDTO> getChatList(HashMap<String, String> map) {
 
 		try {
@@ -103,11 +122,16 @@ public class ChatDAO {
 		return null;
 	}
 
+	/**
+	 * 채팅 내역 헤더 출력을 위해 선택한 유저의 정보를 가져와 반환하는 메소드입니다.
+	 * @param fmseq 선택한 유저의 회원번호
+	 * @return 선택한 유저의 정보
+	 */
 	public MemberDTO getMemberInfo(String fmseq) {
 
 		try {
 			
-			String sql = "select m.*, decode((select filename from tbl_profile where seq = m.profile_seq), null, 0, (select filename from tbl_profile where seq = m.profile_seq)) as profile from tbl_member m  where m.delflag = 0 and m.seq = ?";
+			String sql = "select m.*, decode((select filename from tbl_profile where seq = m.profile_seq), null, '0.png', (select filename from tbl_profile where seq = m.profile_seq)) as profile from tbl_member m  where m.delflag = 0 and m.seq = ?";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, fmseq);
 			
@@ -129,6 +153,11 @@ public class ChatDAO {
 		return null;
 	}
 
+	/**
+	 * 채팅의 프로젝트 탭 클릭 시 프로젝트 리스트와 채팅방 번호를 받아와 반환하는 메소드입니다.
+	 * @param mseq	로그인한 유저의 회원번호
+	 * @return	로그인한 유저가 참여한 프로젝트 리스트와 채팅방 번호
+	 */
 	public ArrayList<ChatRoomDTO> getProjectList(String mseq) {
 		
 		try {
@@ -154,11 +183,16 @@ public class ChatDAO {
 		return null;
 	}
 
+	/**
+	 * 프로젝트의 참여 멤버를 썸네일로 출력해주기 위해 프로젝트 참여 멤버를 받아와 반환하는 메소드입니다.
+	 * @param list	로그인한 유저가 참여한 프로젝트 채팅방 목록
+	 * @return	로그인한 유저가 참여한 프로젝트 채팅방의 참여 멤버 목록
+	 */
 	public ArrayList<ChatRoomDTO> getChatMember(ArrayList<ChatRoomDTO> list) {
 
 		try {
 			
-			String sql = "select a.project_seq, m.name, m.seq as mseq, decode((select filename from tbl_profile where m.profile_seq = seq), null, 0, (select filename from tbl_profile where m.profile_seq = seq)) as profile from tbl_project_attend a inner join tbl_member m on a.member_seq = m.seq where a.project_seq = ?";
+			String sql = "select a.project_seq, m.name, m.seq as mseq, decode((select filename from tbl_profile where m.profile_seq = seq), null, '0.png', (select filename from tbl_profile where m.profile_seq = seq)) as profile from tbl_project_attend a inner join tbl_member m on a.member_seq = m.seq where a.project_seq = ?";
 			pstat = conn.prepareStatement(sql);
 			
 			for(ChatRoomDTO dto : list) {
@@ -187,7 +221,12 @@ public class ChatDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 채팅내역 헤더 출력을 위해 선택한 프로젝트 채팅방의 정보를 받아와 반환하는 메소드입니다.
+	 * @param pseq 선택한 프로젝트의 프로젝트 번호
+	 * @return	선택한 프로젝트의 채팅방 정보
+	 */
 	public ChatRoomDTO getMultiChatInfo(String pseq) {
 
 		try {
@@ -216,7 +255,7 @@ public class ChatDAO {
 		
 		try {
 
-			String sql = "select m.*, decode((select filename from tbl_profile where m.profile_seq = seq), null, 0, (select filename from tbl_profile where m.profile_seq = seq)) as profile from tbl_chat_attend a inner join tbl_member m on a.member_seq = m.seq where a.chat_seq = (select seq from tbl_chat where project_seq = ?)";
+			String sql = "select m.*, decode((select filename from tbl_profile where m.profile_seq = seq), null, '0.png', (select filename from tbl_profile where m.profile_seq = seq)) as profile from tbl_chat_attend a inner join tbl_member m on a.member_seq = m.seq where a.chat_seq = (select seq from tbl_chat where project_seq = ?)";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, pseq);
 			

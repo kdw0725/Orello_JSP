@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -20,7 +21,8 @@ public class ChatHeader extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//내 회원번호 -> 세션에서
-		String mseq = "2";
+		HttpSession session = req.getSession();
+		String mseq = session.getAttribute("seq").toString();
 		//채팅 상대 회원번호 -> 넘겨받음
 		String fmseq = req.getParameter("mseq");	//186
 

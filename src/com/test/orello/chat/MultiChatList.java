@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,8 +22,9 @@ public class MultiChatList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		//정보 받아오기
+		HttpSession session = req.getSession();
+		String mseq = session.getAttribute("seq").toString();
 		String pseq = req.getParameter("pseq");
-		String mseq = "2";		//나중에 세션에서..
 		
 		//DB작업
 		ChatDAO dao = new ChatDAO();

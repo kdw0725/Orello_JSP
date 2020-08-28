@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -20,7 +21,8 @@ public class SendOK extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		req.setCharacterEncoding("UTF-8");
-		String mseq = "2";	//세션에서 받아옴
+		HttpSession session = req.getSession();
+		String mseq = session.getAttribute("seq").toString();
 		String cseq = req.getParameter("cseq");
 		String content = req.getParameter("content");
 				

@@ -47,6 +47,7 @@ function openItemAdd() {
     			temp += '</label>'; 
  
     			$("#checkListItemAdd #memberlist").append(temp);
+    			$("#checkListItemAdd .memberBox .memberPic").css("background-image", "url('/orello/images/"+ item.profile +"')");
     		});
     		
     	},
@@ -181,8 +182,9 @@ function openModify() {
     			temp += '<span>' + item.name + '</span>'; 
     			temp += '</div>'; 
     			temp += '</label>'; 
- 
+    			
     			$("#checkListModify #members").append(temp);
+    			$("#checkListModify .memberBox .memberPic").css("background-image", "url('/orello/images/"+ item.profile +"')");
     		});
     	},
     	error: function(a,b,c) {
@@ -251,7 +253,7 @@ function openModify() {
     			
 	    		var temp = '';
 	    		temp += '<div class="be-comment" data-cmseq="' + item.seq + '">';
-	    		temp += '<div class="be-img-comment"><img src="../images/3.png" class="be-ava-comment"></div>';	//나중에 이미지 추가하기
+	    		temp += '<div class="be-img-comment"><img src="../images/'+ item.profile +'" class="be-ava-comment"></div>';
 	    		temp += '<div class="be-comment-content">';
 	    		temp += '<span class="be-comment-name">' + item.writer + '</span>';
 	    		temp += '<span class="be-comment-time"><i class="fa fa-clock-o"></i>' + item.regdate + '</span>';
@@ -289,7 +291,7 @@ function openModify() {
     					console.log(result);
     					var temp = '';
     		    		temp += '<div class="be-comment" data-cmseq="' + result.seq + '">';
-    		    		temp += '<div class="be-img-comment"><img src="../images/3.png" class="be-ava-comment"></div>';	//나중에 이미지 추가하기
+    		    		temp += '<div class="be-img-comment"><img src="../images/'+ item.profile +'" class="be-ava-comment"></div>';
     		    		temp += '<div class="be-comment-content">';
     		    		temp += '<span class="be-comment-name">' + result.writer + '</span>';
     		    		temp += '<span class="be-comment-time"><i class="fa fa-clock-o"></i>' + result.regdate + '</span>';
@@ -448,12 +450,6 @@ $("#listAdd").click(function() {
 	});
 });
 
-
-
-// 프로젝트 홈으로 이동
-$("#goToProjectHome").click(function() {
-    location.href = "projectMain.html";
-});
 
 //위치 이동 가능하도록
 $(".sortable").sortable({   

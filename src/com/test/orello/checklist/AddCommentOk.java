@@ -45,6 +45,7 @@ public class AddCommentOk extends HttpServlet {
 			obj.put("regdate", ndto.getRegdate());
 			obj.put("content", ndto.getContent());
 			obj.put("writer", ndto.getWriter());
+			obj.put("profile", ndto.getProfilepic());
 
 			writer.print(obj);
 			

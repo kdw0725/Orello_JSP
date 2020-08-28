@@ -38,6 +38,8 @@ public class GetSelectedCommentList extends HttpServlet {
 			obj.put("regdate", dto.getRegdate());
 			obj.put("content", dto.getContent());
 			obj.put("writer", dto.getWriter());
+			obj.put("profile", dto.getProfilepic());
+			
 			
 			arr.add(obj);
 		}
