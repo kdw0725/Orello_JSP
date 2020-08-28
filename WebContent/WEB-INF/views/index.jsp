@@ -203,7 +203,7 @@
                     <button onclick="location.href='/orello/member/login.do';">sign in</button>
                     <button onclick="location.href='/orello/member/signin.do';">join in</button>
                 </div>
-                 <a><b>admin login</b></a>
+                 <a href="/orello/adminlogin.do"><b>admin login</b></a>
             </div>
         </div>
     </body>
