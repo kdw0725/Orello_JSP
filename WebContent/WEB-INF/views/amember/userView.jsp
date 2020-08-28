@@ -78,7 +78,7 @@
 							<div class="card red">
 								<div class="title">Tel</div>
 								<i class="zmdi zmdi-download"></i>
-								<div class="value">
+								<div class="value" style="font-size:17px; height:33px;">
 								<c:forEach items="${data}" var="dto">
 								${dto.tel}
 								</c:forEach>
@@ -108,7 +108,7 @@
 									</tr>
 								</thead>
 								<c:forEach items="${info}" var="dto">
-									<tr>
+									<tr onclick="location.href='/orello/aproject/projectlistsub.do?seq=${dto.pseq}';">
 										<td>
 											<p class="project_name">${dto.projectname}</p>
 										</td>

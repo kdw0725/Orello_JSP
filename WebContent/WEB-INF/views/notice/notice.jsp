@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 }
 
 #tbl td:nth-child(2) {
-	text-align: left;
+	text-align: center;
 }
 
 #write {
@@ -171,20 +172,20 @@
             </div>
             <table id="tbl" class="table">
                 <tr>
-                    <th>no.</th>
+                    <th>No</th>
                     <th>title</th>
-                    <th>writer</th>
-                    <th>date</th>
-                    <th>view</th>
+                    <th>Content</th>
+                    <th>Regdate</th>
                 </tr>
 
+				<c:forEach items="${nList}" var="dto">
                 <tr>
-                    <td>001</td>
-                    <td>Lorem ipsum dolor sit.</td>
-                    <td>Lorem.</td>
-                    <td>2020-07-01</td>
-                    <td>1</td>
+                    <td>${dto.nseq}</td>
+                    <td>${dto.title}</td>
+                    <td>admin${dto.writer}</td>
+                    <td>${(dto.regdate).substring(0, 10)}</td>
                 </tr>
+                </c:forEach>
             </table>
 
 
@@ -192,49 +193,35 @@
                 <li class="glyphicon glyphicon-pencil"></li>
                 write
             </button>
-            <div id="search">
+            <form method="GET" action="/orello/notice/notice.do" id="searchForm">
+            	<div id="search_select">
+            
                 <div id="select_title">
-                    <select name="" id="" class="form-control">
-                        <option value="0">total</option>
-                        <option value="1">title</option>
-                        <option value="2">writer</option>
-                        <option value="3">date</option>
+                    <select name="soption" id="soption" class="form-control"
+                    onchange="$('#soption').submit()">
+                        <option value="0">title</option>
+                        <option value="1">writer</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" />
-                <button class="btn btn-info">
+                <input type="text" class="form-control" name="search" id="search"
+                required value="${search}"/>
+                <button type="button" class="btn btn-info"
+                 onclick="$('#searchForm').submit();">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
             </div>
+            </form>
 
             <!-- pagination -->
-            <div id="paging">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+ 			${pagebar}
         </div>
 	</section>
 	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<script>
+	$("#pagebar").val($(page));
 	
+	$("#soption option:nth-child(${soption+1})").attr("selected",true);
 	</script>
 </body>
 </html>

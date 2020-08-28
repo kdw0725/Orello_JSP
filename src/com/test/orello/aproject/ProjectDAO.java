@@ -146,7 +146,7 @@ public class ProjectDAO {
 	// 해당 프로젝트에 참여한 멤버 정보 가져오기
 	public ArrayList<ProjectDTO> memberlist(String sort) {
 		try {
-			String sql = "select m.name as name, (select enddate from tbl_project where seq = ?) as deadline, email, position from tbl_project_attend pa inner join tbl_member m on pa.member_seq = m.seq where project_seq = ?";
+			String sql = "select m.seq, m.name as name, (select enddate from tbl_project where seq = ?) as deadline, email, position from tbl_project_attend pa inner join tbl_member m on pa.member_seq = m.seq where project_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, sort);
@@ -158,7 +158,8 @@ public class ProjectDAO {
 
 			while (rs.next()) {
 				ProjectDTO dto = new ProjectDTO();
-
+				
+				dto.setSeq(rs.getString("seq"));
 				dto.setMemberName(rs.getString("name"));
 				dto.setEnddate(rs.getString("deadline").substring(0, 10));
 				dto.setEmail(rs.getString("email"));

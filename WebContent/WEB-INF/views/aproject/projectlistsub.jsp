@@ -118,7 +118,7 @@
 											<i class="fa fa-envelope fa-fw bg-primary"
 												style="background-color: #80B1D3;"></i>
 											<div class="info">
-												<h3>${dto.name }</h3>
+												<h3>${dto.name}</h3>
 												<!-- <span>Emails</span> -->
 												<p>Project Name</p>
 											</div>
@@ -207,7 +207,7 @@
 										</tr>
 									</thead>
 									<c:forEach items="${list }" var="dto">
-									<tr onclick="location.href='userListSub.html'">
+									<tr onclick="location.href='/orello/amember/userview.do?seq=${dto.seq}';">
 										<td>
 											<p>${dto.memberName }</p>
 											<p>${dto.email }</p>	

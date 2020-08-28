@@ -9,6 +9,20 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminLeft.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/userList.css">
 <style>
+#title {
+
+	font-size: 2.5em;
+	border-left: 10px solid #5bc0de;
+	padding-left: 10px;
+	margin-left: 50px;
+	margin-top: 100px; 
+}
+#select_title {
+	
+	width: 100px;
+}
+
+
 </style>
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 </head>
@@ -18,7 +32,7 @@
 		<%@ include file="/WEB-INF/views/inc/admin.jsp"%>
 		<div id="contentRight">
         <div id="titleContainer">
-            <i class="glyphicon glyphicon-user"></i>
+            
             <div id="title">User</div>
         </div>
 
