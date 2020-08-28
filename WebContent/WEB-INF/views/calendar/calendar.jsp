@@ -176,7 +176,7 @@
     	   <c:forEach items="${plist}" var="dto">
     	   {
                id: "${dto.seq}",
-               name: "${dto.name}",
+               name: "${dto.title}",
                color: "#ffffff",
                bgColor: "${dto.colorcode}",
                dragBgColor: "${dto.colorcode}",
@@ -194,7 +194,7 @@
     	{
             id: "${dto.num}",
             calendarId: "${dto.seq}",
-            title: "${dto.name}",
+            title: "${dto.title}",
             category: "time",
             start: "${dto.startdate}T10:30:00",
             end: "${dto.enddate}T12:30:00",

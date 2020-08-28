@@ -94,7 +94,7 @@ public class ChatDAO {
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("mseq"));
 			pstat.setString(2, map.get("fmseq"));
-			pstat.setString(3, map.get("mseq"));
+			pstat.setString(3, map.get("mseq")); 
 			pstat.setString(4, map.get("fmseq"));
 			
 			rs = pstat.executeQuery();

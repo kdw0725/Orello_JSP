@@ -172,7 +172,7 @@
                     opacity: 1;
                 }
             }
-            
+
         </style>
     </head>
     <body>
@@ -188,14 +188,14 @@
                         Orello
                     </h1>
                     <h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Reprehenderit culpa dolor id nemo eaque similique
-                        praesentium, illo accusantium itaque repellendus? Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Voluptas, impedit minima ea culpa quae hic repellat
-                        adipisci vero doloribus iste, quia officiis tempora.
-                        Saepe neque aspernatur hic distinctio, asperiores
-                        mollitia!
+                        Orello is tool that help us to manage projects. 
+						It can give you chatting, scheduler, board etc.
+						sit amet consectetur adipisicing elit. Tempore, accusamus.
+						sit amet consectetur adipisicing elit. Tempore, accusamus.
+						sit amet consectetur adipisicing elit. Tempore, accusamus.
+						sit amet consectetur adipisicing elit. Tempore, accusamus.
+						If you use this, you can feel more comfortable.
+						Press this button and enjoy our fantastic tool :) 
                     </h2>
                 </div>
 
@@ -203,8 +203,10 @@
                     <button onclick="location.href='/orello/member/login.do';">sign in</button>
                     <button onclick="location.href='/orello/member/signin.do';">join in</button>
                 </div>
-                 <a href="/orello/adminlogin.do"><b>admin login</b></a>
+                
+                 <a onclick="location.href='/orello/adminlogin.do';"><b>admin login</b></a>
             </div>
+            
         </div>
     </body>
 </html>

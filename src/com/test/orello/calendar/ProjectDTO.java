@@ -9,7 +9,8 @@ import lombok.ToString;
 public class ProjectDTO {
 
 	private String seq;
-	private String name;
+	private String title;
+	private String content;
 	private String startdate;
 	private String enddate;
 	private String colorcode;

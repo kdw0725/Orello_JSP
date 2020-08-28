@@ -49,7 +49,7 @@
             </tr>
             <c:forEach items="${list}" var="dto">
              <tr>
-                 <td class="username"><a href="/orello/amember/UserView.do?seq=${dto.seq}">${dto.name}</a></td>
+                 <td class="username"><a href="/orello/amember/userview.do?seq=${dto.seq}">${dto.name}</a></td>
                  <td class="age">${dto.regdate}</td>
 				 <td class="nickname">${dto.email}</td>
                  <td class="point">${dto.point}</td>
