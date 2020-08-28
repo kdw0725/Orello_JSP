@@ -39,15 +39,24 @@
         </div>
         
         <div id="memberProgress"> 
-            <i class="fas fa-chart-pie"></i> <span>최근 활동</span><br>
+            <i class="fas fa-chart-pie"></i> <span style="margin-bottom:15px;">최근 활동</span>
+            <hr style="margin: 10px 0px;">
+            <c:if test="${activity.size() == 0}">
+            	<span style="margin-top:15px;text-align:center;">최근 활동 내역이 없습니다.</span><br>
+            </c:if>
+            <c:if test="${activity.size() > 0}">
+	            <c:forEach items="${activity}" var="content">
+	            	<span style="margin-top:15px;"><c:out value="${content}"/></span><br>
+	            </c:forEach>
+	        </c:if>
         </div>
         
         <div id="projectCondition">
             <i class="fas fa-stopwatch"></i> <span>프로젝트 진행상황</span>
             <div class="progress">
-                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                aria-valuemin="0" aria-valuemax="100" style="width:20%">
-                12 Tasks Left
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${map.value}"
+                aria-valuemin="0" aria-valuemax="100" style="width:${map.value}%">
+                ${map.total - map.passed} Days Left
                 </div>
             </div>
         </div>

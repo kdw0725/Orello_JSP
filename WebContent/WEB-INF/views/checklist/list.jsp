@@ -21,7 +21,7 @@
         <div id="title">
             <h1>Check List</h1>
             <div class="titleBarFunction" id="listAdd" data-pseq="${pseq}"><i class="glyphicon glyphicon-plus-sign"></i> <span>ADD</span></div>
-            <div class="titleBarFunction" id="goToProjectHome"><i class="glyphicon glyphicon-home"></i> <span>PROJECT</span></div>
+            <div class="titleBarFunction" id="goToProjectHome" onclick="location.href='/orello/project/index.do?pseq=${pseq}';"><i class="glyphicon glyphicon-home"></i> <span>PROJECT</span></div>
         </div>
         
         <c:forEach items="${list}" var="dto">

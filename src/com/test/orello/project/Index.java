@@ -24,7 +24,7 @@ public class Index extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//회원번호 넘겨받았다고 가정
+		//회원번호 넘겨받았음
 		//프로젝트 번호 넘겨받았다고 가정
 		HttpSession session = req.getSession();
 		
@@ -37,6 +37,7 @@ public class Index extends HttpServlet {
 		list = dao.getChecklistItem(list);
 		ArrayList<ChartDTO> clist = dao.getContribute(pseq);	//기여도 차트용
 		HashMap<String, Integer> map = dao.getProcess(pseq);	//진행상황용
+		ArrayList<String> activity = dao.getActivity(pseq);		//최근활동
 		
 		dao.close();
 		
@@ -119,16 +120,15 @@ public class Index extends HttpServlet {
 			chartArr.add(cobj);
 		
 		}
-		//프로젝트 진행상황 넘겨주기
-		
-		
 		
 		//자료실 사용량 어떻게 받아오지..?
-
+		//자료실 내역이 없음..
 		
 		req.setAttribute("arr", arr);
 		req.setAttribute("chart", chartArr);
 		req.setAttribute("pseq", pseq);
+		req.setAttribute("map", map);
+		req.setAttribute("activity", activity);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/project/index.jsp");
 		dispatcher.forward(req, resp);

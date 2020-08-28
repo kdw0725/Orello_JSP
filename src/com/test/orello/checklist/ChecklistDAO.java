@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Random;
 
 import org.json.simple.JSONArray;
@@ -210,7 +211,7 @@ public class ChecklistDAO {
 				dto.setMseq(rs.getString("mseq"));
 				dto.setName(rs.getString("name"));
 				dto.setPosition(rs.getString("position"));
-				dto.setProfilepic(rs.getString("profile_seq"));
+				dto.setProfilepic(rs.getString("profile"));
 
 				list.add(dto);
 			}
@@ -299,7 +300,7 @@ public class ChecklistDAO {
 		
 		try {
 			
-			String sql = "select seq, name, decode(profile_seq, null, 0, profile_seq) as profile_seq, (select count(*) from tbl_member m inner join tbl_project_attend a on m.seq = a.member_seq inner join tbl_checklist_item i on i.project_attend_seq = a.seq where m.seq = p.seq and i.seq = ?) as c from tbl_member p where seq in (select member_seq from tbl_project_attend where project_seq = (select project_seq from tbl_project_attend where seq = (select project_attend_seq from tbl_checklist_item where seq = ?)))";
+			String sql = "select seq, name, decode((select filename from tbl_profile where seq = p.profile_seq), null, '0.png', (select filename from tbl_profile where seq = p.profile_seq)) as profile_seq, (select count(*) from tbl_member m inner join tbl_project_attend a on m.seq = a.member_seq inner join tbl_checklist_item i on i.project_attend_seq = a.seq where m.seq = p.seq and i.seq = ?) as c from tbl_member p where seq in (select member_seq from tbl_project_attend where project_seq = (select project_seq from tbl_project_attend where seq = (select project_attend_seq from tbl_checklist_item where seq = ?)))";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, ciseq);
 			pstat.setString(2, ciseq);
@@ -361,7 +362,7 @@ public class ChecklistDAO {
 
 		try {
 			
-			String sql = "select c.*, m.name, decode(m.profile_seq, null, 0, m.profile_seq) as profile_seq from tbl_checklist_item_comment c inner join tbl_project_attend a on c.project_attend_seq = a.seq inner join tbl_member m on a.member_seq = m.seq where c.checklist_item_seq = ? and c.delflag = 0";
+			String sql = "select c.*, m.name, decode((select filename from tbl_profile where seq = m.profile_seq), null, '0.png', (select filename from tbl_profile where seq = m.profile_seq)) as profile_seq from tbl_checklist_item_comment c inner join tbl_project_attend a on c.project_attend_seq = a.seq inner join tbl_member m on a.member_seq = m.seq where c.checklist_item_seq = ? and c.delflag = 0";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, ciseq);
 			
@@ -378,6 +379,8 @@ public class ChecklistDAO {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setContent(rs.getString("content"));
 				dto.setWriter(rs.getString("name"));
+				dto.setProfilepic(rs.getString("profile_seq"));
+				
 				
 				list.add(dto);
 			}
@@ -451,7 +454,7 @@ public class ChecklistDAO {
 			
 		try {
 			
-			String sql = "select c.*, m.name, decode(m.profile_seq, null, 0, m.profile_seq) as profile_seq from tbl_checklist_item_comment c inner join tbl_project_attend a on c.project_attend_seq = a.seq inner join tbl_member m on a.member_seq = m.seq where c.checklist_item_seq = ? and c.delflag = 0 and c.seq = (select max(seq) from tbl_checklist_item_comment where checklist_item_seq = ?)";
+			String sql = "select c.*, m.name, decode((select filename from tbl_profile where seq = m.profile_seq), null, '0.png', (select filename from tbl_profile where seq = m.profile_seq)) as profile_seq from tbl_checklist_item_comment c inner join tbl_project_attend a on c.project_attend_seq = a.seq inner join tbl_member m on a.member_seq = m.seq where c.checklist_item_seq = ? and c.delflag = 0 and c.seq = (select max(seq) from tbl_checklist_item_comment where checklist_item_seq = ?)";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, ciseq);
 			pstat.setString(2, ciseq);
@@ -467,6 +470,7 @@ public class ChecklistDAO {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setContent(rs.getString("content"));
 				dto.setWriter(rs.getString("name"));
+				dto.setProfilepic(rs.getString("profile_seq"));
 				
 				return dto;		
 			}
@@ -572,6 +576,28 @@ public class ChecklistDAO {
 		}
 		
 		return 0;
+	}
+
+	public String getPaseqByMap(HashMap<String, String> map) {
+
+		try {
+			
+			String sql = "select * from tbl_project_attend where project_seq = ? and member_seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, map.get("pseq"));
+			pstat.setString(2, map.get("mseq"));
+			
+			rs = pstat.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getString("seq");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	

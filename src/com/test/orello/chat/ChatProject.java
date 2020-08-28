@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,8 +22,9 @@ public class ChatProject extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		//나중에 세션에서 회원번호 받아오기
-		String mseq = "2";
+		//회원번호 세션에서 받아오기
+		HttpSession session = req.getSession();
+		String mseq = session.getAttribute("seq").toString();
 		
 		ChatDAO dao = new ChatDAO();
 		ArrayList<ChatRoomDTO> list = dao.getProjectList(mseq);

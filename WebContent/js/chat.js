@@ -63,7 +63,7 @@ function getFriendList() {
     			*/
     			var temp = '';
     			temp += '<li class="clearfix" onclick="showChat('+ item.mseq +');">';
-    			temp += '<img src="../images/0.png" alt="avatar" />';
+    			temp += '<img src="/orello/images/' + item.profile + '" alt="avatar" />';
     			temp += '<div class="about">';
     			temp += '<div class="name">'+ item.name +'</div>';
     			temp += '<div class="status"><i class="fa fa-circle online"></i> online</div>';
@@ -120,7 +120,7 @@ function getProjectList() {
     			}
     			for (var i=0; i< index; i++) {
     				
-    				temp += '<img src="../images/'+ item.mlist[i].profile +'.png" alt="avatar" />';
+    				temp += '<img src="../images/'+ item.mlist[i].profile +'" alt="avatar" />';
     			}
     			
     			temp += '</div>';
@@ -160,7 +160,7 @@ function showChat(mseq) {
     		$("#chatModal .chat-header > img.listTarget").show();
     		$("#chatModal .chat-header > div.imgBox").hide();
     		
-    		$("#chatModal .chat-header img").attr("src","/orello/images/" + result.profile + ".png");
+    		$("#chatModal .chat-header img").attr("src","/orello/images/" + result.profile);
     		$("#chatModal .chat-header .chat-with").html(result.name);
     		fname = result.name;
     		
@@ -308,7 +308,7 @@ function showMultiChat(pseq) {
 				index = result.list.length;
 			}
 			for (var i=0; i< index; i++) {
-				temp += '<img src="../images/'+ result.list[i].profile +'.png" alt="avatar" class="listTarget"/>';
+				temp += '<img src="../images/'+ result.list[i].profile +'" alt="avatar" class="listTarget"/>';
 			}
 			
     		temp += '</div>';

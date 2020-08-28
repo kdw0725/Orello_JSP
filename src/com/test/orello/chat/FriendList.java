@@ -9,20 +9,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 채팅창 오픈 후 해당 유저의 친구 목록을 반환하는 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/friendlist.do")
 public class FriendList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		//회원번호 세션에서 받아왔다고 가정
-		String mseq = "2";
+		//회원번호 세션에서 받아오기
+		HttpSession session = req.getSession();
+		String mseq = session.getAttribute("seq").toString();
 		
 		//DB작업
 		ChatDAO dao = new ChatDAO();

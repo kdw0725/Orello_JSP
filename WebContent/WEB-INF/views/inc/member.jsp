@@ -6,13 +6,8 @@
             <div id="projectPeriod"><span>${dto.startdate} ~ ${dto.enddate}</span><br></div>
            	<div id="projectContent">${dto.description}</div>            
             <div id="projectMember">
-            <c:forEach items="${dto.mlist}" var="member" varStatus="status"> 
-            	<c:if test="${member.profilepic == 0}">
-					<div class='profilePic' style="background-image: url('/orello/images/${status.index}.png');"></div>            
-				</c:if>
-            	<c:if test="${member.profilepic != 0}">
-					<div class='profilePic' style="background-image: url('/orello/images/${profile}.png');"></div>            
-				</c:if>
+            <c:forEach items="${dto.mlist}" var="member"> 
+				<div class='profilePic' style="background-image: url('/orello/images/${member.profilepic}');"></div>            
             </c:forEach>
             </div>
             <div id="addMember">
