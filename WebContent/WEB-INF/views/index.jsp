@@ -120,6 +120,7 @@
                 top: -185px;
                 margin-left: 15px;
                 margin-top: 20px;
+                cursor: pointer;
             }
             #main #btn > button:first-child {
                 animation: slideBtn1 5s;
@@ -150,6 +151,28 @@
                     opacity: 1;
                 }
             }
+            
+             #main > a {
+                color: #444;
+                display: block;
+                /* margin-bottom: 200px; */
+                position: relative;
+                top: -130px;
+                left: 225px;
+                animation: admintag 4s;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            @keyframes admintag {
+                0%,
+                80% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            
         </style>
     </head>
     <body>
@@ -180,6 +203,7 @@
                     <button onclick="location.href='/orello/member/login.do';">sign in</button>
                     <button onclick="location.href='/orello/member/signin.do';">join in</button>
                 </div>
+                 <a><b>admin login</b></a>
             </div>
         </div>
     </body>
