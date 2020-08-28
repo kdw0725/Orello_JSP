@@ -98,7 +98,7 @@
 				<div id="timeLineContent">
 					<table>
 						<tr>
-							<td class="timeLineList"><img src="../images/2.png"
+							<td class="timeLineList"><img src="../images/man_02.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>김동욱</strong> <span>1시간전</span>
@@ -106,7 +106,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td class="timeLineList"><img src="../images/1.png"
+							<td class="timeLineList"><img src="../images/man_01.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>조윤경</strong> <span>2시간전</span>
@@ -115,7 +115,7 @@
 						</tr>
 
 						<tr>
-							<td class="timeLineList"><img src="../images/3.png"
+							<td class="timeLineList"><img src="../images/man_03.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>강경원</strong> <span>4시간전</span>
@@ -124,7 +124,7 @@
 						</tr>
 
 						<tr>
-							<td class="timeLineList"><img src="../images/1.png"
+							<td class="timeLineList"><img src="../images/man_01.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>조윤경</strong> <span>5시간전</span>
@@ -132,7 +132,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td class="timeLineList"><img src="../images/4.png"
+							<td class="timeLineList"><img src="../images/man_04.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>강혜림</strong> <span>5시간전</span>
@@ -140,7 +140,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td class="timeLineList"><img src="../images/5.png"
+							<td class="timeLineList"><img src="../images/man_05.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>이도윤</strong> <span>6시간전</span>
@@ -148,7 +148,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td class="timeLineList"><img src="../images/3.png"
+							<td class="timeLineList"><img src="../images/man_03.png"
 								alt="profile" />
 								<div class="timeLineAction">
 									<strong>강경원</strong> <span>10시간전</span>
@@ -374,7 +374,6 @@
 			url : "/orello/member/moreproject.do",
 			dataType : "JSON",
 			success: function(result){
-				console.log(result);
 				for(var i=0;i<result.length;i++){
 					var moreProjectBox = document.createElement("div");
 			        moreProjectBox.className = "projectBox";
@@ -383,10 +382,6 @@
 			        index.className = "index";
 			       
 			        index.style.backgroundColor = result[i].color;
-			        var pseq = result[i].seq;
-			        index.onclick = function(){
-			        	location.href = '/orello/project/index.do?pseq='+pseq;
-			        }
 			        moreProjectBox.appendChild(index);
 
 			        var detail = document.createElement("p");
