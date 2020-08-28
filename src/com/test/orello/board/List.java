@@ -95,12 +95,12 @@ public class List extends HttpServlet{
 		}else {
 
 			if(search == null) {
-			pagebar += String.format("<li><a href=\"/orello/board/list.do?page=%d\">"
-						+ "%d</a></li>", n, n);
+			pagebar += String.format("<li><a href=\"/orello/board/list.do?page=%d&pseq=%s\">"
+						+ "%d</a></li>", n, pseq, n);
 			}else {
 				pagebar += String.format(
-						"<li><a href=\"/orello/board/list.do?page=%d&search=%s&soption=%s\">"
-						+ "%d</a></li>", n, map.get("search"), map.get("soption"),n);
+						"<li><a href=\"/orello/board/list.do?page=%d&search=%s&soption=%s&pseq=%s\">"
+						+ "%d</a></li>", n, map.get("search"), map.get("soption"), pseq, n);
 				
 			}
 		}
@@ -144,11 +144,6 @@ public class List extends HttpServlet{
 			
 			
 		}//for
-		
-	
-		
-		
-		
 		
 		
 		

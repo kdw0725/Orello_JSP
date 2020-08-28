@@ -7,11 +7,14 @@ import lombok.ToString;
 @ToString
 @Getter@Setter
 public class BoardDTO {
-	private String seq;
+	private String seq; //board seq
 	private String title;
 	private String content;
 	private String regdate;
 	private String readcount;
 	private String name;
 	private String Email;
+	
+	private String pseq;
+	private String mseq;
 }

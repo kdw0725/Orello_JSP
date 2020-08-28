@@ -280,7 +280,7 @@ public class BoardDAO {
 	}
 
 	//Comment 서블릿 -> 참여 번호 얻어오기
-	public String getAttendSeq(String mseq, String pseq) {
+	private String getAttendSeq(String mseq, String pseq) {
 
 		try {
 			
@@ -330,6 +330,35 @@ public class BoardDAO {
 		
 		return 0;
 		
+	}
+
+	
+	
+	//board write 서블릿 -> 글쓰기
+	public int write(BoardDTO dto) {
+
+		try {
+			
+			String sql = "insert into tbl_freeboard values(seq_freeboard.nextVal, ?, ?, default, 0, ?, ?, 0)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getTitle());
+			pstat.setString(1, dto.getContent());
+			pstat.setString(1, dto.getPseq());
+			pstat.setString(1, getAttendSeq(dto.getMseq(), dto.getPseq()));
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+
+			System.out.println("BoardDAO.writer()");
+			e.printStackTrace();
+			
+		
+		}
+		
+		
+		return 0;
 	}
 
 }
