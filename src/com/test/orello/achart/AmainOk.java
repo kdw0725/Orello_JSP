@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 자주 사용하는 Programming Language 차트를 표현하기 위한 Orello 모든 회원의 pl 사용량 데이터 통계낸 servlet
+ *
+ */
 @WebServlet("/achart/amainok.do")
 public class AmainOk extends HttpServlet {
 	@Override

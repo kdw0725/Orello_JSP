@@ -45,7 +45,7 @@ public class ProjectListSub extends HttpServlet {
 		System.out.println(projectuseTotal + " 전체 데이터");
 		
 		
-		req.setAttribute("dto", dto);
+		req.setAttribute("ddto", dto);
 		req.setAttribute("list", list);
 		req.setAttribute("dto2", dto2);
 		//팀원 참여도

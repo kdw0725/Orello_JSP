@@ -24,7 +24,29 @@
 }
 #footer {
     height: 150px;
-    background-color: #bbb;
+    padding-top: 30px;
+    background-color: #555;
+}
+#footer * {
+	color: #ddd;
+}
+#footer .container {
+	height:100px;
+}
+#footer #name {
+	float:left;
+	margin-left: 100px;
+	height:100px;
+	width: 300px;
+	padding-top:20px;
+}
+#footer #copy {
+	float:left;
+	margin-top: 10px;
+	margin-left: 200px;
+	padding-top: 10px;
+	height: 100px;
+	
 }
 section.container {
     padding: 65px 0px 15px 0px;

@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 
+
+/**
+ * 
+ * @author 강혜림
+ * Orello 홈페이지에 생성된 모든 프로젝트 개수를 월 별로 통계낸 데이터를 보내주는 servlet
+ *
+ */
 @WebServlet("/achart/aprojectmainok.do")
 public class AprojectmainOk extends HttpServlet {
 	@Override

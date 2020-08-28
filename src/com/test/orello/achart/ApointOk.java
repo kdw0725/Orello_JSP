@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 회원들의 포인트 사용량을 통계내고 싶은 기간(Startdate, Enddate)를 받아와서 그 기간동안의 회원 포인트 사용 목록 데이터를 보내주는 Servlet
+ *
+ */
 @WebServlet("/achart/apointok.do")
 public class ApointOk extends HttpServlet {
 	@Override

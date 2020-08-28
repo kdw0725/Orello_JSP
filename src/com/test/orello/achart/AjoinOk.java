@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * @author 강혜림
+ * 회원들의 회원가입 횟수를 측정하고 싶은 기간 데이터(Startdate, Enddate)를 받아와서 그 기간동안의 회원가입한 회원을 통계낸 데이터를 보내주는 servlet
+ *
+ */
 @WebServlet("/achart/ajoinok.do")
 public class AjoinOk extends HttpServlet{
 	@Override
