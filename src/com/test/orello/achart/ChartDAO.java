@@ -12,6 +12,12 @@ import java.util.HashMap;
 import com.test.orello.DBUtil;
 import com.test.orello.aproject.ProjectDTO;
 
+/**
+ * 
+ * @author 강혜림
+ * 차트를 표현하기 위한 데이터를 가져오는 class
+ *
+ */
 public class ChartDAO {
 
 	
@@ -20,11 +26,18 @@ public class ChartDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
+	
+	/**
+	 * JDBC와 연결하는 메소드
+	 */
 	public ChartDAO() {
 		DBUtil util = new DBUtil();
 		conn = util.open();
 	}
 
+	/**
+	 * JDBC와 연결을 종료하는 메소드
+	 */
 	public void close() {
 		try {
 			conn.close();
@@ -33,8 +46,15 @@ public class ChartDAO {
 		}
 	}
 	
-	
-	//입력받은 기간동안 포인트를 사용한 회원 목록 
+	/**
+	 * 입력받은 기간동안 포인트를 사용한 회원 목록 메소드
+	 * 
+	 * @param map
+	 * 원하는 기간(start,end)데이터를 저장한 HashMap데이터 가져오기
+	 * @return
+	 * 입력받은 기간에 맞는 회원들의 point 사용 리스트 보내주기 
+	 * 
+	 */
 	public ArrayList<ChartDTO> pointlist(HashMap<String, String> map) {
 		int cnt = 0;
 		try {
@@ -71,6 +91,14 @@ public class ChartDAO {
 		return null;
 	}
 
+	
+	/**
+	 * 출력해야 하는 리스트의 개수 count하는 메소드
+	 * @param map
+	 * 관리자가 입력한 포인트 사용 기간(start, finish) 데이터
+	 * @return
+	 * 입력받은 기간동안의 회원 포인트 변화 리스트 개수를 보내준다.
+	 */
 	public int getTotalCount(HashMap<String, String> map) {
 		try {
 			
@@ -103,7 +131,13 @@ public class ChartDAO {
 	}
 
 	
-	
+	/**
+	 * 관리자가 입력한 기간동안 포인트 변화 데이터를 가진 멤버 리스트를 보내주는 메소드
+	 * @param map
+	 * 관리자가 입력한 기간 데이터(start, end)와 페이징을 하기 위한 데이터(begin, end)
+	 * @return
+	 *
+	 */
 	public ArrayList<ChartDTO> memberlist(HashMap<String, String> map) {
 		int cnt = 0;
 		try {
@@ -146,7 +180,11 @@ public class ChartDAO {
 		return null;
 	}
 
-	//PL count값 list 가져오기
+	
+	/**
+	 * 자주 사용하는 Programming Language 차트의 count 값 list 가져오기
+	 * @return
+	 */
 	public ArrayList<PlDTO> pllist() {
 		try {
 			String sql = "select count(*) as cnt from TBL_CODE_BOARD group by type";
@@ -168,6 +206,10 @@ public class ChartDAO {
 		return null;
 	}
 
+	/**
+	 * 월별 프로젝트 차트를 표현하기 위한 count 데이터 list 가져오기
+	 * @return
+	 */
 	public ArrayList<MonproDTO> plist() {
 		try {
 			String sql = "select count(*) as cnt from tbl_project group by to_char(startdate, 'mm') order by to_char(startdate, 'mm')";

@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 관리자가 로그인한 현재 날짜로부터 과거 일주일동안 Orello 모든 회원들의 채팅 빈도수를 차트로 나타내기 위한 데이터 보내주는 servlet
+ *
+ */
 @WebServlet("/achart/achartmainokssub.do")
 public class AchartMainOkSsub extends HttpServlet {
 	@Override

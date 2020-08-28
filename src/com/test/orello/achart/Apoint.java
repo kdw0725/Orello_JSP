@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 포인트 사용량 페이지를 띄우기 위한 servlet
+ *
+ */
 @WebServlet("/achart/apoint.do")
 public class Apoint extends HttpServlet {
 	@Override

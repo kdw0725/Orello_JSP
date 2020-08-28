@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 날짜별 회원가입 수 통계 페이지를 띄우기 위한 servlet
+ *
+ */
 @WebServlet("/achart/ajoin.do")
 public class Ajoin extends HttpServlet {
 	@Override
