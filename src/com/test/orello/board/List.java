@@ -145,11 +145,6 @@ public class List extends HttpServlet{
 			
 		}//for
 		
-	
-		
-		
-		
-		
 		
 		
 		

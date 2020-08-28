@@ -15,11 +15,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-	<%
-		out.flush();
-	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/member.do?pseq=" + request.getAttribute("pseq"));
-	    dheader.include(request, response);
-	%>
+	
 	<%@ include file="/WEB-INF/views/inc/member.jsp"%>
 	
 	 <div id="contentRight">
@@ -187,6 +183,7 @@
                             </div>
                             <input type="hidden" name="bseq" value="${dto.seq}">
                             <input type="hidden" name="page" value="${page}">
+                            <input type="hidden" name="pseq" value="${pseq}">
                             <button type="submit" class="btn btn-info pull-right" id="submit">submit</button>
                         </div>
                         
