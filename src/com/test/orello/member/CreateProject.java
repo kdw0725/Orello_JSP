@@ -62,6 +62,7 @@ public class CreateProject extends HttpServlet {
 				dao.insertMember(member);
 			}
 		}
+		resp.sendRedirect("/orello/member/index.do");
 	}
 	
 }
