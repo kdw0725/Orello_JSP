@@ -18,7 +18,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="/orello/member/index.do"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</span><span class="sr-only">(current)</span></a></li>
-              <li><a href="/orello//notice/notice.do"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp; Notice</span></a></li>
+              <li><a href="/orello/notice/notice.do"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp; Notice</span></a></li>
               <li><a href="#"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Project</span></a></li>
               <li><a href="/orello/faq/faq.do"><i class="glyphicon glyphicon-question-sign"></i>&nbsp; QnA</span></a></li>
             </ul>

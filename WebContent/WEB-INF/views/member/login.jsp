@@ -42,6 +42,7 @@
 	            class="btn btn-default"
 	            value="회원가입"
 	            id="signIn"
+	            onclick="location.href='/orello/member/signin.do';"
 	        />
         </form>
         <hr />
