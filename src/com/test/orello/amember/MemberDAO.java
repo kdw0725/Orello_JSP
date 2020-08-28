@@ -164,7 +164,7 @@ public class MemberDAO {
 				
 				MemberDTO dto = new MemberDTO();
 				
-				dto.setPseq(seq);
+				dto.setPseq(rs.getString("project_seq"));
 				dto.setProjectname(rs.getString("name"));
 				dto.setStartdate(rs.getString("startdate").substring(0,10));
 				dto.setEnddate(rs.getString("enddate").substring(0,10));

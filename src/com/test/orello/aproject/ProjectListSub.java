@@ -19,6 +19,7 @@ public class ProjectListSub extends HttpServlet {
 			//seq : 해당 프로젝트 키값
 		String seq = req.getParameter("seq");
 		
+		
 		ProjectDAO dao = new ProjectDAO();
 		ProjectDTO dto = dao.projectsublist(seq);
 		ArrayList<ProjectDTO> list = dao.memberlist(seq);
@@ -56,6 +57,7 @@ public class ProjectListSub extends HttpServlet {
 		req.setAttribute("projectuseBoard", projectuseBoard);
 		req.setAttribute("projectuseArchive", projectuseArchive);
 		req.setAttribute("projectuseTotal", projectuseTotal);
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/aproject/projectlistsub.jsp");
 		dispatcher.forward(req, resp);

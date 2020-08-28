@@ -36,7 +36,6 @@ public class UserList extends HttpServlet{
 		map.put("search", search);
 		map.put("soption", soption);
 		
-
 		
 		//페이징 처리 관련 변수 생성
 		int nowPage = 0;	//현재 페이지 번호

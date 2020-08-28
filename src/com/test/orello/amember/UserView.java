@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/amember/UserView.do")
+@WebServlet("/amember/userview.do")
 public class UserView extends HttpServlet{
 
 	@Override

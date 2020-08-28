@@ -107,7 +107,7 @@
   }
 
   .card .value {
-    font-size: 28px;
+    font-size: 23px;
     padding: 0 10px;
   }
 
@@ -126,6 +126,7 @@
   .card.red {
     background-color: #D65B4A;
   }
+  
 
   .projects {
     margin-left: 26px;

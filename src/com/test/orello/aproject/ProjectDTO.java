@@ -8,7 +8,6 @@ import lombok.ToString;
 @ToString
 public class ProjectDTO {
 
-	
 	private String seq;
 	private String name;
 	private String startdate;
@@ -20,6 +19,8 @@ public class ProjectDTO {
 	private String leadername;
 	private String leaderemail;
 	private int cnt;
+	
+
 	
 	public String getName() {
 		return name;
