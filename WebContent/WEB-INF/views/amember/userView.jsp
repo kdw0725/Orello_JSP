@@ -19,7 +19,11 @@
    <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowdate"/>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-		<%@ include file="/WEB-INF/views/inc/admin.jsp"%>
+		<%
+		out.flush();
+	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/admin.do");
+	    dheader.include(request, response);
+	%>
 
 		<div id="contentRight">
 			<div class="welcome">

@@ -23,75 +23,11 @@
 	
 	<section id="content" class="container">
 
-		<div id="contentLeft">
-			<div id="projectInfo">
-				<div id="projectName"></div>
-				<div id="projectPeriod">Manager Name</div>
-				<div id="projectContent">lorem1234@gmail.com</div>
-				<div id="projectMember"></div>
-			</div>
-			<div id="menu">
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-home"></i>Home
-					</div>
-				</ul>
-				<ul class="accordion">
-					<div onclick="location.href='/orello/aproject/projectlist.do';">
-						<i class="glyphicon glyphicon-calendar"></i>Project
-					</div>
-
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-check"></i>User
-					</div>
-				</ul>
-				<ul class="accordion parent">
-					<div>
-						<i class="glyphicon glyphicon-list-alt"></i>Chart
-					</div>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>자료실(사용량)
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>포인트(결제)
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>프로젝트 신규
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>유저 신규
-						</div>
-					</li>
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-hdd"></i>QnA
-					</div>
-				</ul>
-
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-user"></i>FAQ
-					</div>
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-user"></i>공지사항
-					</div>
-				</ul>
-
-
-			</div>
-		</div>
+		<%
+		out.flush();
+	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/admin.do");
+	    dheader.include(request, response);
+	%>
 		<div id="contentRight">
 			<div id="main_list">
 				<div id="main_title">
@@ -166,24 +102,7 @@
 	</section>
 
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<script>
-		//클릭한 메뉴만 표시되도록
-		$(".list-group > a").click(function() {
-			$(".list-group > a").removeClass("active");
-			$(this).addClass("active");
-		});
-
-		//아코디언 메뉴
-		var acc = document.getElementsByClassName("parent");
-		for (var i = 0; i < acc.length; i++) {
-			acc[i].addEventListener("click", function() {
-				var li = $(this).children("li");
-				li.slideToggle(1000);
-				this.classList.toggle("active");
-			});
-		}
-	</script>
-n
+	
 	<script>
 	
 /* 	function movePage() {

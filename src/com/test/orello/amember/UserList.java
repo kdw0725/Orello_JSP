@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-@WebServlet("/amember/UserList.do")
+@WebServlet("/amember/userlist.do")
 public class UserList extends HttpServlet{
 	
 	@Override

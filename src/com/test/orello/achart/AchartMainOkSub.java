@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 
+/**
+ * 
+ * @author 강혜림
+ * 날짜별로 홈페이지에 접속한 회원수를 통계내기 위한 servlet
+ *
+ */
 @WebServlet("/achart/achartmainoksub.do")
 public class AchartMainOkSub extends HttpServlet {
 	@Override

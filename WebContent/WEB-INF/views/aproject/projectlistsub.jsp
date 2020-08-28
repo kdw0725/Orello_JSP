@@ -15,81 +15,11 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<section id="content" class="container">
-		<div id="contentLeft">
-			<div id="projectInfo">
-				<div id="projectName"></div>
-				<div id="projectPeriod">Manager Name</div>
-				<div id="projectContent">lorem1234@gmail.com</div>
-				<div id="projectMember"></div>
-			</div>
-			<div id="menu">
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-home"></i>Home
-					</div>
-				</ul>
-				<ul class="accordion">
-					<div onclick="location.href='/orello/aproject/projectlist.do';">
-						<i class="glyphicon glyphicon-calendar"></i>Project
-					</div>
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-check"></i>User
-					</div>
-				</ul>
-				<ul class="accordion parent">
-					<div>
-						<i class="glyphicon glyphicon-list-alt"></i>Chart
-					</div>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>자료실(사용량)
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>포인트(결제)
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>프로젝트 신규
-						</div>
-					</li>
-					<li class="panel">
-						<div>
-							<i class="glyphicon glyphicon-minus"></i>유저 신규
-						</div>
-					</li>
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-hdd"></i>QnA
-					</div>
-				</ul>
-				<!-- <ul class="accordion"><div><i class="fas fa-code-branch"></i>Git</div></ul> -->
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-user"></i>FAQ
-					</div>
-				</ul>
-				<ul class="accordion">
-					<div>
-						<i class="glyphicon glyphicon-user"></i>공지사항
-					</div>
-				</ul>
-
-				<!-- Email 카테고리 추가 -->
-				<!-- <ul class="accordion">
-                <div onclick="location.href='http:mail.google.com'">
-                    <i class="glyphicon glyphicon-envelope"></i>Email
-                </div>
-            </ul> -->
-
-
-			</div>
-		</div>
+		<%
+		out.flush();
+	    RequestDispatcher dheader = request.getRequestDispatcher("/inc/admin.do");
+	    dheader.include(request, response);
+	%>
 		<div id="contentRight">
 			<div class="welcome">
 				<div class="container-fluid">
@@ -118,7 +48,7 @@
 											<i class="fa fa-envelope fa-fw bg-primary"
 												style="background-color: #80B1D3;"></i>
 											<div class="info">
-												<h3>${dto.name }</h3>
+												<h3>${ddto.name }</h3>
 												<!-- <span>Emails</span> -->
 												<p>Project Name</p>
 											</div>
@@ -129,7 +59,7 @@
 											<i class="fa fa-file fa-fw danger"
 												style="background-color: #FB8072;"></i>
 											<div class="info" id="teamnameinfo">
-												<h3>${dto.startdate}</h3>
+												<h3>${ddto.startdate}</h3>
 												<!-- <span>Projects</span> -->
 												<p>Start Date</p>
 											</div>
@@ -140,7 +70,7 @@
 											<i class="fa fa-users fa-fw success"
 												style="background-color: #B3DE69;"></i>
 											<div class="info" id="startinfo">
-												<h3>${dto.enddate }</h3>
+												<h3>${ddto.enddate }</h3>
 												<!-- <span>Users</span> -->
 												<p>End Date</p>
 											</div>
@@ -151,7 +81,7 @@
 											<i class="fa fa-users fa-fw success"
 												style="background-color: #BC80BD;"></i>
 											<div class="info" id="finishinfo">
-												<h3>${dto.regdate }</h3>
+												<h3>${ddto.regdate }</h3>
 												<!-- <span>Users</span> -->
 												<p>State</p>
 											</div>
@@ -206,13 +136,13 @@
 
 										</tr>
 									</thead>
-									<c:forEach items="${list }" var="dto">
+									<c:forEach items="${list }" var="adto">
 									<tr onclick="location.href='userListSub.html'">
 										<td>
-											<p>${dto.memberName }</p>
-											<p>${dto.email }</p>	
+											<p>${adto.memberName }</p>
+											<p>${adto.email }</p>	
 										</td>
-										<td>${dto.enddate }</td>
+										<td>${adto.enddate }</td>
 										<td class="member">
 											<figure>
 												<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png" />
@@ -223,11 +153,11 @@
 											</div>
 										</td>
 										<td class="status">
-											<c:if test="${dto.position == '팀장'}">
-											<span class="status-text status-red">${dto.position }</span>
+											<c:if test="${adto.position == '팀장'}">
+											<span class="status-text status-red">${adto.position }</span>
 											</c:if>
-											<c:if test="${dto.position == '팀원'}">
-											<span class="status-text status-blue">${dto.position }</span>
+											<c:if test="${adto.position == '팀원'}">
+											<span class="status-text status-blue">${adto.position }</span>
 											</c:if>
 										</td>
 									</tr>
@@ -315,28 +245,7 @@
 	<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="/orello/js/jquery-ui.js"></script>
-	<script>
-		//상자에 마우스 오버시 해당 차트의 보더가 두꺼워진다.
-		$("#box_page").mouseover(function() {
-
-		});
-
-		//클릭한 메뉴만 표시되도록 
-		$(".list-group > a").click(function() {
-			$(".list-group > a").removeClass("active");
-			$(this).addClass("active");
-		});
-
-		//아코디언 메뉴
-		var acc = document.getElementsByClassName("parent");
-		for (var i = 0; i < acc.length; i++) {
-			acc[i].addEventListener("click", function() {
-				var li = $(this).children("li");
-				li.slideToggle(1000);
-				this.classList.toggle("active");
-			});
-		}
-	</script>
+	
 	<script>
 	
 	//팀원 참여도 차트
@@ -368,7 +277,8 @@
 							}
 						} ]
 					}
-				}};
+				}
+				};
 
 		
 	var chart = document.getElementById('myChart1');

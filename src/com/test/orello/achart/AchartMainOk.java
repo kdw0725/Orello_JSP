@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+
+/**
+ * 
+ * @author 강혜림
+ * 관리자가 접속한 현재 날짜로부터 과거 일주일의 날짜 리스트를 차트에 출력하기 위한 데이터를 보내주는 servlet
+ *
+ */
 @WebServlet("/achart/achartmainok.do")
 public class AchartMainOk extends HttpServlet {
 	@Override
