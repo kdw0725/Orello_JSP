@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.test.orello.project.ProjectDAO;
 import com.test.orello.project.ProjectDTO;
 
+/**
+ * 화면 좌측에 프로젝트 정보를 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/inc/member.do")
 public class Member extends HttpServlet {
 

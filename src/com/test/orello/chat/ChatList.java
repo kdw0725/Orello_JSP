@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * 선택한 친구와의 채팅 목록을 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/chatlist.do")
 public class ChatList extends HttpServlet {
 

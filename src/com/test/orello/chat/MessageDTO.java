@@ -1,5 +1,10 @@
 package com.test.orello.chat;
 
+/**
+ * 채팅 내역을 저장하기 위한 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class MessageDTO {
 	
 	private String seq;

@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * 댓글 리스트를 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/getselectedcommentlist.do")
 public class GetSelectedCommentList extends HttpServlet {
 

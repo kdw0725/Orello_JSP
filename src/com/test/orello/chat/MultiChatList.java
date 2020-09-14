@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * 프로젝트 채팅방 채팅 내역 출력을 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/multichatlist.do")
 public class MultiChatList extends HttpServlet {
 

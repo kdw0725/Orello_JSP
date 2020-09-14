@@ -250,7 +250,11 @@ public class ChatDAO {
 		
 		return null;
 	}
-
+	/**
+	 * 채팅내역 헤더 출력을 위해 선택한 프로젝트 채팅방의 참여 멤버 정보를 받아와 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 참여 멤버 DTO 리스트
+	 */
 	public ArrayList<MemberDTO> getMultiChatMember(String pseq) {
 		
 		try {
@@ -277,7 +281,12 @@ public class ChatDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 선택한 프로젝트 채팅방의 채팅 내역을 반환하는 메소드입니다.
+	 * @param map 프로젝트 번호가 저장된 해시맵
+	 * @return	메시지 DTO 리스트
+	 */
 	public ArrayList<MessageDTO> getMultiChatList(HashMap<String, String> map) {
 
 		try {
@@ -309,7 +318,12 @@ public class ChatDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 특정 멤버의 채팅 참여 번호를 반환하는 메소드입니다.
+	 * @param map 특정 멤버의 회원번호와 채팅 번호를 저장한 해시맵
+	 * @return	특정 멤버의 채팅 참여 번호
+	 */
 	public String getCaseq(HashMap<String, String> map) {
 
 		try {
@@ -330,7 +344,12 @@ public class ChatDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 채팅 로그 테이블에 데이터를 삽입하는 메소드입니다.
+	 * @param dto 삽입할 정보가 저장된 DTO
+	 * @return 성공 여부(0:실패, 1:성공)
+	 */
 	public int addChatLog(MessageDTO dto) {
 
 		try {

@@ -2,6 +2,11 @@ package com.test.orello.checklist;
 
 import java.util.ArrayList;
 
+/**
+ * 체크리스트 객체 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ChecklistDTO {
 
 	private String seq;		//체크리스트 번호

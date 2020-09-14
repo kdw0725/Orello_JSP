@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 첨부파일 삭제를 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/deleteattachok.do")
 public class DeleteAttachOk extends HttpServlet {
 	

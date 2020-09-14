@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 체크리스트 항목에 댓글 작성 시 데이터베이스에 저장하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/addcommentok.do")
 public class AddCommentOk extends HttpServlet {
 

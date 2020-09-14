@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 채팅방 정보 저장 객체를 생성하기 위한 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ChatRoomDTO {
 
 	private String seq;			//채팅방 번호

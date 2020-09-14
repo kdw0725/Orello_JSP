@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 메세지 전송버튼 클릭 시 해당 내역을 데이터베이스에 저장하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/sendok.do")
 public class SendOK extends HttpServlet {
 

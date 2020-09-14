@@ -1,5 +1,10 @@
 package com.test.orello.checklist;
 
+/**
+ * 프로젝트 참여 멤버 객체 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class MemberDTO {
 	
 	private String mseq;

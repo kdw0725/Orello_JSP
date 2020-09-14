@@ -16,6 +16,11 @@ import org.json.simple.JSONObject;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 프로젝트 채팅 목록을 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/chatproject.do")
 public class ChatProject extends HttpServlet {
 

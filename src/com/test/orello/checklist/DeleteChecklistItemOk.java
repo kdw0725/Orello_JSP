@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 체크리스트 항목 삭제를 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/deletechecklistitemok.do")
 public class DeleteChecklistItemOk extends HttpServlet {
 

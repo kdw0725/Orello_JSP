@@ -14,6 +14,11 @@ import org.json.simple.JSONObject;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 선택한 친구와의 채팅방 헤더를 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/chatheader.do")
 public class ChatHeader extends HttpServlet {
 

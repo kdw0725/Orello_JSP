@@ -1,6 +1,7 @@
 package com.test.orello.checklist;
 
 /**
+ * 체크리스트 항목 첨부 파일 객체 클래스입니다.
  * @author Doyun Lee
  *
  */

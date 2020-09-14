@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 체크리스트 항목 수정을 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/modifychecklistitemok.do")
 public class ModifyChecklistItemOk extends HttpServlet {
 

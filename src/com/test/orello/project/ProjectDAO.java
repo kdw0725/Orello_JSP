@@ -14,6 +14,11 @@ import com.test.orello.checklist.ChecklistDTO;
 import com.test.orello.checklist.ChecklistItemDTO;
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 프로젝트 메인 화면 데이터베이스 작업을 위임받은 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ProjectDAO {
 	
 	private Connection conn;
@@ -38,7 +43,12 @@ public class ProjectDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * 프로젝트 정보를 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 프로젝트DTO
+	 */
 	public ProjectDTO getProjectInfo(String pseq) {
 
 		try {
@@ -66,7 +76,12 @@ public class ProjectDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 프로젝트 참여 멤버를 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 프로젝트 참여 멤버 DTO 리스트
+	 */
 	public ArrayList<MemberDTO> getMemberList(String pseq) {
 
 		try {
@@ -96,7 +111,12 @@ public class ProjectDAO {
 	
 		return null;
 	}
-
+	
+	/**
+	 * 체크리스트 객체 리스트를 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 체크리스트 DTO 리스트
+	 */
 	public ArrayList<ChecklistDTO> getChecklist(String pseq) {
 		
 		try {
@@ -126,7 +146,12 @@ public class ProjectDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 체크리스트 항목 객체 리스트를 반환하는 메소드입니다.
+	 * @param list 체크리스트 DTO 리스트
+	 * @return 체크리스트 항목 DTO 리스트
+	 */
 	public ArrayList<ChecklistDTO> getChecklistItem(ArrayList<ChecklistDTO> list) {
 
 		try {
@@ -162,7 +187,12 @@ public class ProjectDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 차트 출력을 위해 차트 DTO 리스트를 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 차트 DTO 리스트
+	 */
 	public ArrayList<ChartDTO> getContribute(String pseq) {
 
 		try {
@@ -189,7 +219,12 @@ public class ProjectDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 프로젝트 경과 일수를 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 총 날짜, 경과 날짜를 저장한 해시맵
+	 */
 	public HashMap<String, Integer> getProcess(String pseq) {
 
 		try {
@@ -225,6 +260,11 @@ public class ProjectDAO {
 		return null;
 	}
 
+	/**
+	 * 프로젝트 활동 내역을 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 프로젝트 활동 내역 리스트
+	 */
 	public ArrayList<String> getActivity(String pseq) {
 
 		try {

@@ -14,6 +14,11 @@ import org.json.simple.JSONObject;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 프로젝트 채팅방 헤더 출력을 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/chat/multichatheader.do")
 public class MultiChatHeader extends HttpServlet {
 

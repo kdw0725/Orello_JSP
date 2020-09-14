@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 체크리스트 항목의 상세 정보를 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/getselecteditem.do")
 public class GetSelectedItem extends HttpServlet {
 

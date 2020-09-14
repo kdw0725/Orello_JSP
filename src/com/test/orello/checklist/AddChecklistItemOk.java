@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 체크리스트 항목을 추가하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/addchecklistitemok.do")
 public class AddChecklistItemOk extends HttpServlet {
 

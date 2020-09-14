@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * 첨부파일 목록을 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/getselectedattachlist.do")
 public class GetSelectedAttachList extends HttpServlet {
 	

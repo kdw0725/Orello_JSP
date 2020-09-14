@@ -17,6 +17,11 @@ import com.test.orello.DBUtil;
 import oracle.jdbc.OracleTypes;
 import oracle.jdbc.oracore.OracleType;
 
+/**
+ * 체크리스트 관련 데이터베이스 작업을 위임받은 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ChecklistDAO {
 
 	private Connection conn;
@@ -44,7 +49,11 @@ public class ChecklistDAO {
 		}
 	}
 
-	//프로젝트 번호(?) 넘겨받아 체크리스트 목록 출력하기
+	/**
+	 * 프로젝트 번호를 넘겨받아 체크리스트 목록을 반환하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 체크리스트DTO 리스트
+	 */
 	public ArrayList<ChecklistDTO> getList(String pseq) {
 
 		try {
@@ -120,8 +129,12 @@ public class ChecklistDAO {
 		
 		return null;
 	}
-	
-	//체크리스트 번호 넘겨받아 관련 항목들 delflag 1로 업데이트하기
+
+	/**
+	 * 체크리스트 번호를 넘겨받아 관련 항목들의 delflag를 삭제상태로 업데이트 해주는 메소드입니다.
+	 * @param cseq 체크리스트 번호
+	 * @return 성공 여부
+	 */
 	public int delChecklist(String cseq) {
 		
 		try {
@@ -151,6 +164,11 @@ public class ChecklistDAO {
 		return 0;
 	}
 
+	/**
+	 * 프로젝트 번호를 넘겨받아 체크리스트를 추가하는 메소드입니다.
+	 * @param pseq 프로젝트 번호
+	 * @return 추가된 체크리스트DTO
+	 */
 	public ChecklistDTO addChecklist(String pseq) {
 		
 		try {
@@ -189,6 +207,11 @@ public class ChecklistDAO {
 		return null;
 	}
 
+	/**
+	 * 체크리스트 항목 상세 확인을 위해 해당 프로젝트의 참여 멤버를 반환하는 메소드입니다.
+	 * @param cseq 체크리스트 번호
+	 * @return 체크리스트 참여 멤버DTO 리스트
+	 */
 	public ArrayList<MemberDTO> getMemberList(String cseq) {
 
 		try {
@@ -224,6 +247,11 @@ public class ChecklistDAO {
 		return null;
 	}
 
+	/**
+	 * 체크리스트 항목을 추가하는 메소드입니다.
+	 * @param dto 체크리스트항목 DTO
+	 * @return 성공 여부
+	 */
 	public int addChecklistItem(ChecklistItemDTO dto) {
 		
 		try {
@@ -248,6 +276,10 @@ public class ChecklistDAO {
 		return 0;
 	}
 
+	/**
+	 * 가장 최근에 추가된 체크리스트 항목의 번호를 반환하는 메소드입니다.
+	 * @return 최근 체크리스트 항목 번호
+	 */
 	public String getChecklistItemSeq() {
 		
 		try {
@@ -267,6 +299,11 @@ public class ChecklistDAO {
 		return null;
 	}
 
+	/**
+	 * 체크리스트 항목에 첨부파일을 추가하는 메소드입니다.
+	 * @param list 추가할 첨부파일DTO 리스트
+	 * @return 성공 여부
+	 */
 	public int addChecklistAttach(ArrayList<ChecklistAttachDTO> list) {
 		
 		try {
@@ -295,7 +332,12 @@ public class ChecklistDAO {
 		
 		return 0;
 	}
-
+	
+	/**
+	 * 체크리스트 항목의 프로젝트 멤버 리스트 출력을 위해 멤버 리스트를 반환하는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 멤버DTO 리스트
+	 */
 	public ArrayList<MemberDTO> getSelectedMemberList(String ciseq) {
 		
 		try {
@@ -328,7 +370,11 @@ public class ChecklistDAO {
 		return null;
 	}
 	
-	//체크리스트항목 번호 넘겨받아 제목, 기간, 내용 반환해주기
+	/**
+	 * 체크리스트 항목 번호를 넘겨받아 제목, 기간, 내용을 반환해주는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 체크리스트 항목 DTO
+	 */
 	public ChecklistItemDTO getChecklistItem(String ciseq) {
 
 		try {
@@ -357,7 +403,12 @@ public class ChecklistDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 체크리스트 항목 번호를 넘겨받아 댓글 리스트를 반환하는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 댓글DTO 리스트
+	 */
 	public ArrayList<ChecklistCommentDTO> getCommentList(String ciseq) {
 
 		try {
@@ -393,7 +444,12 @@ public class ChecklistDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 체크리스트 항목 번호를 넘겨받아 첨부파일 리스트를 반환하는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 첨부파일 DTO 리스트
+	 */
 	public ArrayList<AttachmentDTO> getAttachList(String ciseq) {
 	
 		try {
@@ -427,7 +483,11 @@ public class ChecklistDAO {
 	}
 
 	
-	
+	/**
+	 * 데이터베이스 체크리스트항목댓글 테이블에 데이터를 추가하는 메소드입니다.
+	 * @param dto 댓글 DTO
+	 * @return 성공 여부
+	 */
 	public int addComment(ChecklistCommentDTO dto) {
 
 		 try {
@@ -449,7 +509,12 @@ public class ChecklistDAO {
 		
 		return 0;
 	}
-
+	
+	/**
+	 * 최신 댓글의 DTO를 반환하는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 댓글 DTO
+	 */
 	public ChecklistCommentDTO getNewComment(String ciseq) {
 			
 		try {
@@ -482,6 +547,11 @@ public class ChecklistDAO {
 		return null;
 	}
 
+	/**
+	 * 체크리스트 항목을 delflag를 삭제 상태로 업데이트하는 메소드입니다.
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 성공 여부
+	 */
 	public int delChecklistItem(String ciseq) {
 
 		try {
@@ -520,7 +590,13 @@ public class ChecklistDAO {
 		
 		return 0;
 	}
-
+	
+	/**
+	 * 로그인한 회원의 프로젝트 참여 번호를 반환하는 메소드입니다.
+	 * @param mseq 회원번호
+	 * @param ciseq 체크리스트 항목 번호
+	 * @return 프로젝트 참여 번호
+	 */
 	public String getPaseq(String mseq, String ciseq) {
 
 		try {
@@ -542,7 +618,12 @@ public class ChecklistDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 첨부파일의 delflag를 삭제 상태로 업데이트 하는 메소드입니다.
+	 * @param aseq 첨부파일 번호
+	 * @return 성공 여부
+	 */
 	public int deleteAttach(String aseq) {
 
 		try {
@@ -559,7 +640,12 @@ public class ChecklistDAO {
 		
 		return 0;
 	}
-
+	
+	/**
+	 * 체크리스트 항목 체크/체크해제시 completeflag의 상태를 변환해주는 메소드입니다.
+	 * @param dto 체크리스트항목 DTO
+	 * @return 성공 여부
+	 */
 	public int changeCheck(ChecklistItemDTO dto) {
 
 		try {
@@ -578,6 +664,11 @@ public class ChecklistDAO {
 		return 0;
 	}
 
+	/**
+	 * 프로젝트 참여 번호를 반환하는 메소드입니다.
+	 * @param map 프로젝트 번호, 회원번호를 저장한 해시맵
+	 * @return 프로젝트 참여 번호
+	 */
 	public String getPaseqByMap(HashMap<String, String> map) {
 
 		try {

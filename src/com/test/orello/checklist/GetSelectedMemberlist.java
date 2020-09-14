@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * 선택된 항목의 참여 멤버를 출력하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/getselectedmemberlist.do")
 public class GetSelectedMemberlist extends HttpServlet {
 

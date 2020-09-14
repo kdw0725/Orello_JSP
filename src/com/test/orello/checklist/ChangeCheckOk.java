@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 체크리스트 체크/체크해제 여부를 데이터베이스에 저장하기 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/checklist/changecheckok.do")
 public class ChangeCheckOk extends HttpServlet {
 

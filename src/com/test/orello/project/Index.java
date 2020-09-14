@@ -18,6 +18,11 @@ import org.json.simple.JSONObject;
 import com.test.orello.checklist.ChecklistDTO;
 import com.test.orello.checklist.ChecklistItemDTO;
 
+/**
+ * 프로젝트 메인화면 출력을 위한 서블릿입니다.
+ * @author Doyun Lee
+ *
+ */
 @WebServlet("/project/index.do")
 public class Index extends HttpServlet {
 

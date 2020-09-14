@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import com.test.orello.checklist.MemberDTO;
 
+/**
+ * 프로젝트 객체 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class ProjectDTO {
 
 	private String seq;
