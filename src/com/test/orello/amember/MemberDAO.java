@@ -32,6 +32,12 @@ public class MemberDAO {
 		}
 	}
 
+	/**
+	 * 
+	 * 회원 번호를 주고 회원 정보를 받는다.
+	 * @param seq
+	 * @return
+	 */
 	//UserView 서블릿 -> 회원번호를 주고 회원 정보를 반환 받기 위해 위임
 	public MemberDTO get(String seq) {
 
@@ -66,7 +72,12 @@ public class MemberDAO {
 		return null;
 	}
 
-	//
+	/**
+	 * 
+	 * 회원 리스트에서 이름, 이메일로 검색하여 그 회원의 정보를 가져온다.
+	 * @param map
+	 * @return
+	 */
 	public ArrayList<MemberDTO> list(HashMap<String, String> map) {
 
 		try {
@@ -116,7 +127,11 @@ public class MemberDAO {
 		return null;
 	}
 
-	
+	/**
+	 * 검색을 하였을 때 페이징 처리를 하기 위한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public int getTotalCount(HashMap<String, String> map) {
 		
 		try {
@@ -145,6 +160,12 @@ public class MemberDAO {
 		return 0;
 	}
 
+	/**
+	 * 회원의 번호를 받아 회원의 프로젝트 목록을 가져온다.
+	 * 프로젝트 이름, 이름, 기간, 리더의 정보를 가져온다.
+	 * @param seq
+	 * @return
+	 */
 	//UserView 서블릿에서 회원의 프로젝트 목록 가져오기
 	public ArrayList<MemberDTO> info(String seq) {
 
@@ -182,6 +203,11 @@ public class MemberDAO {
 		return null;
 	}
 
+	/**
+	 * 회원 번호를 받아 회원의 총 프로젝트 참여 갯수를 알 수 있다.
+	 * @param seq
+	 * @return
+	 */
 	public int project(String seq) {
 		
 		try {
@@ -206,6 +232,11 @@ public class MemberDAO {
 		return 0;
 	}
 
+	/**
+	 * 회원 번호를 받아 회원이 프로젝트를 참여하면서 작성한 총 게시글 수를 알 수 있다.
+	 * @param seq
+	 * @return
+	 */
 	public int board(String seq) {
 
 		try {
@@ -231,6 +262,12 @@ public class MemberDAO {
 		return 0;
 	}
 
+	/**
+	 * 회원 번호를 받아 회원의 정보를 가져온다.
+	 * 이름, 등록일, 이메일, 포인트, 전화번호를 가져온다.
+	 * @param seq
+	 * @return
+	 */
 	public ArrayList<MemberDTO> data(String seq) {
 		
 		try {
@@ -267,6 +304,11 @@ public class MemberDAO {
 	}
 
 	
+	/**회원 번호를 받아 회원이 프로젝트를 참여하면서 작성한 총 게시글 수를 알 수 있다.
+	 * 
+	 * @param seq
+	 * @return
+	 */
 	//회원의 프로젝트당 작성한 게시글 수
 	public ArrayList<String> boardCnt(String seq) {
 		//System.out.println("등록");
@@ -312,6 +354,11 @@ public class MemberDAO {
 		return null;
 	}
 
+	/**
+	 * 회원 번호를 받아 회원이 참여했던 프로젝트 이름을 가져온다.
+	 * @param seq
+	 * @return
+	 */
 	//회원의 프로젝트 이름 목록
 	public ArrayList<String> projectName(String seq) {
 		try {

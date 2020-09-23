@@ -10,6 +10,11 @@ import java.util.HashMap;
 
 import com.test.orello.DBUtil;
 
+/**
+ * FAQ를 이용하기위한 DB연결 클래스이다.
+ * @author 강경원, 강혜림
+ *
+ */
 public class FaqDAO {
 
 	private Connection conn;
@@ -30,6 +35,10 @@ public class FaqDAO {
 		}
 	}
 
+	/**
+	 * FAQ를 하나하나씩 가져온다.
+	 * @return
+	 */
 	public ArrayList<FaqDTO> faq() {
 		int cnt = 1;
 		try {
@@ -65,7 +74,10 @@ public class FaqDAO {
 
 
 
-	
+	/**
+	 * FAQ에 추가를 할 때 필요한 메소드이다.
+	 * @param map
+	 */
 	//FAQ 내용 추가 메소드
 	public void addContent(HashMap<String, String> map) {
 		System.out.println(map.get("title"));
@@ -86,6 +98,10 @@ public class FaqDAO {
 		
 	}
 
+	/**
+	 * select 박스를 사용하여 FAQ를 삭제할 때 필요한 메소드이다.
+	 * @param value
+	 */
 	//select box content 삭제하기
 	public void deleteContent(String[] value) {
 		try {

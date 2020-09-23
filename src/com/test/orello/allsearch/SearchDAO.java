@@ -10,6 +10,11 @@ import java.util.HashMap;
 
 import com.test.orello.DBUtil;
 
+/**
+ * 통합 검색을 하기 위해 DB 연결을 위한 DAO이다.
+ * @author 강경원
+ *
+ */
 public class SearchDAO {
 
 	private Connection conn;
@@ -30,6 +35,11 @@ public class SearchDAO {
 		}
 	}
 
+	/**
+	 * 자유 게시글에서 제목, 내용으로 검색을 하기 위해 필요한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public ArrayList<SearchDTO> free(HashMap<String, String> map) {
 
 		try {
@@ -74,6 +84,11 @@ public class SearchDAO {
 		return null;
 	}
 
+	/**
+	 *  통합 검색에서 공지사항을 검색하기 위해 필요한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public ArrayList<SearchDTO> notice(HashMap<String, String> map) {
 
 		try {
@@ -120,6 +135,11 @@ public class SearchDAO {
 		return null;
 	}
 
+	/**
+	 * 통합 검색에서 검색 된 자유게시글의 갯수를 가져오기 위한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public int countFree(HashMap<String, String> map) {
 
 		try {
@@ -151,6 +171,11 @@ public class SearchDAO {
 		return 0;
 	}
 
+	/**
+	 * 통합 검색에서 검색 된 공지사항 갯수를 가져오기 위해 필요한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public int countNotice(HashMap<String, String> map) {
 
 try {
@@ -182,6 +207,11 @@ try {
 		return 0;
 	}
 
+	/**
+	 * 통합 검색에서 프로젝트 내의 검색 결과를 가져오기위해 필요한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public ArrayList<SearchDTO> pNotice(HashMap<String, String> map) {
 		
 		try {
@@ -228,6 +258,11 @@ try {
 		return null;
 	}
 
+	/**
+	 * 통합 검색에서 프로젝트 내의 검색 결과 갯수를 가져오기 위한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public int countPNotice(HashMap<String, String> map) {
 		
 try {

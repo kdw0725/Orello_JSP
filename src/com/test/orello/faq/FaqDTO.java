@@ -1,5 +1,10 @@
 package com.test.orello.faq;
 
+/**
+ * FAQ를 이용하기위한 데이터 객체들을 모아놓은 DTO이다.
+ * @author 강경원
+ *
+ */
 public class FaqDTO {
 
 	private String content;		// FAQ 내용

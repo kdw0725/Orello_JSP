@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * @author 강경원
+ * 회원 번호를 가져와 그 회원의 프로젝트 정보와 게시글 수, 정보를 알 수 있다.
+ */
 @WebServlet("/amember/userview.do")
 public class UserView extends HttpServlet{
 
