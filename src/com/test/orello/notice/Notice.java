@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.test.orello.amember.MemberDAO;
 
+/**
+ * 관리자가 이용할 수 있는 공지사항 클래스이다.
+ * @author 강경원
+ *
+ */
 @WebServlet("/notice/notice.do")
 public class Notice extends HttpServlet{
 

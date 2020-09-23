@@ -11,7 +11,11 @@ import java.util.HashMap;
 import com.test.orello.DBUtil;
 import com.test.orello.amember.MemberDTO;
 
-
+/**
+ * 관리자가 공지사항 DB를 연결하기 위해 만든 DAO이다.
+ * @author 강경원
+ *
+ */
 public class NoticeDAO {
 
 	private Connection conn;
@@ -32,6 +36,12 @@ public class NoticeDAO {
 		}
 	}
 
+	/**
+	 * 공지사항 글 목록을 가지고 오기 위한 메소드이다.
+	 * 번호, 제목, 내용, 등록일, 작성한 관리자번호를 가져올 수 있다.
+	 * @param map
+	 * @return
+	 */
 	//공지사항 글 목록 가져오기
 	public ArrayList<NoticeDTO> nList(HashMap<String, String> map) {
 		
@@ -68,6 +78,11 @@ public class NoticeDAO {
 		return null;
 	}
 
+	/**
+	 * 공지사항 글 목록을 검색한 후 페이징을 위해 만든 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public int getTotalCount(HashMap<String, String> map) {
 		
 		try {
@@ -95,6 +110,11 @@ public class NoticeDAO {
 		return 0;
 	}
 
+	/**
+	 * 공지사항 목록에서 이름, 제목으로 검색을 하기 위한 메소드이다.
+	 * @param map
+	 * @return
+	 */
 	public ArrayList<NoticeDTO> nSearch(HashMap<String, String> map) {
 			try {
 			

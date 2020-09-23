@@ -14,8 +14,13 @@ import javax.servlet.http.HttpSession;
 
 
 
-
-@WebServlet("/amember/userlist.do")
+/**
+ * 
+ * @author 강경원
+ * 회원 가입을 한 모든 회원들의 정보를 받아와 리스트를 출력한다.
+ * 
+ */
+@WebServlet("/amember/UserList.do")
 public class UserList extends HttpServlet{
 	
 	@Override

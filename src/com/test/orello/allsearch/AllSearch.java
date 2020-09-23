@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * 통합 검색을 하기 위한 클래스이다.
+ * 회원 번호를 받아 그 회원과 관련된 게시글만 볼 수 있게 만들었다.
+ * @author 강경원
+ *
+ */
 @WebServlet("/allsearch/allsearch.do")
 public class AllSearch extends HttpServlet{
 

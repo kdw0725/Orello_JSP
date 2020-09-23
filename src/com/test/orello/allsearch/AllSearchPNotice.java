@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 통함 검색에서 프로젝트 내의 공지사항을 검색하기 위한 클래스이다.
+ * @author 강경원
+ *
+ */
 @WebServlet("/allsearch/allserachpnotice.do")
 public class AllSearchPNotice extends HttpServlet {
 

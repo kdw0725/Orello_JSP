@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 통합 검색에서 자유게시글을 검색하기 위한 클래스이다.
+ * @author 강경원
+ *
+ */
 @WebServlet("/allsearch/allsearchfree.do")
 public class AllSearchFree extends HttpServlet {
 

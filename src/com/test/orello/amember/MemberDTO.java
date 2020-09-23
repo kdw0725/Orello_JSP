@@ -1,5 +1,10 @@
 package com.test.orello.amember;
 
+/**
+ * 
+ * @author 강경원
+ * 회원들의 정보들을 가져오기 위해 DTO를 설정
+ */
 public class MemberDTO {
 
 	private String seq; 	// 회원 번호

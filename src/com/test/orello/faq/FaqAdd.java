@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * FAQ에 추가 기능을 위해 만든 클래스이다.
+ * 
+ * @author 강혜림
+ *
+ */
 @WebServlet("/faq/faqadd.do")
 public class FaqAdd extends HttpServlet{
 
