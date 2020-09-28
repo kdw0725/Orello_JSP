@@ -32,6 +32,13 @@ public class MypageDAO {
 		}
 	}
 
+	/**
+	 * 회원의 정보를 불러오는 메서드
+	 * @param seq
+	 * 회원 번호
+	 * @return
+	 * 회원의 이름, 이메일, 전화번호, 포인트, 상태메시지를 담은 dto 객체
+	 */
 	//mypage 서블릿 -> 프로필 리스트 위임
 	public MypageDTO getProfile(String seq) {
 
@@ -62,15 +69,16 @@ public class MypageDAO {
 		
 		}
 		
-		
-		
-		
-		
-		
-		
 		return null;
 	}
 
+	/**
+	 * 회원과 친구인 다른 회원의 목록을 불러오는 메서드
+	 * @param seq
+	 * 회원번호
+	 * @return
+	 * 친구의 이름, 이메일, 상태메시지, 전화번호, 회원번호가 담긴 dto의 ArrayList
+	 */
 	//main 서블릿 -> 친구리스트 위임
 	public ArrayList<MyFriendDTO> getFriendList(String seq) {
 
@@ -110,7 +118,14 @@ public class MypageDAO {
 		
 		return null;
 	}
-
+	
+	/**
+	 * 회원이 참여한 프로젝트의 목록을 불러오는 메서드
+	 * @param seq
+	 * 회원 번호
+	 * @return
+	 * 회원이 참여한 프로젝트의 이름, 타입, 시작일, 종료일, 직책, 프로젝트번호, 프로젝트 참여번호가 담긴  dto의 ArrayList
+	 */
 	//Main 서블릿 -> 프로젝트 목록 위임
 	public ArrayList<MyProjectDTO> getProjectList(String seq) {
 
@@ -148,25 +163,25 @@ public class MypageDAO {
 				list.add(dto);
 				
 			}
-			
 			return list;
-			
-			
-			
-			
 			
 		} catch (Exception e) {
 			System.out.println("MypageDAO.getProjectList()");
 			e.printStackTrace();
-			
-		
 		}
-		
-		
 		
 		return null;
 	}
 
+	/**
+	 * 친구 목록 중 선택한 친구를 삭제하는 메서드
+	 * @param seq
+	 * 회원 번호
+	 * @param fseq
+	 * 선택한 친구의 회원 번호
+	 * @return
+	 * 삭제 성공시 1, 실패시 0 반환
+	 */
 	//Main 서블릿 -> 친구삭제 위임
 	public int deleteFriend(String seq, String fseq) {
 
@@ -193,6 +208,13 @@ public class MypageDAO {
 		return 0;
 	}
 
+	/**
+	 * 프로젝트의 세부사항을 출력하는 메서드
+	 * @param pseq
+	 * 프로젝트 번호
+	 * @return
+	 * 해당 프로젝트의 이름, 시작일, 종료일, 등록일, 타입을 담은 dto 객체
+	 */
 	//ProjectDetail 서블릿 -> 프로젝트 세부사항 출력
 	public MyProjectDTO getProjectDetail(String pseq) {
 
@@ -218,8 +240,6 @@ public class MypageDAO {
 				
 			}
 			
-			
-			
 		} catch (Exception e) {
 			
 			System.out.println("MypageDAO.getProjectDetail()");
@@ -227,11 +247,16 @@ public class MypageDAO {
 		
 		}
 		
-		
-		
 		return null;
 	}
 
+	/**
+	 * 프로젝트의 세부사항 중 프로젝트 참여자의 명단을 출력하는 메서드
+	 * @param pseq
+	 * 프로젝트 번호
+	 * @return
+	 * 프로젝트에 참여한 사람의 이름과 회원번호를 담은 dto 객체
+	 */
 	//ProjectDetail 서블릿 -> 프로젝트 참여자 명단
 	public ArrayList<MemberDTO> getAttendant(String pseq) {
 		try {
@@ -268,8 +293,6 @@ public class MypageDAO {
 			System.out.println("MypageDAO.getAttendant()");
 			e.printStackTrace();
 		}
-		
-		
 		
 		return null;
 	}

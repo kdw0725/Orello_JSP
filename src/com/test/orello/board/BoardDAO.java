@@ -11,7 +11,11 @@ import java.util.HashMap;
 import com.test.orello.DBUtil;
 
 
-
+/**
+ * 
+ * @author 조윤경
+ *
+ */
 public class BoardDAO {
 	
 
@@ -20,6 +24,9 @@ public class BoardDAO {
 		private PreparedStatement pstat;
 		private ResultSet rs;
 
+		/**
+		 * 생성자. 객체 생성과 동시에 데이터베이스에 연결
+		 */
 		public BoardDAO() {
 			// DB연결
 
@@ -28,6 +35,9 @@ public class BoardDAO {
 
 		}
 
+		/**
+		 * 연결된 데이터베이스와의 연결을 끊는 메서드
+		 */
 		public void close() {
 			try {
 				conn.close();
@@ -36,7 +46,14 @@ public class BoardDAO {
 			}
 		}
 
-	//List서블릿 -> 리스트 목록 출력
+		
+	/**
+	 * List서블릿으로부터 리스트 목록의 출력을 위임받은 메서드
+	 * @param map
+	 * 검색어(search), 해당페이지의 첫 게시글 번호(begin), 마지막 게시글 번호(end), 프로젝트 번호(pseq)를 저장한 HashMap
+	 * @return
+	 * 해당 페이지의 게시글 목록
+	 */
 	public ArrayList<BoardDTO> list(HashMap<String, String> map) {
 
 		try {
@@ -116,8 +133,13 @@ public class BoardDAO {
 		return null;
 	}
 
-	
-	//View서블릿 > 글 내용 보여주기
+	/**
+	 * View서블릿으로부터 게시글의 내용 출력을 위임받은 메서드
+	 * @param seq
+	 * 선택된 게시글의 글 번호
+	 * @return
+	 * 해당 게시글의 제목, 내용, 등록일, 글쓴이, 글쓴이의 이메일, 읽은 횟수를 저장한 dto 객체  
+	 */
 	public BoardDTO view(String seq) {
 
 		try {
@@ -163,7 +185,13 @@ public class BoardDAO {
 		return null;
 	}
 
-	
+	/**
+	 * 게시글 목록을 불러오기 위해 필요한 총 게시글 개수를 불러오는 메서드
+	 * @param map
+	 * 검색어(search), 프로젝트 번호(pseq)를 포함한 HashMap
+	 * @return
+	 * 게시글의 총 개수
+	 */
 	//List 서블릿 -> 게시글 개수 가져오기
 	public int getTotalCount(HashMap<String, String> map) {
 
@@ -207,7 +235,13 @@ public class BoardDAO {
 		return 0;
 	}
 
-	//Comment 서블릿 -> 댓글 내용 보여주기
+	/**
+	 * comment서블릿으로부터 해당 게시글의 댓글 내용을 불러오도록 위임받은 메서드
+	 * @param bseq
+	 * 선택된 게시글의 번호
+	 * @return
+	 * 해당 게시글의 내용, 등록일, 댓글쓴이, 댓글쓴이의 회원번호, 이메일이 담긴 dto 객체
+	 */
 	public ArrayList<CommentDTO> commentList(String bseq) {
 
 		try {
@@ -255,7 +289,13 @@ public class BoardDAO {
 		return null;
 	}
 
-	//Comment 서블릿 -> 댓글 개수
+	/**
+	 * Comment서블릿으로 부터 해당 게시글의 댓글 개수를 출력하도록 위임받은 메서드
+	 * @param bseq
+	 * 해당 게시글의 번호
+	 * @return
+	 * 게시글에 달린 댓글의 개수
+	 */
 	public String commentCount(String bseq) {
 
 		try {
@@ -279,7 +319,15 @@ public class BoardDAO {
 		return null;
 	}
 
-	//Comment 서블릿 -> 참여 번호 얻어오기
+	/**
+	 * 프로젝트 참여 번호를 가져오는 메서드
+	 * @param mseq
+	 * 회원 번호
+	 * @param pseq
+	 * 프로젝트 번호
+	 * @return
+	 * 프로젝트 참여번호
+	 */
 	public String getAttendSeq(String mseq, String pseq) {
 
 		try {
@@ -309,6 +357,13 @@ public class BoardDAO {
 	}
 
 
+	/**
+	 * 해당 게시글의 댓글을 쓰는 메서드
+	 * @param cdto
+	 * 댓글내용, 게시글 번호, 참여번호를 담고있는 dto객체
+	 * @return
+	 * 글쓰기 성공시 1, 실패 시 0을 반환
+	 */
 	public int writeComment(CommentDTO cdto) {
 		try {
 			
@@ -333,7 +388,13 @@ public class BoardDAO {
 	}
 
 	
-	
+	/**
+	 * 게시글 작성을 하는 메서드
+	 * @param dto
+	 * 제목, 내용, 프로젝트 번호, 프로젝트 참여번호를 담고있는 dto 객체
+	 * @return
+	 * 글쓰기 성공시 1, 실패시 0 반환
+	 */
 	//board write 서블릿 -> 글쓰기
 	public int write(BoardDTO dto) {
 
